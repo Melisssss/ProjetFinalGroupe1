@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE_ETABLISSEMENT")
+
 public abstract class Etablissement extends User {
 	@ManyToMany(mappedBy = "mesEtablissements", fetch = FetchType.LAZY)
 	private Set<Fiche> mesFiches;
