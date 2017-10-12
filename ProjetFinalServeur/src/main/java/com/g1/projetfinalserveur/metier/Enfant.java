@@ -1,6 +1,8 @@
 package com.g1.projetfinalserveur.metier;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +28,7 @@ public class Enfant {
 	private Responsable monResponsable;
 
 	@OneToMany(mappedBy = "monEnfant", fetch = FetchType.LAZY)
-	private List<Fiche> mesFiches;
+	private Set<Fiche> mesFiches;
 
 	private String nom;
 	private String prenom;
@@ -47,12 +49,11 @@ public class Enfant {
 	public void setMonResponsable(Responsable monResponsable) {
 		this.monResponsable = monResponsable;
 	}
-
-	public List<Fiche> getMesFiches() {
+	public Set<Fiche> getMesFiches() {
 		return mesFiches;
 	}
 
-	public void setMesFiches(List<Fiche> mesFiches) {
+	public void setMesFiches(Set<Fiche> mesFiches) {
 		this.mesFiches = mesFiches;
 	}
 

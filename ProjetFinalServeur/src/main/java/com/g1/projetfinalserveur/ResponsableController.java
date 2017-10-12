@@ -38,8 +38,8 @@ public class ResponsableController {
 	
 	// responsable
 	
-	@RequestMapping(value = "/saveResponsable", method = RequestMethod.POST)
-	public Responsable save(@RequestBody Responsable r) {
+	@RequestMapping(value = "/saveResponsable")
+	public Responsable save(Responsable r) {
 		service.createResponsable(r);
 		return r;
 	}
@@ -66,7 +66,7 @@ public class ResponsableController {
 		return e;
 	}
 	
-	@RequestMapping(value = "/DeleteEnfant")
+	@RequestMapping(value = "/deleteEnfant")
 	public void delete(long idEnfant) {
 		service.deleteEnfant(idEnfant);
 	}
