@@ -27,5 +27,10 @@ public abstract class User {
 	private String mdp;
 	@NotEmpty
 	private String nom;
-	
+	@NotEmpty
+	private String adresse;
+	@NotEmpty
+	private String codePostal;
+	@NotEmpty
+	private String ville;	
 }
