@@ -99,7 +99,7 @@ public class ServiceImplement implements Iuser {
 		ecoleDao.saveAndFlush(e);
 	}
 	
-	
+	//test
 	
 	@Override
 	public void createCentreLoisir(EtablissementCentreLoisir cl) {
