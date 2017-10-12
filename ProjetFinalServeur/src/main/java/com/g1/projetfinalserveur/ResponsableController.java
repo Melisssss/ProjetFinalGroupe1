@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.Responsable;
-import com.g1.projetfinalserveur.service.IserviceResponsable;
+import com.g1.projetfinalserveur.service.ResponsableIservice;
 
 /**
  * Handles requests for the application home page.
@@ -20,13 +20,13 @@ import com.g1.projetfinalserveur.service.IserviceResponsable;
 @RestController
 public class ResponsableController {
 	@Autowired
-	private IserviceResponsable service;
+	private ResponsableIservice service;
 
-	public IserviceResponsable getService() {
+	public ResponsableIservice getService() {
 		return service;
 	}
 
-	public void setService(IserviceResponsable service) {
+	public void setService(ResponsableIservice service) {
 		this.service = service;
 	}
 
