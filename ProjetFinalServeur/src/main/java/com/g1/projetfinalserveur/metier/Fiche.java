@@ -1,8 +1,8 @@
 package com.g1.projetfinalserveur.metier;
 
-import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,18 +16,44 @@ import javax.persistence.ManyToOne;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Scope(value="prototype")
+@Scope(value = "prototype")
 @Component
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE_FICHE")
 public abstract class Fiche {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idFiche;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Enfant monEnfant;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	private Set<Etablissement> mesEtablissement = new HashSet<Etablissement>();
+	private Set<Etablissement> mesEtablissements;
+
+	public long getIdFiche() {
+		return idFiche;
+	}
+
+	public void setIdFiche(long idFiche) {
+		this.idFiche = idFiche;
+	}
+
+	public Enfant getMonEnfant() {
+		return monEnfant;
+	}
+
+	public void setMonEnfant(Enfant monEnfant) {
+		this.monEnfant = monEnfant;
+	}
+
+	public Set<Etablissement> getMesEtablissements() {
+		return mesEtablissements;
+	}
+
+	public void setMesEtablissements(Set<Etablissement> mesEtablissements) {
+		this.mesEtablissements = mesEtablissements;
+	}
+
 }

@@ -9,16 +9,7 @@ import org.springframework.stereotype.Component;
 @Scope(value = "prototype")
 @Component
 @Entity
-@DiscriminatorValue(value = "FICHE_VACCIN")
-public class FicheVaccin extends Fiche {
-	private boolean statut;
-
-	public boolean isStatut() {
-		return statut;
-	}
-
-	public void setStatut(boolean statut) {
-		this.statut = statut;
-	}
+@DiscriminatorValue(value = "CENTRE_LOISIRS")
+public class EtablissementCentreLoisir extends Etablissement{
 
 }

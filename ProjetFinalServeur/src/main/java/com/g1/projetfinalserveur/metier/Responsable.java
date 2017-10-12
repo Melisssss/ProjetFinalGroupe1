@@ -12,12 +12,30 @@ import javax.persistence.OneToMany;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-
-@Scope(value="prototype")
+@Scope(value = "prototype")
 @Component
 @Entity
 @DiscriminatorValue(value = "RESPONSABLE")
 public class Responsable extends User {
-	@OneToMany(mappedBy="monResponsable",fetch=FetchType.LAZY)
-	private Set<Enfant> mesEnfants = new HashSet<Enfant>();
+
+	@OneToMany(mappedBy = "monResponsable", fetch = FetchType.LAZY)
+	private Set<Enfant> mesEnfants;
+	private String prenom;
+	
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public Set<Enfant> getMesEnfants() {
+		return mesEnfants;
+	}
+
+	public void setMesEnfants(Set<Enfant> mesEnfants) {
+		this.mesEnfants = mesEnfants;
+	}
+
 }
