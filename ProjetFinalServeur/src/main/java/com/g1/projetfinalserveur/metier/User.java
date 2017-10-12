@@ -32,5 +32,6 @@ public abstract class User {
 	@NotEmpty
 	private String codePostal;
 	@NotEmpty
-	private String ville;	
+	private String ville;
+	
 }
