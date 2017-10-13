@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.g1.projetfinalserveur.metier.Responsable;
 
 @Repository
-public interface ResponsableDao extends JpaRepository<Responsable, Long> {
-
+public interface ResponsableDAO extends JpaRepository<Responsable, Long> {
+	
 }

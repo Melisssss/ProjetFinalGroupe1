@@ -12,7 +12,8 @@ import com.g1.projetfinalserveur.metier.Enfant;
 
 
 @Repository
-public interface EnfantDao extends JpaRepository<Enfant, Long> {
+public interface EnfantDAO extends JpaRepository<Enfant, Long> {
 	@Query("select e from Enfant e where e.monResponsable.idUser = :x")
 	List<Enfant> findAllEnfantResponsable(@Param("x") long idUser);
+	
 }
