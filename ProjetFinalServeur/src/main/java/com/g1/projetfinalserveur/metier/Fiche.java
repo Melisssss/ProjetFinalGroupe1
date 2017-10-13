@@ -12,6 +12,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,18 @@ public abstract class Fiche {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	private Set<Etablissement> mesEtablissements;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	private Famille maFamille;
+	
+	
+	public Famille getMaFamille() {
+		return maFamille;
+	}
+
+	public void setMaFamille(Famille maFamille) {
+		this.maFamille = maFamille;
+	}
 
 	public long getIdFiche() {
 		return idFiche;

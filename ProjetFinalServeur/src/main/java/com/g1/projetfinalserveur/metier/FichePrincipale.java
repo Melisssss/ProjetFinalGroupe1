@@ -24,8 +24,7 @@ public class FichePrincipale extends Fiche {
 	private String statutSortie;
 	private String transport;
 	private boolean pension;
-	@OneToOne(fetch = FetchType.EAGER)
-	private Famille maFamille;
+	
 	public String getAdresse() {
 		return adresse;
 	}
@@ -92,12 +91,8 @@ public class FichePrincipale extends Fiche {
 	public void setPension(boolean pension) {
 		this.pension = pension;
 	}
-	public Famille getMaFamille() {
-		return maFamille;
-	}
-	public void setMaFamille(Famille maFamille) {
-		this.maFamille = maFamille;
-	}
+
+
 	
 	
 }

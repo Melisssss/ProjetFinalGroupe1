@@ -1,6 +1,7 @@
 package com.g1.projetfinalserveur.metier;
 
-import javax.persistence.DiscriminatorColumn;
+
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
