@@ -66,4 +66,5 @@ $RECYCLE.BIN/
 .project
 .settings
 .metadata
-*/target/**
+pom.properties
+MENIFEST.MF
