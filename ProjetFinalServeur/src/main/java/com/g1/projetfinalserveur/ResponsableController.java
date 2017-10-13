@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.Responsable;
 import com.g1.projetfinalserveur.service.IserviceResponsable;
-import com.g1.projetfinalserveur.service.ResponsableIservice;
+
 
 /**
  * Handles requests for the application home page.
@@ -47,7 +47,7 @@ public class ResponsableController {
 
 	@RequestMapping(value = "/getResponsable")
 	public Responsable getResponsable(long idUser) {
-		return null;
+		return service.getResponsable(idUser);
 
 	}
 
@@ -85,7 +85,7 @@ public class ResponsableController {
 
 		Enfant e;
 		e = service.getEnfant(idEnfant);
-		
+		e.setMonResponsable(service.getResponsable(idUser));
 		service.updateEnfant(e);
 	}
 
