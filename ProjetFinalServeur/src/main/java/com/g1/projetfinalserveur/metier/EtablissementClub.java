@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @DiscriminatorValue(value = "CLUB")
-@DiscriminatorColumn(name = "TYPE_ETABLISSEMENT")
 public class EtablissementClub extends Etablissement{
 	private String nomclub;
 

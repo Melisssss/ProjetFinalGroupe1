@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g1.projetfinalserveur.metier.Enfant;
+import com.g1.projetfinalserveur.metier.FicheImage;
+import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
+import com.g1.projetfinalserveur.metier.FicheVaccin;
 import com.g1.projetfinalserveur.metier.Responsable;
 import com.g1.projetfinalserveur.service.IserviceEtablissement;
 import com.g1.projetfinalserveur.service.IserviceResponsable;
@@ -33,8 +36,12 @@ public class ResponsableController {
 	 * 
 	 * @return
 	 */
+	
+	
 
 	// responsable
+	
+	
 
 	@RequestMapping(value = "/saveResponsable")
 	public Responsable saveResponsable(Responsable r) {
@@ -53,8 +60,13 @@ public class ResponsableController {
 		return service.getResponsable(idUser);
 
 	}
+	
+	
 
 	// enfant
+	
+	
+	
 
 	@RequestMapping(value = "/saveEnfant")
 	public Enfant saveEnfant(Enfant e) {
@@ -92,7 +104,13 @@ public class ResponsableController {
 		service.updateEnfant(e);
 	}
 	
+	
+	
+	
 	// fichePrincipale
+	
+	
+	
 	
 	@RequestMapping(value = "/saveFichePrincipale")
 	public FichePrincipale saveFichePrincipale(FichePrincipale fp) {
@@ -105,9 +123,9 @@ public class ResponsableController {
 		return fp;
 	}
 	
-	@RequestMapping(value = "/getFicheParticulier")
-	public FichePrincipale getParticulier(long idFichePrincipal) {
-		return service.getFichePrincipale(idFichePrincipal);
+	@RequestMapping(value = "/getFichePrincipal")
+	public FichePrincipale getFichePrincipal(long idFiche) {
+		return service.getFichePrincipale(idFiche);
 	}
 	
 	@RequestMapping(value = "/listFichePrincipaleEnfant")
@@ -116,39 +134,235 @@ public class ResponsableController {
 	}
 	
 	@RequestMapping(value = "/linkFichePrincipaleEnfant")
-	public void linkFichePrincipaleEnfant(long idEnfant, long idFichePrincipale) {
+	public void linkFichePrincipaleEnfant(long idEnfant, long idFiche) {
 
 		FichePrincipale fp;
-		fp = service.getFichePrincipale(idFichePrincipale);
+		fp = service.getFichePrincipale(idFiche);
 		fp.setMonEnfant(service.getEnfant(idEnfant));
 		service.updateFichePrincipale(fp);
 	}
 	
 	@RequestMapping(value = "/linkFichePrincipaleEcole")
-	public void linkFichePrincipaleEcole(long idEtablissement, long idFichePrincipale) {
+	public void linkFichePrincipaleEcole(long idEtablissement, long idFiche) {
 
 		FichePrincipale fp;
-		fp = service.getFichePrincipale(idFichePrincipale);
+		fp = service.getFichePrincipale(idFiche);
 		fp.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFichePrincipale(fp);
 	}
 	
 	@RequestMapping(value = "/linkFichePrincipaleClub")
-	public void linkFichePrincipaleClub(long idEtablissement, long idFichePrincipale) {
+	public void linkFichePrincipaleClub(long idEtablissement, long idFiche) {
 
 		FichePrincipale fp;
-		fp = service.getFichePrincipale(idFichePrincipale);
+		fp = service.getFichePrincipale(idFiche);
 		fp.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
 		service.updateFichePrincipale(fp);
 	}
 	
 	@RequestMapping(value = "/linkFichePrincipaleCentreLoisir")
-	public void linkFichePrincipaleCentreLoisir(long idEtablissement, long idFichePrincipale) {
+	public void linkFichePrincipaleCentreLoisir(long idEtablissement, long idFiche) {
 
 		FichePrincipale fp;
-		fp = service.getFichePrincipale(idFichePrincipale);
+		fp = service.getFichePrincipale(idFiche);
 		fp.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
 		service.updateFichePrincipale(fp);
 	}
+	
+	
+	
+	
+	// ficheMedical
 
+	
+	
+	
+	@RequestMapping(value = "/saveFicheMedical")
+	public FicheMedical saveFicheMedical(FicheMedical fm) {
+		service.createFicheMedical(fm);
+		return fm;
+	}
+	@RequestMapping(value = "/updateFicheMedical")
+	public FicheMedical updateFicheMedical(FicheMedical fm) {
+		service.updateFicheMedical(fm);
+		return fm;
+	}
+	
+	@RequestMapping(value = "/getFicheMedical")
+	public FicheMedical getFicheMedical(long idFiche) {
+		return service.getFicheMedical(idFiche);
+	}
+	
+	@RequestMapping(value = "/listFicheMedicalEnfant")
+	public List<FicheMedical> listFicheMedical(long idEnfant) {
+		return service.findAllFicheMedicalEnfant(idEnfant);
+	}
+	
+	@RequestMapping(value = "/linkFicheMedicalEnfant")
+	public void linkFicheMedicalEnfant(long idEnfant, long idFiche) {
+
+		FicheMedical fm;
+		fm = service.getFicheMedical(idFiche);
+		fm.setMonEnfant(service.getEnfant(idEnfant));
+		service.updateFicheMedical(fm);
+	}
+	
+	@RequestMapping(value = "/linkFicheMedicalEcole")
+	public void linkFicheMedicalEcole(long idEtablissement, long idFiche) {
+
+		FicheMedical fm;
+		fm = service.getFicheMedical(idFiche);
+		fm.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
+		service.updateFicheMedical(fm);
+	}
+	
+	@RequestMapping(value = "/linkFicheMedicalClub")
+	public void linkFicheMedicalClub(long idEtablissement, long idFiche) {
+
+		FicheMedical fm;
+		fm = service.getFicheMedical(idFiche);
+		fm.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
+		service.updateFicheMedical(fm);
+	}
+	
+	@RequestMapping(value = "/linkFicheMedicalCentreLoisir")
+	public void linkFicheMedicalCentreLoisir(long idEtablissement, long idFiche) {
+
+		FicheMedical fm;
+		fm = service.getFicheMedical(idFiche);
+		fm.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
+		service.updateFicheMedical(fm);
+	}
+	
+	
+	
+	
+	
+	//ficheVaccin
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/saveFicheVaccin")
+	public FicheVaccin saveFicheVaccin(FicheVaccin fv) {
+		service.createFicheVaccin(fv);
+		return fv;
+	}
+	@RequestMapping(value = "/updateFicheVaccin")
+	public FicheVaccin updateFicheVaccin(FicheVaccin fv) {
+		service.updateFicheVaccin(fv);
+		return fv;
+	}
+	
+	@RequestMapping(value = "/getFicheVaccin")
+	public FicheVaccin getFicheVaccin(long idFiche) {
+		return service.getFicheVaccin(idFiche);
+	}
+	
+	@RequestMapping(value = "/listFicheVaccinEnfant")
+	public List<FicheVaccin> listFicheVaccin(long idEnfant) {
+		return service.findAllFicheVaccinEnfant(idEnfant);
+	}
+	
+	@RequestMapping(value = "/linkFicheVaccinEnfant")
+	public void linkFicheVaccinEnfant(long idEnfant, long idFiche) {
+
+		FicheVaccin fv;
+		fv = service.getFicheVaccin(idFiche);
+		fv.setMonEnfant(service.getEnfant(idEnfant));
+		service.updateFicheVaccin(fv);
+	}
+	
+	@RequestMapping(value = "/linkFicheVaccinEcole")
+	public void linkFicheVaccinEcole(long idEtablissement, long idFiche) {
+
+		FicheVaccin fv;
+		fv = service.getFicheVaccin(idFiche);
+		fv.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
+		service.updateFicheVaccin(fv);
+	}
+	
+	@RequestMapping(value = "/linkFicheVaccinClub")
+	public void linkFicheVaccinClub(long idEtablissement, long idFiche) {
+
+		FicheVaccin fv;
+		fv = service.getFicheVaccin(idFiche);
+		fv.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
+		service.updateFicheVaccin(fv);
+	}
+	
+	@RequestMapping(value = "/linkFicheVaccinCentreLoisir")
+	public void linkFicheVaccinCentreLoisir(long idEtablissement, long idFiche) {
+
+		FicheVaccin fv;
+		fv = service.getFicheVaccin(idFiche);
+		fv.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
+		service.updateFicheVaccin(fv);
+	}
+	
+	
+	
+	//ficheImage
+	
+	
+
+	@RequestMapping(value = "/saveFicheImage")
+	public FicheImage saveFicheImage(FicheImage fi) {
+		service.createFicheImage(fi);
+		return fi;
+	}
+	@RequestMapping(value = "/updateFicheImage")
+	public FicheImage updateFicheImage(FicheImage fi) {
+		service.updateFicheImage(fi);
+		return fi;
+	}
+	
+	@RequestMapping(value = "/getFicheImage")
+	public FicheImage getFicheImage(long idFiche) {
+		return service.getFicheImage(idFiche);
+	}
+	
+	@RequestMapping(value = "/listFicheImageEnfant")
+	public List<FicheImage> listFicheImage(long idEnfant) {
+		return service.findAllFicheImageEnfant(idEnfant);
+	}
+	
+	@RequestMapping(value = "/linkFicheImageEnfant")
+	public void linkFicheImageEnfant(long idEnfant, long idFiche) {
+
+		FicheImage fi;
+		fi = service.getFicheImage(idFiche);
+		fi.setMonEnfant(service.getEnfant(idEnfant));
+		service.updateFicheImage(fi);
+	}
+	
+	@RequestMapping(value = "/linkFicheImageEcole")
+	public void linkFicheImageEcole(long idEtablissement, long idFiche) {
+
+		FicheImage fi;
+		fi = service.getFicheImage(idFiche);
+		fi.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
+		service.updateFicheImage(fi);
+	}
+	
+	@RequestMapping(value = "/linkFicheImageClub")
+	public void linkFicheImageClub(long idEtablissement, long idFiche) {
+
+		FicheImage fi;
+		fi = service.getFicheImage(idFiche);
+		fi.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
+		service.updateFicheImage(fi);
+	}
+	
+	@RequestMapping(value = "/linkFicheImageCentreLoisir")
+	public void linkFicheImageCentreLoisir(long idEtablissement, long idFiche) {
+
+		FicheImage fi;
+		fi = service.getFicheImage(idFiche);
+		fi.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
+		service.updateFicheImage(fi);
+	}
+	
+	
 }
