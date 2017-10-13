@@ -14,23 +14,36 @@ import com.g1.projetfinalserveur.dao.FicheMedicalDAO;
 import com.g1.projetfinalserveur.dao.FichePrincipaleDAO;
 import com.g1.projetfinalserveur.dao.FicheVaccinDAO;
 import com.g1.projetfinalserveur.dao.ResponsableDAO;
+import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
 import com.g1.projetfinalserveur.metier.EtablissementClub;
 import com.g1.projetfinalserveur.metier.EtablissementEcole;
+import com.g1.projetfinalserveur.metier.FicheImage;
+import com.g1.projetfinalserveur.metier.FicheMedical;
+import com.g1.projetfinalserveur.metier.FichePrincipale;
+import com.g1.projetfinalserveur.metier.FicheVaccin;
 import com.g1.projetfinalserveur.metier.Responsable;
 
 @Service
-public class ServiceImplement implements Iuser {
+public class ServiceImplement implements IserviceResponsable, IserviceEtablissement {
 
 	@Autowired
 	EnfantDAO enfantDao;
+	@Autowired
 	ResponsableDAO responsableDao;
+	@Autowired
 	ClubDAO clubDao;
+	@Autowired
 	EcoleDAO ecoleDao;
+	@Autowired
 	CentreLoisirDAO centreLoisirDao;
+	@Autowired
 	FicheImageDAO ficheImageDao;
+	@Autowired
 	FicheMedicalDAO ficheMedicalDao;
+	@Autowired
 	FichePrincipaleDAO fichePrincipaleDao;
+	@Autowired
 	FicheVaccinDAO ficheVaccinDao;
 	
 	
@@ -50,16 +63,21 @@ public class ServiceImplement implements Iuser {
 		responsableDao.delete(r);
 	}
 	@Override
-	public void updateResponsable(Responsable r) {
+	public Responsable updateResponsable(Responsable r) {
 		// TODO Auto-generated method stub
-		responsableDao.saveAndFlush(r);
+		return responsableDao.saveAndFlush(r);
+	}
+	@Override
+	public List<Enfant> findAllEnfantResponsable(long idUser) {
+		// TODO Auto-generated method stub
+		return enfantDao.findAllEnfantResponsable(idUser);
 	}
 	
 	
 	@Override
-	public void createClub(EtablissementClub c) {
+	public void createClub(EtablissementClub ec) {
 		// TODO Auto-generated method stub
-		clubDao.save(c);
+		clubDao.save(ec);
 	}
 	@Override
 	public List<EtablissementClub> findClubs() {
@@ -67,21 +85,19 @@ public class ServiceImplement implements Iuser {
 		return clubDao.findAll();
 	}
 	@Override
-	public void deleteClub(EtablissementClub c) {
+	public void deleteClub(EtablissementClub ec) {
 		// TODO Auto-generated method stub
-		clubDao.delete(c);
+		clubDao.delete(ec);
 	}
 	@Override
-	public void updateClub(EtablissementClub c) {
+	public EtablissementClub updateClub(EtablissementClub ec) {
 		// TODO Auto-generated method stub
-		clubDao.saveAndFlush(c);
+		return clubDao.saveAndFlush(ec);
 	}
-	
-	
-	@Override
-	public void createEcole(EtablissementEcole e) {
+		@Override
+	public void createEcole(EtablissementEcole ee) {
 		// TODO Auto-generated method stub
-		ecoleDao.save(e);
+		ecoleDao.save(ee);
 	}
 	@Override
 	public List<EtablissementEcole> findEcoles() {
@@ -89,22 +105,20 @@ public class ServiceImplement implements Iuser {
 		return ecoleDao.findAll();
 	}
 	@Override
-	public void deleteEcole(EtablissementEcole e) {
+	public void deleteEcole(EtablissementEcole ee) {
 		// TODO Auto-generated method stub
-		ecoleDao.delete(e);
+		ecoleDao.delete(ee);
 	}
 	@Override
-	public void updateEcole(EtablissementEcole e) {
+	public EtablissementEcole updateEcole(EtablissementEcole ee) {
 		// TODO Auto-generated method stub
-		ecoleDao.saveAndFlush(e);
+		return ecoleDao.saveAndFlush(ee);
 	}
-	
 	//test
-	
 	@Override
-	public void createCentreLoisir(EtablissementCentreLoisir cl) {
+	public void createCentreLoisir(EtablissementCentreLoisir ecl) {
 		// TODO Auto-generated method stub
-		centreLoisirDao.save(cl);
+		centreLoisirDao.save(ecl);
 	}
 	@Override
 	public List<EtablissementCentreLoisir> findCentreLoisirs() {
@@ -112,15 +126,141 @@ public class ServiceImplement implements Iuser {
 		return centreLoisirDao.findAll();
 	}
 	@Override
-	public void deleteCentreLoisir(EtablissementCentreLoisir cl) {
+	public void deleteCentreLoisir(EtablissementCentreLoisir ecl) {
 		// TODO Auto-generated method stub
-		centreLoisirDao.delete(cl);
+		centreLoisirDao.delete(ecl);
 	}
 	@Override
-	public void updateCentreLoisir(EtablissementCentreLoisir cl) {
+	public EtablissementCentreLoisir updateCentreLoisir(EtablissementCentreLoisir ecl) {
 		// TODO Auto-generated method stub
-		centreLoisirDao.saveAndFlush(cl);
-		
+		return centreLoisirDao.saveAndFlush(ecl);
+	}
+	
+	
+	@Override
+	public void createEnfant(Enfant e) {
+		// TODO Auto-generated method stub
+		enfantDao.save(e);
+	}
+	@Override
+	public void deleteEnfant(Enfant e) {
+		// TODO Auto-generated method stub
+		enfantDao.delete(e);
+	}
+	@Override
+	public Enfant updateEnfant(Enfant e) {
+		// TODO Auto-generated method stub
+		return enfantDao.saveAndFlush(e);
+	}
+	@Override
+	public Enfant getEnfant(long idEnfant) {
+		// TODO Auto-generated method stub
+		return enfantDao.getOne(idEnfant);
+	}
+	
+	
+	@Override
+	public void createFichePrincipale(FichePrincipale fp) {
+		// TODO Auto-generated method stub
+		fichePrincipaleDao.save(fp);
+	}
+	@Override
+	public List<FichePrincipale> findAllFichePrincipaleEnfant() {
+		// TODO Auto-generated method stub
+		return fichePrincipaleDao.findAll();
+	}
+	@Override
+	public void deleteFichePrincipale(FichePrincipale fp) {
+		// TODO Auto-generated method stub
+		fichePrincipaleDao.delete(fp);
+	}
+	@Override
+	public FichePrincipale updateFichePrincipale(FichePrincipale fp) {
+		// TODO Auto-generated method stub
+		return fichePrincipaleDao.saveAndFlush(fp);
+	}
+	@Override
+	public FichePrincipale getFichePrincipale(long idFiche) {
+		// TODO Auto-generated method stub
+		return fichePrincipaleDao.getOne(idFiche);
+	}
+	
+	@Override
+	public void createFicheMedical(FicheMedical fm) {
+		// TODO Auto-generated method stub
+		ficheMedicalDao.save(fm);
+	}
+	@Override
+	public List<FicheMedical> findAllFicheMedicalEnfant() {
+		// TODO Auto-generated method stub
+		return ficheMedicalDao.findAll();
+	}
+	@Override
+	public void deleteFicheMedical(FicheMedical fm) {
+		// TODO Auto-generated method stub
+		ficheMedicalDao.delete(fm);
+	}
+	@Override
+	public FicheMedical updateFicheMedical(FicheMedical fm) {
+		// TODO Auto-generated method stub
+		return ficheMedicalDao.saveAndFlush(fm);
+	}
+	@Override
+	public FicheMedical getFicheMedical(long idFiche) {
+		// TODO Auto-generated method stub
+		return ficheMedicalDao.getOne(idFiche);
+	}
+	
+	@Override
+	public void createFicheVaccin(FicheVaccin fv) {
+		// TODO Auto-generated method stub
+		ficheVaccinDao.save(fv);
+	}
+	@Override
+	public List<FicheVaccin> findAllFicheVaccinEnfant() {
+		// TODO Auto-generated method stub
+		return ficheVaccinDao.findAll();
+	}
+	@Override
+	public void deleteFicheVaccin(FicheVaccin fv) {
+		// TODO Auto-generated method stub
+		ficheVaccinDao.delete(fv);
+	}
+	@Override
+	public FicheVaccin updateFicheVaccin(FicheVaccin fv) {
+		// TODO Auto-generated method stub
+		return ficheVaccinDao.saveAndFlush(fv);
+	}
+	@Override
+	public FicheVaccin getFicheVaccin(long idFiche) {
+		// TODO Auto-generated method stub
+		return ficheVaccinDao.getOne(idFiche);
+	}
+	
+	@Override
+	public void createFicheImage(FicheImage fi) {
+		// TODO Auto-generated method stub
+		ficheImageDao.save(fi);
+	}
+	@Override
+	public List<FicheImage> findAllFicheImageEnfant() {
+		// TODO Auto-generated method stub
+		return ficheImageDao.findAll();
+	}
+	@Override
+	public void deleteFicheImage(FicheImage fi) {
+		// TODO Auto-generated method stub
+		ficheImageDao.delete(fi);
+	}
+	@Override
+	public FicheImage updateFicheImage(FicheImage fi) {
+		// TODO Auto-generated method stub
+		return ficheImageDao.saveAndFlush(fi);
+	}
+	@Override
+	public FicheImage getFicheImage(long idFiche) {
+		// TODO Auto-generated method stub
+		return ficheImageDao.getOne(idFiche);
 	}
 
 
