@@ -39,7 +39,7 @@ public class Enfant {
 	
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
-	private Set<Etablissement> mesEtablissement;
+	private Set<Etablissement> mesEtablissementsEnfant;
 
 	private String nom;
 	private String prenom;
@@ -47,12 +47,13 @@ public class Enfant {
 	
 	
 	
-	public Set<Etablissement> getMesEtablissement() {
-		return mesEtablissement;
+	
+	public Set<Etablissement> getMesEtablissementsEnfant() {
+		return mesEtablissementsEnfant;
 	}
 
-	public void setMesEtablissement(Set<Etablissement> mesEtablissement) {
-		this.mesEtablissement = mesEtablissement;
+	public void setMesEtablissementsEnfant(Set<Etablissement> mesEtablissementsEnfant) {
+		this.mesEtablissementsEnfant = mesEtablissementsEnfant;
 	}
 
 	public long getIdEnfant() {

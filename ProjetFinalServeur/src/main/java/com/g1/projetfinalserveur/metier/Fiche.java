@@ -35,7 +35,7 @@ public abstract class Fiche {
 	
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
-	private Set<Etablissement> mesEtablissements;
+	private Set<Etablissement> mesEtablissementsFiche;
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	private Famille maFamille;
@@ -65,12 +65,14 @@ public abstract class Fiche {
 		this.monEnfant = monEnfant;
 	}
 
-	public Set<Etablissement> getMesEtablissements() {
-		return mesEtablissements;
+	public Set<Etablissement> getMesEtablissementsFiche() {
+		return mesEtablissementsFiche;
 	}
 
-	public void setMesEtablissements(Set<Etablissement> mesEtablissements) {
-		this.mesEtablissements = mesEtablissements;
+	public void setMesEtablissementsFiche(Set<Etablissement> mesEtablissementsFiche) {
+		this.mesEtablissementsFiche = mesEtablissementsFiche;
 	}
+
+	
 
 }

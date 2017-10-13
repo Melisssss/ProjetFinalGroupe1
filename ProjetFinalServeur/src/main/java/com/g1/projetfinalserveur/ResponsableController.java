@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g1.projetfinalserveur.metier.Enfant;
+import com.g1.projetfinalserveur.metier.FichePrincipale;
 import com.g1.projetfinalserveur.metier.Responsable;
 import com.g1.projetfinalserveur.service.IserviceResponsable;
 
@@ -80,7 +81,7 @@ public class ResponsableController {
 		return service.findAllEnfantResponsable(idUser);
 	}
 
-	@RequestMapping(value = "/linkEnfant")
+	@RequestMapping(value = "/linkEnfantResponsable")
 	public void linkEnfant(long idUser, long idEnfant) {
 
 		Enfant e;
@@ -88,5 +89,14 @@ public class ResponsableController {
 		e.setMonResponsable(service.getResponsable(idUser));
 		service.updateEnfant(e);
 	}
+	
+	// fichePrincipale
+	@RequestMapping(value = "/saveFichePrincipale")
+	public FichePrincipale saveFichePrincipale(FichePrincipale fp) {
+		service.createFichePrincipale(fp);
+		return fp;
+	}
+
+	
 
 }

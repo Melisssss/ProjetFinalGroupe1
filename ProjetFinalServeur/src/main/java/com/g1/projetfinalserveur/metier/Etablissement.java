@@ -22,10 +22,10 @@ import org.springframework.stereotype.Component;
 
 public abstract class Etablissement extends User {
 	
-	@ManyToMany(mappedBy = "mesEtablissements", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "mesEtablissementsFiche", fetch = FetchType.EAGER)
 	private Set<Fiche> mesFiches;
 	
-	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "mesEtablissements")
+	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "mesEtablissementsEnfant")
 	private Set<Enfant> mesEnfants = new HashSet<Enfant>();
 	
 	
