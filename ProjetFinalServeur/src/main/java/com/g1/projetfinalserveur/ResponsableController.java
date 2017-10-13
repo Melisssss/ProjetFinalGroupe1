@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g1.projetfinalserveur.metier.Enfant;
+import com.g1.projetfinalserveur.metier.EtablissementEcole;
 import com.g1.projetfinalserveur.metier.FicheImage;
 import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
@@ -365,9 +366,32 @@ public class ResponsableController {
 		service.updateFicheImage(fi);
 	}
 	
-	// famille
+	// EtablissementEcole
+	
+	@RequestMapping(value = "/saveEtablissementEcole")
+	public EtablissementEcole saveEtablissementEcole(EtablissementEcole ee) {
+		serviceE.createEcole(ee);
+		return ee;
+	}
+	
+	@RequestMapping(value = "/listEtablissementEcole")
+	public List<EtablissementEcole> listEtablissementEcole() {
+		return serviceE.findEcoles();
+	}
+	
+	@RequestMapping(value = "/getEtablissementEcole")
+	public EtablissementEcole getEtablissementEcole(long idEtablissement) {
+		return serviceE.getEcole(idEtablissement);
+	}
 	
 	
 	
-	
+	@RequestMapping(value = "/linkEtablissementEcoleEnfant")
+	public void linkEtablissementEcoleEnfant(long idEnfant, long idEtablissement) {
+
+		EtablissementEcole ee;
+		ee = serviceE.getEcole(idEtablissement);
+		ee.getMesEnfants().add(service.getEnfant(idEnfant));
+		serviceE.updateEcole(ee);
+	}	
 }
