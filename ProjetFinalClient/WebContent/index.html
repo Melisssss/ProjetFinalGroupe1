@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Gestion renseignements</title>
 <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+<!-- <link rel="stylesheet"  type="text/css"  href="./css/Style.css"> -->
 
 </head>
 <body ng-app="myApp">
@@ -20,6 +21,12 @@
 		      </div>
 		      <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
 		        <div class="panel-body">
+		        	
+		        	<div ng-controller="authentificationResponsable">
+		        	Id Responsable: <br><input type="number" ng-model="responsable.idUser"><br>
+		        	<button ng-click="authentifier()">Authentifier</button><br>
+		        	Bonjour {{responsable.nom}} avec l'id {{responsable.idUser}}.
+		        	
 		        	<div>
 		        			<form name="" ng-controller="createEnfant">
 		        			
@@ -35,10 +42,18 @@
 								<!-- 							   	required="required" -->
 <!-- 								<span ng-show="monform.dateDeNaissance.$touched &amp;&amp; monform.stockProduit.$invalid">Champs invalide</span> -->
 								<br>
+ 								<button ng-click="ajouter()">Enregistrer</button><br>
+ 							</form>
+ 							
+ 							<form ng-controller="updateEnfant">
+ 							
+								Id Enfant: <br><input type="number" ng-model="enfant.idEnfant"><br>
+									<button ng-click="attribuerResponsable()">Attribuer resp. test</button>
+									Bonjour {{responsable.nom}} avec l'id {{responsable.idUser}}.
+									
+							</form>
 								
-								 <button ng-click="ajouter()">Enregistrer</button>
-								</form>
-							
+		
 							 <br>
 							<h3>Mes enfants enregistrés</h3>
 							<form>
@@ -48,6 +63,7 @@
 							        <th>NOM  :</th>
 							        <th>Prénom :</th>
 							        <th>Date de naissance :</th>
+							        <th>Id responsable :</th>
 							      </tr>
 							    </thead>
 							     <tbody>
@@ -55,8 +71,9 @@
 								   
 								    <td>{{e.nom}}</td>
 								    <td>{{e.prenom}}</td>
-								    <td>{{e.date}}</td>
-								     <td>
+								    <td>{{e.dateDeNaissance}}</td>
+								    <td>{{e.monResponsable_idUser}}</td>
+								    <td>
 								      <button class="w3-btn w3-ripple" ng-click="modifier(produit.id)">&#9998;Edit</button>
 								      <button class="w3-btn w3-ripple" ng-click="supprimer(produit.id)">&#10006;</button>
 								      	
@@ -67,6 +84,9 @@
 						 </form>
 					</div><br><br>
 		        
+		        Bonjour {{responsable.nom}} 
+		        	avec l'id {{responsable.idUser}}.
+		        </div>
 		        
 		        </div>
 		      </div>
@@ -92,10 +112,10 @@
 									     <tbody>
 									    
 										   <tr ng-repeat="e in Etablissement" ng-repeat="user in deleteClient">
-										    <td>{{p.nomEtablissement }}</td>
-										    <td>{{ p.prenomClient }}</td>
-										    <td>{{ p.telClient }}</td>
-										    <td>{{ p.emailClient }}</td>
+										    <td>{{e.nomEtablissement }}</td>
+										    <td>{{e.type}}</td>
+										    <td>{{}}</td>
+										    <td>{{}}</td>
 										     <td>
 										      <button class="w3-btn w3-ripple" ng-click="modifier(client.id)">&#9998;Edit</button>
 										      <button class="w3-btn w3-ripple" ng-click="supprimer(client.id)">&#10006;</button>
@@ -118,7 +138,7 @@
 		      <div id="collapse3" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
 		        <div class="panel-body">
 		        
-		       			<p> Une case pour rajouter des options à l'administrateur</p>
+		       			<p> Une</p>
 		        
 		        
 		        </div>
