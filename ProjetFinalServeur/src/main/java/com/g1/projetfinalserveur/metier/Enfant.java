@@ -1,6 +1,7 @@
 package com.g1.projetfinalserveur.metier;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,9 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.context.annotation.Scope;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Scope(value = "prototype")
 @Component
@@ -23,12 +28,14 @@ public class Enfant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idEnfant;
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Responsable monResponsable;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "monEnfant", fetch = FetchType.LAZY)
-	private Set<Fiche> mesFiches;
+	private Set<Fiche> mesFiches = new HashSet<Fiche>();
 
 	private String nom;
 	private String prenom;

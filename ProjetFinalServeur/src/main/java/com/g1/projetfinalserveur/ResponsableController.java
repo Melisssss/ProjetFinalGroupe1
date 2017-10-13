@@ -35,49 +35,63 @@ public class ResponsableController {
 	 * 
 	 * @return
 	 */
-	
+
 	// responsable
-	
+
 	@RequestMapping(value = "/saveResponsable")
-	public Responsable save(Responsable r) {
+	public Responsable saveResponsable(Responsable r) {
 		service.createResponsable(r);
 		return r;
 	}
 
-	
 	@RequestMapping(value = "/updateResponsable")
-	public Responsable update(Responsable r) {
+	public Responsable updateResponsable(Responsable r) {
 		service.updateResponsable(r);
 		return r;
 	}
-	
+
+	@RequestMapping(value = "/getResponsable")
+	public Responsable getResponsable(long idUser) {
+		return service.getResponsable(idUser);
+
+	}
+
 	// enfant
-	
+
 	@RequestMapping(value = "/saveEnfant")
-	public Enfant save(Enfant e) {
+	public Enfant saveEnfant(Enfant e) {
 		service.createEnfant(e);
 		return e;
 	}
 
-	
 	@RequestMapping(value = "/updateEnfant")
-	public Enfant update(Enfant e) {
+	public Enfant updateEnfant(Enfant e) {
 		service.updateEnfant(e);
 		return e;
 	}
-	
+
 	@RequestMapping(value = "/deleteEnfant")
-	public void delete(long idEnfant) {
+	public void deleteEnfant(long idEnfant) {
 		service.deleteEnfant(idEnfant);
 	}
-	
+
 	@RequestMapping(value = "/getEnfant")
-	public Enfant get(long idEnfant) {
+	public Enfant getEnfant(long idEnfant) {
 		return service.getEnfant(idEnfant);
 	}
-	
+
 	@RequestMapping(value = "/listEnfant")
 	public List<Enfant> list(long idUser) {
 		return service.findAllEnfantResponsable(idUser);
 	}
+
+	@RequestMapping(value = "/linkEnfant")
+	public void linkEnfant(long idUser, long idEnfant) {
+
+		Enfant e;
+		e = service.getEnfant(idEnfant);
+		e.setMonResponsable(service.getResponsable(idUser));
+		service.updateEnfant(e);
+	}
+
 }
