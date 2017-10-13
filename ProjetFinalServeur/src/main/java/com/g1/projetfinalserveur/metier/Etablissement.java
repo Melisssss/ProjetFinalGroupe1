@@ -19,14 +19,13 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-
 public abstract class Etablissement extends User {
 	
 	@ManyToMany(mappedBy = "mesEtablissementsFiche", fetch = FetchType.EAGER)
 	private Set<Fiche> mesFiches;
 	
 	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "mesEtablissementsEnfant")
-	private Set<Enfant> mesEnfants = new HashSet<Enfant>();
+	private Set<Enfant> mesEnfants;
 	
 	
 	public Set<Enfant> getMesEnfants() {

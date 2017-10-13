@@ -24,7 +24,7 @@ public class Responsable extends User {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "monResponsable", fetch = FetchType.LAZY)
-	private Set<Enfant> mesEnfants = new HashSet<Enfant>();
+	private Set<Enfant> mesEnfants;
 	private String prenom;
 
 	public String getPrenom() {
