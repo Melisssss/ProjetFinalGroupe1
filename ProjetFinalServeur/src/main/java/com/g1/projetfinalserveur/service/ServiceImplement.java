@@ -46,7 +46,7 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	@Autowired
 	FicheVaccinDAO ficheVaccinDao;
 	
-	
+	//******CRUD RESPONSABLE
 	@Override
 	public void createResponsable(Responsable r) {
 		// TODO Auto-generated method stub
@@ -68,12 +68,14 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return responsableDao.saveAndFlush(r);
 	}
 	@Override
-	public List<Enfant> findAllEnfantResponsable(long idUser) {
+	public Responsable getResponsable(long idResponsable) {
 		// TODO Auto-generated method stub
-		return enfantDao.findAllEnfantResponsable(idUser);
+		return responsableDao.findById(idResponsable).get();
 	}
 	
 	
+	
+	//*****CRUD CLUB
 	@Override
 	public void createClub(EtablissementClub ec) {
 		// TODO Auto-generated method stub
@@ -94,11 +96,13 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		// TODO Auto-generated method stub
 		return clubDao.saveAndFlush(ec);
 	}
-		@Override
-	public void createEcole(EtablissementEcole ee) {
+	@Override
+	public EtablissementClub getClub(long idClub) {
 		// TODO Auto-generated method stub
-		ecoleDao.save(ee);
+		return clubDao.findById(idClub).get();
 	}
+
+	//*****CRUD ECOLE
 	@Override
 	public List<EtablissementEcole> findEcoles() {
 		// TODO Auto-generated method stub
@@ -114,7 +118,18 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		// TODO Auto-generated method stub
 		return ecoleDao.saveAndFlush(ee);
 	}
-	//test
+		@Override
+	public void createEcole(EtablissementEcole ee) {
+		// TODO Auto-generated method stub
+		ecoleDao.save(ee);
+	}
+	@Override
+	public EtablissementEcole getEcole(long idEcole) {
+		// TODO Auto-generated method stub
+		return ecoleDao.findById(idEcole).get();
+	}
+	
+	//*****CRUD CENTRE LOISIR
 	@Override
 	public void createCentreLoisir(EtablissementCentreLoisir ecl) {
 		// TODO Auto-generated method stub
@@ -135,12 +150,22 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		// TODO Auto-generated method stub
 		return centreLoisirDao.saveAndFlush(ecl);
 	}
+	@Override
+	public EtablissementCentreLoisir getCentreLoisir(long idCentreLoisir) {
+		// TODO Auto-generated method stub
+		return centreLoisirDao.findById(idCentreLoisir).get();
+	}
 	
-	
+	//*****CRUD ENFANT
 	@Override
 	public void createEnfant(Enfant e) {
 		// TODO Auto-generated method stub
 		enfantDao.save(e);
+	}
+	@Override
+	public List<Enfant> findAllEnfantResponsable(long idUser) {
+		// TODO Auto-generated method stub
+		return enfantDao.findAllEnfantResponsable(idUser);
 	}
 	@Override
 	public void deleteEnfant(Enfant e) {
@@ -155,10 +180,10 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	@Override
 	public Enfant getEnfant(long idEnfant) {
 		// TODO Auto-generated method stub
-		return enfantDao.getOne(idEnfant);
+		return enfantDao.findById(idEnfant).get();
 	}
 	
-	
+	//*****CRUD FICHE PRINCIPALE
 	@Override
 	public void createFichePrincipale(FichePrincipale fp) {
 		// TODO Auto-generated method stub
@@ -180,11 +205,12 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return fichePrincipaleDao.saveAndFlush(fp);
 	}
 	@Override
-	public FichePrincipale getFichePrincipale(long idFiche) {
+	public FichePrincipale getFichePrincipale(long idFichePrincipal) {
 		// TODO Auto-generated method stub
-		return fichePrincipaleDao.getOne(idFiche);
+		return fichePrincipaleDao.findById(idFichePrincipal).get();
 	}
 	
+	//*****CRUD FICHE MEDICAL
 	@Override
 	public void createFicheMedical(FicheMedical fm) {
 		// TODO Auto-generated method stub
@@ -206,11 +232,12 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return ficheMedicalDao.saveAndFlush(fm);
 	}
 	@Override
-	public FicheMedical getFicheMedical(long idFiche) {
+	public FicheMedical getFicheMedical(long idFicheMedical) {
 		// TODO Auto-generated method stub
-		return ficheMedicalDao.getOne(idFiche);
+		return ficheMedicalDao.findById(idFicheMedical).get();
 	}
 	
+	//*****CRUD FICHE VACCIN
 	@Override
 	public void createFicheVaccin(FicheVaccin fv) {
 		// TODO Auto-generated method stub
@@ -232,11 +259,12 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return ficheVaccinDao.saveAndFlush(fv);
 	}
 	@Override
-	public FicheVaccin getFicheVaccin(long idFiche) {
+	public FicheVaccin getFicheVaccin(long idFicheVaccin) {
 		// TODO Auto-generated method stub
-		return ficheVaccinDao.getOne(idFiche);
+		return ficheVaccinDao.findById(idFicheVaccin).get();
 	}
 	
+	//CRUD FICHE IMAGE
 	@Override
 	public void createFicheImage(FicheImage fi) {
 		// TODO Auto-generated method stub
@@ -258,10 +286,13 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return ficheImageDao.saveAndFlush(fi);
 	}
 	@Override
-	public FicheImage getFicheImage(long idFiche) {
+	public FicheImage getFicheImage(long idFicheImage) {
 		// TODO Auto-generated method stub
-		return ficheImageDao.getOne(idFiche);
+		return ficheImageDao.findById(idFicheImage).get();
 	}
+	
+	
+	
 
 
 }
