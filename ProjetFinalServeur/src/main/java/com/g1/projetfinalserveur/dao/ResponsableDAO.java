@@ -6,5 +6,5 @@ import com.g1.projetfinalserveur.metier.Responsable;
 
 @Repository
 public interface ResponsableDAO extends JpaRepository<Responsable, Long> {
-
+	
 }

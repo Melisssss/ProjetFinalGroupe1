@@ -12,6 +12,8 @@ import javax.persistence.InheritanceType;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Scope(value = "prototype")
 @Component
 @Entity
@@ -22,6 +24,7 @@ public abstract class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idUser;
 	private String login;
+	@JsonIgnore
 	private String mdp;
 	private String nom;
 	private String adresse;

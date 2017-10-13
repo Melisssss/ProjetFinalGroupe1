@@ -29,8 +29,8 @@ public class Enfant {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idEnfant;
 	
-	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Responsable monResponsable;
 	
 	@JsonIgnore
