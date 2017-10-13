@@ -93,6 +93,7 @@ public class ResponsableController {
 	}
 	
 	// fichePrincipale
+	
 	@RequestMapping(value = "/saveFichePrincipale")
 	public FichePrincipale saveFichePrincipale(FichePrincipale fp) {
 		service.createFichePrincipale(fp);
@@ -129,6 +130,24 @@ public class ResponsableController {
 		FichePrincipale fp;
 		fp = service.getFichePrincipale(idFichePrincipale);
 		fp.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
+		service.updateFichePrincipale(fp);
+	}
+	
+	@RequestMapping(value = "/linkFichePrincipaleClub")
+	public void linkFichePrincipaleClub(long idEtablissement, long idFichePrincipale) {
+
+		FichePrincipale fp;
+		fp = service.getFichePrincipale(idFichePrincipale);
+		fp.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
+		service.updateFichePrincipale(fp);
+	}
+	
+	@RequestMapping(value = "/linkFichePrincipaleCentreLoisir")
+	public void linkFichePrincipaleCentreLoisir(long idEtablissement, long idFichePrincipale) {
+
+		FichePrincipale fp;
+		fp = service.getFichePrincipale(idFichePrincipale);
+		fp.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
 		service.updateFichePrincipale(fp);
 	}
 
