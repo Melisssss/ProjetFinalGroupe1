@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gestion renseignements</title>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+
+</head>
+<body ng-app="myApp">
+
+		<div class="container">
+		  <h2>Responsable légal</h2>
+		  <p><strong>MENU</strong> 
+		  </p><div class="panel-group" id="accordion">
+		    <div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" id="sousTitre" aria-expanded="false" class="collapsed">Ajout enfants</a>
+		        </h4>
+		      </div>
+		      <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+		        <div class="panel-body">
+		        	<div>
+		        			<form name="" ng-controller="createEnfant">
+		        			
+							   	NOM: <br><input type="text" ng-model="enfant.nom">
+<!-- 							   	required="required" -->
+<!-- 							   	<span ng-show="monform.nom.$touched &amp;&amp; monform.nom.$invalid">Champs invalide</span>-->
+								<br>
+							    Prénom: <br><input type="text" ng-model="enfant.prenom">
+							    <!-- 							   	required="required" -->
+<!-- 							    <span ng-show="monform.prenom.$touched &amp;&amp; monform.prenom.$invalid">Champs invalide</span>-->
+							    <br>
+								Date de naissance: <br><input type="text" ng-model="enfant.dateDeNaissance">
+								<!-- 							   	required="required" -->
+<!-- 								<span ng-show="monform.dateDeNaissance.$touched &amp;&amp; monform.stockProduit.$invalid">Champs invalide</span> -->
+								<br>
+								
+								 <button ng-click="ajouter()">Enregistrer</button>
+								</form>
+							
+							 <br>
+							<h3>Mes enfants enregistrés</h3>
+							<form>
+				  			<table class="table table-striped" ng-controller="listEnfant">
+							    <thead>
+							      <tr>
+							        <th>NOM  :</th>
+							        <th>Prénom :</th>
+							        <th>Date de naissance :</th>
+							      </tr>
+							    </thead>
+							     <tbody>
+								   <tr ng-repeat="e in updateEnfant" ng-repeat="e in deleteEnfant">
+								   
+								    <td>{{e.nom}}</td>
+								    <td>{{e.prenom}}</td>
+								    <td>{{e.date}}</td>
+								     <td>
+								      <button class="w3-btn w3-ripple" ng-click="modifier(produit.id)">&#9998;Edit</button>
+								      <button class="w3-btn w3-ripple" ng-click="supprimer(produit.id)">&#10006;</button>
+								      	
+								    </td>
+								  </tr>
+								 </tbody><tbody>
+							</tbody></table>
+						 </form>
+					</div><br><br>
+		        
+		        
+		        </div>
+		      </div>
+		    </div>
+		    <div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" id="sousTitre" class="collapsed" aria-expanded="false">Gestion des demandes établissement</a>
+		        </h4>
+		      </div>
+		      <div id="collapse2" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+		        <div class="panel-body">
+		        			 
+		        			
+						  			<table class="table table-striped" ng-controller="findAllClient">
+									    <thead>
+									      <tr>
+									        <th>Nom de l'établissement:</th>
+									        <th>Type d'établissement  :</th>
+									        <th>Fiches demandées :</th>
+									      </tr>
+									    </thead>
+									     <tbody>
+									    
+										   <tr ng-repeat="e in Etablissement" ng-repeat="user in deleteClient">
+										    <td>{{p.nomEtablissement }}</td>
+										    <td>{{ p.prenomClient }}</td>
+										    <td>{{ p.telClient }}</td>
+										    <td>{{ p.emailClient }}</td>
+										     <td>
+										      <button class="w3-btn w3-ripple" ng-click="modifier(client.id)">&#9998;Edit</button>
+										      <button class="w3-btn w3-ripple" ng-click="supprimer(client.id)">&#10006;</button>
+										    </td>
+										  </tr>
+										 </tbody>
+									</table>
+					
+					
+					
+		        </div>
+		      </div>
+		    </div>
+		    <div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" id="sousTitre" class="collapsed" aria-expanded="false">Gestion ....</a>
+		        </h4>
+		      </div>
+		      <div id="collapse3" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+		        <div class="panel-body">
+		        
+		       			<p> Une case pour rajouter des options à l'administrateur</p>
+		        
+		        
+		        </div>
+		      </div>
+		    </div>
+		  </div> 
+		</div>
+		
+
+	<script type="text/javascript" src="./angular/angular.min.js"></script>
+	<script type="text/javascript" src="./angular/angular-route.js"></script>
+	<script type="text/javascript" src="./js/app.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
