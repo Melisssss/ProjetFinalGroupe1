@@ -37,9 +37,9 @@ public class Enfant {
 	@OneToMany(mappedBy = "monEnfant", fetch = FetchType.EAGER)
 	private Set<Fiche> mesFiches;
 	
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
-	private Set<Etablissement> mesEtablissementsEnfant;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Etablissement> mesEtablissementsEnfant = new HashSet<Etablissement>();
 
 	private String nom;
 	private String prenom;

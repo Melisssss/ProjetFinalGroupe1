@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Scope(value = "prototype")
 @Component
 @Entity
@@ -24,7 +26,8 @@ public abstract class Etablissement extends User {
 	@ManyToMany(mappedBy = "mesEtablissementsFiche", fetch = FetchType.EAGER)
 	private Set<Fiche> mesFiches;
 	
-	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "mesEtablissementsEnfant")
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY,mappedBy = "mesEtablissementsEnfant")
 	private Set<Enfant> mesEnfants;
 	
 	
