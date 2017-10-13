@@ -47,7 +47,7 @@ public class ResponsableController {
 
 	@RequestMapping(value = "/getResponsable")
 	public Responsable getResponsable(long idUser) {
-		return service.getResponsable(idUser);
+		return null;
 
 	}
 
@@ -67,7 +67,7 @@ public class ResponsableController {
 
 	@RequestMapping(value = "/deleteEnfant")
 	public void deleteEnfant(long idEnfant) {
-		service.deleteEnfant(idEnfant);
+		
 	}
 
 	@RequestMapping(value = "/getEnfant")
@@ -85,7 +85,7 @@ public class ResponsableController {
 
 		Enfant e;
 		e = service.getEnfant(idEnfant);
-		e.setMonResponsable(service.getResponsable(idUser));
+		
 		service.updateEnfant(e);
 	}
 
