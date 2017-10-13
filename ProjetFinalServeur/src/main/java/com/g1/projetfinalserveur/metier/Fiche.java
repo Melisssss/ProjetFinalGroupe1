@@ -17,6 +17,8 @@ import javax.persistence.OneToOne;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Scope(value = "prototype")
 @Component
 @Entity
@@ -26,10 +28,12 @@ public abstract class Fiche {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idFiche;
-
+	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Enfant monEnfant;
-
+	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	private Set<Etablissement> mesEtablissements;
 	

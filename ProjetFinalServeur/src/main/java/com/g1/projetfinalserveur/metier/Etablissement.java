@@ -1,5 +1,6 @@
 package com.g1.projetfinalserveur.metier;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.DiscriminatorColumn;
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -19,8 +21,21 @@ import org.springframework.stereotype.Component;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 public abstract class Etablissement extends User {
-	@ManyToMany(mappedBy = "mesEtablissements", fetch = FetchType.LAZY)
+	
+	@ManyToMany(mappedBy = "mesEtablissements", fetch = FetchType.EAGER)
 	private Set<Fiche> mesFiches;
+	
+	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "mesEtablissements")
+	private Set<Enfant> mesEnfants = new HashSet<Enfant>();
+	
+	
+	public Set<Enfant> getMesEnfants() {
+		return mesEnfants;
+	}
+
+	public void setMesEnfants(Set<Enfant> mesEnfants) {
+		this.mesEnfants = mesEnfants;
+	}
 
 	public Set<Fiche> getMesFiches() {
 		return mesFiches;

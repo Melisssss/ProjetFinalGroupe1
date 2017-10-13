@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -33,13 +34,26 @@ public class Enfant {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Responsable monResponsable;
 	
+	@OneToMany(mappedBy = "monEnfant", fetch = FetchType.EAGER)
+	private Set<Fiche> mesFiches;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "monEnfant", fetch = FetchType.LAZY)
-	private Set<Fiche> mesFiches = new HashSet<Fiche>();
+	@ManyToMany(fetch = FetchType.LAZY)
+	private Set<Etablissement> mesEtablissement;
 
 	private String nom;
 	private String prenom;
 	private String dateDeNaissance;
+	
+	
+	
+	public Set<Etablissement> getMesEtablissement() {
+		return mesEtablissement;
+	}
+
+	public void setMesEtablissement(Set<Etablissement> mesEtablissement) {
+		this.mesEtablissement = mesEtablissement;
+	}
 
 	public long getIdEnfant() {
 		return idEnfant;

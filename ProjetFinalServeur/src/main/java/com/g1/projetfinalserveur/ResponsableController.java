@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.Responsable;
+import com.g1.projetfinalserveur.service.IserviceResponsable;
 import com.g1.projetfinalserveur.service.ResponsableIservice;
 
 /**
@@ -20,15 +21,9 @@ import com.g1.projetfinalserveur.service.ResponsableIservice;
 @RestController
 public class ResponsableController {
 	@Autowired
-	private ResponsableIservice service;
+	private IserviceResponsable service;
 
-	public ResponsableIservice getService() {
-		return service;
-	}
-
-	public void setService(ResponsableIservice service) {
-		this.service = service;
-	}
+	
 
 	/**
 	 * Simply selects the home view to render by returning its name.
