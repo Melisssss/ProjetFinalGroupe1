@@ -7,6 +7,8 @@ import com.g1.projetfinalserveur.metier.FicheImage;
 import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
 import com.g1.projetfinalserveur.metier.FicheVaccin;
+import com.g1.projetfinalserveur.metier.Mere;
+import com.g1.projetfinalserveur.metier.Pere;
 import com.g1.projetfinalserveur.metier.Responsable;
 
 public interface IserviceResponsable {
@@ -56,6 +58,17 @@ public interface IserviceResponsable {
 	public void deleteFicheImage(FicheImage fi);
 	public FicheImage updateFicheImage(FicheImage fi);
 	public FicheImage getFicheImage(long idFicheImage);
-	 
+	
+	//PERE
+	public void createPere(Pere p);	 
+	public void deletePere(Pere p);
+	public Pere updatePere(Pere p);
+	public Pere getPere(long idPere);
+	
+	//Mere
+	public void createMere(Mere m);	 
+	public void deleteMere(Mere m);
+	public Mere updateMere(Mere m);
+	public Mere getMere(long idMere);
 	
 }

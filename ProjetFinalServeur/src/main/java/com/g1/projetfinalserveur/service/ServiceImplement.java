@@ -13,6 +13,8 @@ import com.g1.projetfinalserveur.dao.FicheImageDAO;
 import com.g1.projetfinalserveur.dao.FicheMedicalDAO;
 import com.g1.projetfinalserveur.dao.FichePrincipaleDAO;
 import com.g1.projetfinalserveur.dao.FicheVaccinDAO;
+import com.g1.projetfinalserveur.dao.MereDAO;
+import com.g1.projetfinalserveur.dao.PereDAO;
 import com.g1.projetfinalserveur.dao.ResponsableDAO;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
@@ -22,6 +24,8 @@ import com.g1.projetfinalserveur.metier.FicheImage;
 import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
 import com.g1.projetfinalserveur.metier.FicheVaccin;
+import com.g1.projetfinalserveur.metier.Mere;
+import com.g1.projetfinalserveur.metier.Pere;
 import com.g1.projetfinalserveur.metier.Responsable;
 
 @Service
@@ -45,6 +49,10 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	FichePrincipaleDAO fichePrincipaleDao;
 	@Autowired
 	FicheVaccinDAO ficheVaccinDao;
+	@Autowired
+	PereDAO pereDao;
+	@Autowired
+	MereDAO mereDao;
 	
 	//******CRUD RESPONSABLE
 	@Override
@@ -289,8 +297,48 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return ficheImageDao.findById(idFicheImage).get();
 	}
 	
+	//CRUD PERE
+	@Override
+	public void createPere(Pere p) {
+		// TODO Auto-generated method stub
+		pereDao.save(p);
+	}
+	@Override
+	public void deletePere(Pere p) {
+		// TODO Auto-generated method stub
+		pereDao.delete(p);
+	}
+	@Override
+	public Pere updatePere(Pere p) {
+		// TODO Auto-generated method stub
+		return pereDao.saveAndFlush(p);
+	}
+	@Override
+	public Pere getPere(long idPere) {
+		// TODO Auto-generated method stub
+		return pereDao.findById(idPere).get();
+	}
 	
-	
-
+	//CRUD MERE
+	@Override
+	public void createMere(Mere m) {
+		// TODO Auto-generated method stub
+		mereDao.save(m);
+	}
+	@Override
+	public void deleteMere(Mere m) {
+		// TODO Auto-generated method stub
+		mereDao.delete(m);
+	}
+	@Override
+	public Mere updateMere(Mere m) {
+		// TODO Auto-generated method stub
+		return mereDao.saveAndFlush(m);
+	}
+	@Override
+	public Mere getMere(long idMere) {
+		// TODO Auto-generated method stub
+		return mereDao.findById(idMere).get();
+	}
 
 }
