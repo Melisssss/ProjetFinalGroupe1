@@ -2,17 +2,17 @@ package com.g1.projetfinalserveur.metier;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-
+import javax.persistence.OneToOne;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Scope(value = "prototype")
 @Component
@@ -23,9 +23,17 @@ public abstract class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idUser;
-	private String login;
-	@JsonIgnore
-	private String mdp;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	private Connexion maConnexion;
+	public Connexion getMaConnexion() {
+		return maConnexion;
+	}
+
+	public void setMaConnexion(Connexion maConnexion) {
+		this.maConnexion = maConnexion;
+	}
+
 	private String nom;
 	private String adresse;
 	private String codePostal;
@@ -37,22 +45,6 @@ public abstract class User {
 
 	public void setIdUser(long idUser) {
 		this.idUser = idUser;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getMdp() {
-		return mdp;
-	}
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
 	}
 
 	public String getNom() {
