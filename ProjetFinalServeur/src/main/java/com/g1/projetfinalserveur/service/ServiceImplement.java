@@ -71,9 +71,7 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	public Responsable getResponsable(long idResponsable) {
 		// TODO Auto-generated method stub
 		return responsableDao.findById(idResponsable).get();
-	}
-	
-	
+	}	
 	
 	//*****CRUD CLUB
 	@Override
@@ -190,9 +188,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		fichePrincipaleDao.save(fp);
 	}
 	@Override
-	public List<FichePrincipale> findAllFichePrincipaleEnfant() {
+	public List<FichePrincipale> findAllFichePrincipaleEnfant(long idEnfant) {
 		// TODO Auto-generated method stub
-		return fichePrincipaleDao.findAll();
+		return fichePrincipaleDao.findAllFichePrincipaleEnfant(idEnfant);
 	}
 	@Override
 	public void deleteFichePrincipale(FichePrincipale fp) {
@@ -217,9 +215,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		ficheMedicalDao.save(fm);
 	}
 	@Override
-	public List<FicheMedical> findAllFicheMedicalEnfant() {
+	public List<FicheMedical> findAllFicheMedicalEnfant(long idEnfant) {
 		// TODO Auto-generated method stub
-		return ficheMedicalDao.findAll();
+		return ficheMedicalDao.findAllFicheMedicalEnfant(idEnfant);
 	}
 	@Override
 	public void deleteFicheMedical(FicheMedical fm) {
@@ -244,9 +242,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		ficheVaccinDao.save(fv);
 	}
 	@Override
-	public List<FicheVaccin> findAllFicheVaccinEnfant() {
+	public List<FicheVaccin> findAllFicheVaccinEnfant(long idEnfant) {
 		// TODO Auto-generated method stub
-		return ficheVaccinDao.findAll();
+		return ficheVaccinDao.findAllFicheVaccinEnfant(idEnfant);
 	}
 	@Override
 	public void deleteFicheVaccin(FicheVaccin fv) {
@@ -271,9 +269,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		ficheImageDao.save(fi);
 	}
 	@Override
-	public List<FicheImage> findAllFicheImageEnfant() {
+	public List<FicheImage> findAllFicheImageEnfant(long idEnfant) {
 		// TODO Auto-generated method stub
-		return ficheImageDao.findAll();
+		return ficheImageDao.findAllFicheImageEnfant(idEnfant);
 	}
 	@Override
 	public void deleteFicheImage(FicheImage fi) {

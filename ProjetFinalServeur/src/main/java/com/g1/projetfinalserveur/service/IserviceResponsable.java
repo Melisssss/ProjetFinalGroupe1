@@ -28,7 +28,7 @@ public interface IserviceResponsable {
 	
 	//FichePrincipale 
 	public void createFichePrincipale(FichePrincipale fp);
-	public List<FichePrincipale> findAllFichePrincipaleEnfant();
+	public List<FichePrincipale> findAllFichePrincipaleEnfant(long idEnfant);
 	public void deleteFichePrincipale(FichePrincipale fp);	
 	public FichePrincipale updateFichePrincipale(FichePrincipale fp);
 	public FichePrincipale getFichePrincipale(long idFichePrincipal);
@@ -36,7 +36,7 @@ public interface IserviceResponsable {
 	  
 	//FicheMedical 
 	public void createFicheMedical(FicheMedical fm);	  
-	public List<FicheMedical> findAllFicheMedicalEnfant();	  
+	public List<FicheMedical> findAllFicheMedicalEnfant(long idEnfant);	  
 	public void deleteFicheMedical(FicheMedical fm);	 
 	public FicheMedical updateFicheMedical(FicheMedical fm);
 	public FicheMedical getFicheMedical(long idFicheMedical);
@@ -44,7 +44,7 @@ public interface IserviceResponsable {
 	  
 	//FicheVaccin 
 	public void createFicheVaccin(FicheVaccin fv);
-	public List<FicheVaccin> findAllFicheVaccinEnfant();	  
+	public List<FicheVaccin> findAllFicheVaccinEnfant(long idEnfant);	  
 	public void deleteFicheVaccin(FicheVaccin fv);
 	public FicheVaccin updateFicheVaccin(FicheVaccin fv);
 	public FicheVaccin getFicheVaccin(long idFicheVaccin);
@@ -52,7 +52,7 @@ public interface IserviceResponsable {
 	  
 	//FicheImage
 	public void createFicheImage(FicheImage fi);	 
-	public List<FicheImage> findAllFicheImageEnfant();
+	public List<FicheImage> findAllFicheImageEnfant(long idEnfant);
 	public void deleteFicheImage(FicheImage fi);
 	public FicheImage updateFicheImage(FicheImage fi);
 	public FicheImage getFicheImage(long idFicheImage);
