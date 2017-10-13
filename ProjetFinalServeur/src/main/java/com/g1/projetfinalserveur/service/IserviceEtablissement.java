@@ -13,18 +13,20 @@ public interface IserviceEtablissement {
 		public List<EtablissementClub> findClubs();
 		public void deleteClub(EtablissementClub ec);
 		public EtablissementClub updateClub(EtablissementClub ec);
+		public EtablissementClub getClub(long idClub);
 		
 		//POUR LES Ecole
 		public void createEcole (EtablissementEcole ee);
 		public List<EtablissementEcole> findEcoles();
 		public void deleteEcole(EtablissementEcole ee);
 		public EtablissementEcole updateEcole(EtablissementEcole ee);
+		public EtablissementEcole getEcole(long idEcole);
 		
 		//POUR LES Centre Loisir
 		public void createCentreLoisir (EtablissementCentreLoisir ecl);
 		public List<EtablissementCentreLoisir> findCentreLoisirs();
 		public void deleteCentreLoisir(EtablissementCentreLoisir ecl);
 		public EtablissementCentreLoisir updateCentreLoisir(EtablissementCentreLoisir ecl);
-
+		public EtablissementCentreLoisir getCentreLoisir(long idCentreLoisir);
 
 }
