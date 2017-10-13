@@ -2,6 +2,7 @@ package com.g1.projetfinalserveur.metier;
 
 
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Component
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE_PARENT")
 public abstract class Famille {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
