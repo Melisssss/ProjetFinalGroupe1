@@ -66,5 +66,5 @@ $RECYCLE.BIN/
 .project
 .settings
 .metadata
-pom.properties
-MANIFEST.MF
+*/pom.properties
+*/MANIFEST.MF
