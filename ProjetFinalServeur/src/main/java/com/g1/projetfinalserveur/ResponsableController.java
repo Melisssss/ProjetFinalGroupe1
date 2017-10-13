@@ -14,6 +14,7 @@ import com.g1.projetfinalserveur.metier.FicheImage;
 import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
 import com.g1.projetfinalserveur.metier.FicheVaccin;
+import com.g1.projetfinalserveur.metier.Mere;
 import com.g1.projetfinalserveur.metier.Responsable;
 import com.g1.projetfinalserveur.service.IserviceEtablissement;
 import com.g1.projetfinalserveur.service.IserviceResponsable;
@@ -363,6 +364,10 @@ public class ResponsableController {
 		fi.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
 		service.updateFicheImage(fi);
 	}
+	
+	// famille
+	
+	
 	
 	
 }
