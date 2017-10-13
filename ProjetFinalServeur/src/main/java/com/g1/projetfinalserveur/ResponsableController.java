@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
 import com.g1.projetfinalserveur.metier.Responsable;
+import com.g1.projetfinalserveur.service.IserviceEtablissement;
 import com.g1.projetfinalserveur.service.IserviceResponsable;
 
 
@@ -23,7 +24,8 @@ import com.g1.projetfinalserveur.service.IserviceResponsable;
 public class ResponsableController {
 	@Autowired
 	private IserviceResponsable service;
-
+	@Autowired
+	private IserviceEtablissement serviceE;
 	
 
 	/**
@@ -76,7 +78,7 @@ public class ResponsableController {
 		return service.getEnfant(idEnfant);
 	}
 
-	@RequestMapping(value = "/listEnfant")
+	@RequestMapping(value = "/listEnfantResponsable")
 	public List<Enfant> list(long idUser) {
 		return service.findAllEnfantResponsable(idUser);
 	}
@@ -96,7 +98,38 @@ public class ResponsableController {
 		service.createFichePrincipale(fp);
 		return fp;
 	}
-
+	@RequestMapping(value = "/updateFichePrincipale")
+	public FichePrincipale updateFichePrincipale(FichePrincipale fp) {
+		service.updateFichePrincipale(fp);
+		return fp;
+	}
 	
+	@RequestMapping(value = "/getFicheParticulier")
+	public FichePrincipale getParticulier(long idFichePrincipal) {
+		return service.getFichePrincipale(idFichePrincipal);
+	}
+	
+	@RequestMapping(value = "/listFichePrincipaleEnfant")
+	public List<FichePrincipale> listFichePrincipale(long idEnfant) {
+		return service.findAllFichePrincipaleEnfant(idEnfant);
+	}
+	
+	@RequestMapping(value = "/linkFichePrincipaleEnfant")
+	public void linkFichePrincipaleEnfant(long idEnfant, long idFichePrincipale) {
+
+		FichePrincipale fp;
+		fp = service.getFichePrincipale(idFichePrincipale);
+		fp.setMonEnfant(service.getEnfant(idEnfant));
+		service.updateFichePrincipale(fp);
+	}
+	
+	@RequestMapping(value = "/linkFichePrincipaleEcole")
+	public void linkFichePrincipaleEcole(long idEtablissement, long idFichePrincipale) {
+
+		FichePrincipale fp;
+		fp = service.getFichePrincipale(idFichePrincipale);
+		fp.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
+		service.updateFichePrincipale(fp);
+	}
 
 }
