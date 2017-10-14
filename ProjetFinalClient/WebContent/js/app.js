@@ -1,14 +1,14 @@
 var app=angular.module("myApp",[]);
 
-app.controller("authentificationResponsable", function($scope, $http){
-	$scope.responsable={};
-	$scope.authentifier=function(){
-		$http.post("http://localhost:8080/projetfinalserveur/getResponsable", $scope.responsable)
-		.then(function(response){
-			$scope.responsable=response.data;
-			})
-	}
-});
+//app.controller("authentificationResponsable", function($scope, $http){
+//	$scope.responsable={};
+//	$scope.authentifier=function(){
+//		$http.post("http://localhost:8080/projetfinalserveur/getResponsable", $scope.responsable)
+//		.then(function(response){
+//			$scope.responsable=response.data;
+//			})
+//	}
+//});
 
 
 app.controller("listEnfant",function($scope, $http){
@@ -24,11 +24,11 @@ app.controller("listEnfant",function($scope, $http){
 });
 
 app.controller("createEnfant", function($scope, $http) {
-	$scope.enfant={};
+	$scope.enfantTest={};
 	$scope.ajouter=function(){
-		$http.post("http://localhost:8080/projetfinalserveur/saveEnfant", $scope.enfant)
+		$http.post("http://localhost:8080/projetfinalserveur/saveEnfant", $scope.enfantTest)
 		.then(function(value){
-			$scope.enfant=response.data;
+			$scope.enfantTest=value;
 		})
 		.catch(function(reason){
 			alert("Erreur générée lors de l'ajout enfant");
@@ -36,17 +36,37 @@ app.controller("createEnfant", function($scope, $http) {
 		})
 	}
 });
-app.controller("updateEnfant", function($scope, $http) {
-	$scope.enfant.monResponsable=$scope.responsable;
-	$scope.attribuerResponsabler=function(){
-		$http.post("http://localhost:8080/projetfinalserveur/updateEnfant", $scope.enfant)
+
+app.controller("attribuer", function($scope, $http) {
+	$scope.enfant={};
+	$scope.representant={};
+	$scope.authentifier=function(){
+		$http.post("http://localhost:8080/projetfinalserveur/getResponsable", $scope.responsable)
+		.then(function(response){
+			$scope.responsable=response.data;
+			})
+	};
+	$scope.attribuerResponsable=function(){
+		$http.post("http://localhost:8080/projetfinalserveur/attribuerResponsable",$scope.enfant)
 		.then(function(){
 		})
 		.catch(function(reason){
-			alert("Erreur générée lors de l'ajout enfant");
+			alert("Erreur générée lors de l'attribution enfant");
 			console.log(reason);
 		})
 	}
+});
+app.controller("updateEnfant", function($scope, $http) {
+		$scope.enfant={};
+		$scope.ajouter=function(){
+			$http.post("http://localhost:8080/projetfinalserveur/updateEnfant", $scope.enfant)
+			.then(function(){
+			})
+			.catch(function(reason){
+				alert("Erreur générée lors de la modification enfant");
+				console.log(reason);
+			})
+		}
 });
 
 

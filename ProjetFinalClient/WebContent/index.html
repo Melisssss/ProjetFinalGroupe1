@@ -16,20 +16,42 @@
 		    <div class="panel panel-default">
 		      <div class="panel-heading">
 		        <h4 class="panel-title">
-		          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" id="sousTitre" aria-expanded="false" class="collapsed">Ajout enfants</a>
+		          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" id="sousTitre" aria-expanded="false" class="collapsed">Gestion enfants</a>
 		        </h4>
 		      </div>
 		      <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
 		        <div class="panel-body">
 		        	
 		        	<div ng-controller="authentificationResponsable">
-		        	Id Responsable: <br><input type="number" ng-model="responsable.idUser"><br>
-		        	<button ng-click="authentifier()">Authentifier</button><br>
-		        	Bonjour {{responsable.nom}} avec l'id {{responsable.idUser}}.
+<!-- 		        	Id Responsable: <br><input type="number" ng-model="responsable.idUser"><br> -->
+<!-- 		        	<button ng-click="authentifier()">Authentifier</button><br> -->
+<!-- 		        	Bonjour {{responsable.nom}} avec l'id {{responsable.idUser}}. -->
 		        	
 		        	<div>
-		        			<form name="" ng-controller="createEnfant">
+		        	<h3>Ajout enfants</h3>
+	        			<form name="" ng-controller="createEnfant">
+	        			
+						   	NOM: <br><input type="text" ng-model="enfantTest.nom">
+<!-- 							   	required="required" -->
+<!-- 							   	<span ng-show="monform.nom.$touched &amp;&amp; monform.nom.$invalid">Champs invalide</span>-->
+							<br>
+						    Prénom: <br><input type="text" ng-model="enfantTest.prenom">
+						    <!-- 							   	required="required" -->
+<!-- 							    <span ng-show="monform.prenom.$touched &amp;&amp; monform.prenom.$invalid">Champs invalide</span>-->
+						    <br>
+							Date de naissance: <br><input type="text" ng-model="enfantTest.dateDeNaissance">
+							<!-- 							   	required="required" -->
+<!-- 								<span ng-show="monform.dateDeNaissance.$touched &amp;&amp; monform.stockProduit.$invalid">Champs invalide</span> -->
+							<br>
+								<button ng-click="ajouter()">Enregistrer</button><br>
+							</form>
+ 							
+ 							<form name="" ng-controller="updateEnfant">
 		        			
+							   	Id: <br><input type="text" ng-model="enfant.idEnfant">
+<!-- 							   	required="required" -->
+<!-- 							   	<span ng-show="monform.nom.$touched &amp;&amp; monform.nom.$invalid">Champs invalide</span>-->
+								<br>
 							   	NOM: <br><input type="text" ng-model="enfant.nom">
 <!-- 							   	required="required" -->
 <!-- 							   	<span ng-show="monform.nom.$touched &amp;&amp; monform.nom.$invalid">Champs invalide</span>-->
@@ -42,14 +64,24 @@
 								<!-- 							   	required="required" -->
 <!-- 								<span ng-show="monform.dateDeNaissance.$touched &amp;&amp; monform.stockProduit.$invalid">Champs invalide</span> -->
 								<br>
- 								<button ng-click="ajouter()">Enregistrer</button><br>
+								Id représentant: <br><input type="text" ng-model="enfant.monResponsable">
+								<!-- 							   	required="required" -->
+<!-- 								<span ng-show="monform.dateDeNaissance.$touched &amp;&amp; monform.stockProduit.$invalid">Champs invalide</span> -->
+								<br>
+ 								<button ng-click="ajouter()">update</button><br>
+ 								
+ 								Id Enfant: <br><input type="number" ng-model="enfant.idEnfant"><br>
+								Id Responsable: <br><input type="number" ng-model="responsable.idUser"><br>
+					        	<button ng-click="authentifier()">Authentifier</button><br>
+					        	Bonjour {{responsable.nom}} avec l'id {{responsable.idUser}}
+								<button ng-click="attribuerResponsable()">Attribuer resp. test</button>
+								Bonjour {{responsable.nom}} avec l'id {{responsable.idUser}}
  							</form>
  							
- 							<form ng-controller="updateEnfant">
  							
-								Id Enfant: <br><input type="number" ng-model="enfant.idEnfant"><br>
-									<button ng-click="attribuerResponsable()">Attribuer resp. test</button>
-									Bonjour {{responsable.nom}} avec l'id {{responsable.idUser}}.
+<!--  							<form ng-controller="authentificationResponsable", ng-controller="updateEnfant"> -->
+ 							
+								
 									
 							</form>
 								
