@@ -14,7 +14,7 @@ import com.g1.projetfinalserveur.metier.Responsable;
 public interface IserviceResponsable {
 	
 	//POUR LES RESPONSABLES
-	public void createResponsable (Responsable r);
+	public Responsable createResponsable (Responsable r);
 	public List<Responsable> findResponsables();
 	public  void deleteResponsable(Responsable r);
 	public Responsable updateResponsable(Responsable r);
@@ -29,7 +29,7 @@ public interface IserviceResponsable {
 
 	
 	//FichePrincipale 
-	public void createFichePrincipale(FichePrincipale fp);
+	public FichePrincipale createFichePrincipale(FichePrincipale fp);
 	public List<FichePrincipale> findAllFichePrincipaleEnfant(long idEnfant);
 	public void deleteFichePrincipale(FichePrincipale fp);	
 	public FichePrincipale updateFichePrincipale(FichePrincipale fp);
@@ -37,7 +37,7 @@ public interface IserviceResponsable {
 
 	  
 	//FicheMedical 
-	public void createFicheMedical(FicheMedical fm);	  
+	public FicheMedical createFicheMedical(FicheMedical fm);	  
 	public List<FicheMedical> findAllFicheMedicalEnfant(long idEnfant);	  
 	public void deleteFicheMedical(FicheMedical fm);	 
 	public FicheMedical updateFicheMedical(FicheMedical fm);
@@ -45,7 +45,7 @@ public interface IserviceResponsable {
 
 	  
 	//FicheVaccin 
-	public void createFicheVaccin(FicheVaccin fv);
+	public FicheVaccin createFicheVaccin(FicheVaccin fv);
 	public List<FicheVaccin> findAllFicheVaccinEnfant(long idEnfant);	  
 	public void deleteFicheVaccin(FicheVaccin fv);
 	public FicheVaccin updateFicheVaccin(FicheVaccin fv);
@@ -53,20 +53,20 @@ public interface IserviceResponsable {
 	  
 	  
 	//FicheImage
-	public void createFicheImage(FicheImage fi);	 
+	public FicheImage createFicheImage(FicheImage fi);	 
 	public List<FicheImage> findAllFicheImageEnfant(long idEnfant);
 	public void deleteFicheImage(FicheImage fi);
 	public FicheImage updateFicheImage(FicheImage fi);
 	public FicheImage getFicheImage(long idFicheImage);
 	
 	//PERE
-	public void createPere(Pere p);	 
+	public Pere createPere(Pere p);	 
 	public void deletePere(Pere p);
 	public Pere updatePere(Pere p);
 	public Pere getPere(long idPere);
 	
 	//Mere
-	public void createMere(Mere m);	 
+	public Mere createMere(Mere m);	 
 	public void deleteMere(Mere m);
 	public Mere updateMere(Mere m);
 	public Mere getMere(long idMere);

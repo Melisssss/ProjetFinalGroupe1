@@ -56,9 +56,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//******CRUD RESPONSABLE
 	@Override
-	public void createResponsable(Responsable r) {
+	public Responsable createResponsable(Responsable r) {
 		// TODO Auto-generated method stub
-		responsableDao.save(r);
+		return responsableDao.save(r);
 	}
 	@Override
 	public List<Responsable> findResponsables() {
@@ -83,9 +83,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//*****CRUD CLUB
 	@Override
-	public void createClub(EtablissementClub ec) {
+	public EtablissementClub createClub(EtablissementClub ec) {
 		// TODO Auto-generated method stub
-		clubDao.save(ec);
+		return clubDao.save(ec);
 	}
 	@Override
 	public List<EtablissementClub> findClubs() {
@@ -125,9 +125,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return ecoleDao.saveAndFlush(ee);
 	}
 		@Override
-	public void createEcole(EtablissementEcole ee) {
+	public EtablissementEcole createEcole(EtablissementEcole ee) {
 		// TODO Auto-generated method stub
-		ecoleDao.save(ee);
+		return ecoleDao.save(ee);
 	}
 	@Override
 	public EtablissementEcole getEcole(long idEcole) {
@@ -137,9 +137,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//*****CRUD CENTRE LOISIR
 	@Override
-	public void createCentreLoisir(EtablissementCentreLoisir ecl) {
+	public EtablissementCentreLoisir createCentreLoisir(EtablissementCentreLoisir ecl) {
 		// TODO Auto-generated method stub
-		centreLoisirDao.save(ecl);
+		return centreLoisirDao.save(ecl);
 	}
 	@Override
 	public List<EtablissementCentreLoisir> findCentreLoisirs() {
@@ -191,9 +191,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//*****CRUD FICHE PRINCIPALE
 	@Override
-	public void createFichePrincipale(FichePrincipale fp) {
+	public FichePrincipale createFichePrincipale(FichePrincipale fp) {
 		// TODO Auto-generated method stub
-		fichePrincipaleDao.save(fp);
+		return fichePrincipaleDao.save(fp);
 	}
 	@Override
 	public List<FichePrincipale> findAllFichePrincipaleEnfant(long idEnfant) {
@@ -218,9 +218,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//*****CRUD FICHE MEDICAL
 	@Override
-	public void createFicheMedical(FicheMedical fm) {
+	public FicheMedical createFicheMedical(FicheMedical fm) {
 		// TODO Auto-generated method stub
-		ficheMedicalDao.save(fm);
+		return ficheMedicalDao.save(fm);
 	}
 	@Override
 	public List<FicheMedical> findAllFicheMedicalEnfant(long idEnfant) {
@@ -245,9 +245,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//*****CRUD FICHE VACCIN
 	@Override
-	public void createFicheVaccin(FicheVaccin fv) {
+	public FicheVaccin createFicheVaccin(FicheVaccin fv) {
 		// TODO Auto-generated method stub
-		ficheVaccinDao.save(fv);
+		return ficheVaccinDao.save(fv);
 	}
 	@Override
 	public List<FicheVaccin> findAllFicheVaccinEnfant(long idEnfant) {
@@ -272,9 +272,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//CRUD FICHE IMAGE
 	@Override
-	public void createFicheImage(FicheImage fi) {
+	public FicheImage createFicheImage(FicheImage fi) {
 		// TODO Auto-generated method stub
-		ficheImageDao.save(fi);
+		return ficheImageDao.save(fi);
 	}
 	@Override
 	public List<FicheImage> findAllFicheImageEnfant(long idEnfant) {
@@ -299,9 +299,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//CRUD PERE
 	@Override
-	public void createPere(Pere p) {
+	public Pere createPere(Pere p) {
 		// TODO Auto-generated method stub
-		pereDao.save(p);
+		return pereDao.save(p);
 	}
 	@Override
 	public void deletePere(Pere p) {
@@ -321,9 +321,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//CRUD MERE
 	@Override
-	public void createMere(Mere m) {
+	public Mere createMere(Mere m) {
 		// TODO Auto-generated method stub
-		mereDao.save(m);
+		return mereDao.save(m);
 	}
 	@Override
 	public void deleteMere(Mere m) {

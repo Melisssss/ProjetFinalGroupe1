@@ -39,14 +39,13 @@ public class ResponsableController {
 	 * @return
 	 */
 	
-	
 
 	// responsable
 	
 	
 
-	@RequestMapping(value = "/saveResponsable")
-	public Responsable saveResponsable(Responsable r) {
+	@RequestMapping(value = "/saveResponsable", method=RequestMethod.POST)
+	public Responsable saveResponsable(@RequestBody Responsable r) {
 		service.createResponsable(r);
 		return r;
 	}
@@ -70,8 +69,8 @@ public class ResponsableController {
 	
 	
 
-	@RequestMapping(value = "/saveEnfant")
-	public Enfant saveEnfant(Enfant e) {
+	@RequestMapping(value = "/saveEnfant", method=RequestMethod.POST)
+	public Enfant saveEnfant(@RequestBody Enfant e) {
 		service.createEnfant(e);
 		return e;
 	}
@@ -97,17 +96,13 @@ public class ResponsableController {
 		return service.findAllEnfantResponsable(idUser);
 	}
 
-	
-	
 
 	
 	// fichePrincipale
 	
 	
-	
-	
-	@RequestMapping(value = "/saveFichePrincipale")
-	public FichePrincipale saveFichePrincipale(FichePrincipale fp) {
+	@RequestMapping(value = "/saveFichePrincipale", method=RequestMethod.POST)
+	public FichePrincipale saveFichePrincipale(@RequestBody  FichePrincipale fp) {
 		service.createFichePrincipale(fp);
 		return fp;
 	}
@@ -116,12 +111,10 @@ public class ResponsableController {
 		service.updateFichePrincipale(fp);
 		return fp;
 	}
-	
 	@RequestMapping(value = "/getFichePrincipal")
 	public FichePrincipale getFichePrincipal(long idFiche) {
 		return service.getFichePrincipale(idFiche);
 	}
-	
 	@RequestMapping(value = "/listFichePrincipaleEnfant")
 	public List<FichePrincipale> listFichePrincipale(long idEnfant) {
 		return service.findAllFichePrincipaleEnfant(idEnfant);
@@ -154,8 +147,8 @@ public class ResponsableController {
 	
 	
 	
-	@RequestMapping(value = "/saveFicheMedical")
-	public FicheMedical saveFicheMedical(FicheMedical fm) {
+	@RequestMapping(value = "/saveFicheMedical", method=RequestMethod.POST)
+	public FicheMedical saveFicheMedical(@RequestBody FicheMedical fm) {
 		service.createFicheMedical(fm);
 		return fm;
 	}
@@ -222,8 +215,8 @@ public class ResponsableController {
 	
 	
 	
-	@RequestMapping(value = "/saveFicheVaccin")
-	public FicheVaccin saveFicheVaccin(FicheVaccin fv) {
+	@RequestMapping(value = "/saveFicheVaccin", method=RequestMethod.POST)
+	public FicheVaccin saveFicheVaccin(@RequestBody FicheVaccin fv) {
 		service.createFicheVaccin(fv);
 		return fv;
 	}
@@ -285,8 +278,8 @@ public class ResponsableController {
 	
 	
 
-	@RequestMapping(value = "/saveFicheImage")
-	public FicheImage saveFicheImage(FicheImage fi) {
+	@RequestMapping(value = "/saveFicheImage", method=RequestMethod.POST)
+	public FicheImage saveFicheImage(@RequestBody FicheImage fi) {
 		service.createFicheImage(fi);
 		return fi;
 	}
@@ -344,8 +337,8 @@ public class ResponsableController {
 	*/
 	// EtablissementEcole
 	
-	@RequestMapping(value = "/saveEtablissementEcole")
-	public EtablissementEcole saveEtablissementEcole(EtablissementEcole ee) {
+	@RequestMapping(value = "/saveEtablissementEcole", method=RequestMethod.POST)
+	public EtablissementEcole saveEtablissementEcole(@RequestBody EtablissementEcole ee) {
 		serviceE.createEcole(ee);
 		return ee;
 	}
