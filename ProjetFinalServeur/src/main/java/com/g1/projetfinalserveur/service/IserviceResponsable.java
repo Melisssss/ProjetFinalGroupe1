@@ -21,7 +21,7 @@ public interface IserviceResponsable {
 	public Responsable getResponsable(long idResponsable);
 	
 	//POUR LES EnFANTS
-	public void createEnfant(Enfant e);
+	public Enfant createEnfant(Enfant e);
 	public List<Enfant> findAllEnfantResponsable(long idUser);
 	public void deleteEnfant(Enfant e);
 	public Enfant updateEnfant(Enfant e);

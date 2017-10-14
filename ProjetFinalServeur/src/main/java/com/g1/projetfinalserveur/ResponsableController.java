@@ -49,20 +49,23 @@ public class ResponsableController {
 		service.createResponsable(r);
 		return r;
 	}
-
-	@RequestMapping(value = "/updateResponsable")
-	public Responsable updateResponsable(Responsable r) {
+	@RequestMapping(value = "/updateResponsable", method=RequestMethod.POST)
+	public Responsable updateResponsable(@RequestBody Responsable r) {
 		service.updateResponsable(r);
 		return r;
 	}
-
 	@RequestMapping(value = "/getResponsable")
 	public Responsable getResponsable(long idUser) {
 		return service.getResponsable(idUser);
 
 	}
 	
-	
+	public Enfant linkEnfantResponsable(long idResponsable) {
+		Enfant e = new Enfant();
+		Responsable r = service.getResponsable(idResponsable);
+		e.setMonResponsable(r);
+		return service.updateEnfant(e);
+	}
 
 	// enfant
 	
@@ -75,8 +78,8 @@ public class ResponsableController {
 		return e;
 	}
 
-	@RequestMapping(value = "/updateEnfant")
-	public Enfant updateEnfant(Enfant e) {
+	@RequestMapping(value = "/updateEnfant", method=RequestMethod.POST)
+	public Enfant updateEnfant(@RequestBody Enfant e) {
 		service.updateEnfant(e);
 		return e;
 	}
@@ -157,12 +160,10 @@ public class ResponsableController {
 		service.updateFicheMedical(fm);
 		return fm;
 	}
-	
 	@RequestMapping(value = "/getFicheMedical")
 	public FicheMedical getFicheMedical(long idFiche) {
 		return service.getFicheMedical(idFiche);
 	}
-	
 	@RequestMapping(value = "/listFicheMedicalEnfant")
 	public List<FicheMedical> listFicheMedical(long idEnfant) {
 		return service.findAllFicheMedicalEnfant(idEnfant);
@@ -225,17 +226,14 @@ public class ResponsableController {
 		service.updateFicheVaccin(fv);
 		return fv;
 	}
-	
 	@RequestMapping(value = "/getFicheVaccin")
 	public FicheVaccin getFicheVaccin(long idFiche) {
 		return service.getFicheVaccin(idFiche);
 	}
-	
 	@RequestMapping(value = "/listFicheVaccinEnfant")
 	public List<FicheVaccin> listFicheVaccin(long idEnfant) {
 		return service.findAllFicheVaccinEnfant(idEnfant);
 	}
-	
 	@RequestMapping(value = "/linkFicheVaccinEnfant")
 	public void linkFicheVaccinEnfant(long idEnfant, long idFiche) {
 
@@ -288,12 +286,10 @@ public class ResponsableController {
 		service.updateFicheImage(fi);
 		return fi;
 	}
-	
 	@RequestMapping(value = "/getFicheImage")
 	public FicheImage getFicheImage(long idFiche) {
 		return service.getFicheImage(idFiche);
 	}
-	
 	@RequestMapping(value = "/listFicheImageEnfant")
 	public List<FicheImage> listFicheImage(long idEnfant) {
 		return service.findAllFicheImageEnfant(idEnfant);
@@ -336,18 +332,15 @@ public class ResponsableController {
 	}
 	*/
 	// EtablissementEcole
-	
 	@RequestMapping(value = "/saveEtablissementEcole", method=RequestMethod.POST)
 	public EtablissementEcole saveEtablissementEcole(@RequestBody EtablissementEcole ee) {
 		serviceE.createEcole(ee);
 		return ee;
 	}
-	
 	@RequestMapping(value = "/listEtablissementEcole")
 	public List<EtablissementEcole> listEtablissementEcole() {
 		return serviceE.findEcoles();
 	}
-	
 	@RequestMapping(value = "/getEtablissementEcole")
 	public EtablissementEcole getEtablissementEcole(long idEtablissement) {
 		return serviceE.getEcole(idEtablissement);
@@ -357,12 +350,10 @@ public class ResponsableController {
 	
 	@RequestMapping(value = "/linkEtablissementEcoleEnfant")
 	public void linkEtablissementEcoleEnfant(long idEnfant, long idEtablissement) {
-		
 		Enfant e;
 		e = service.getEnfant(idEnfant);
 		e.getMesEtablissementsEnfant().add(serviceE.getEcole(idEtablissement));
 		service.updateEnfant(e);
-
 	}
 	
 	/*@RequestMapping(value = "/listFichePrincipaleEtablissement")

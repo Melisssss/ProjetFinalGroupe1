@@ -164,9 +164,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	
 	//*****CRUD ENFANT
 	@Override
-	public void createEnfant(Enfant e) {
+	public Enfant createEnfant(Enfant e) {
 		// TODO Auto-generated method stub
-		enfantDao.save(e);
+		return enfantDao.save(e);
 	}
 	@Override
 	public List<Enfant> findAllEnfantResponsable(long idUser) {
