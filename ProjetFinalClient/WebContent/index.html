@@ -9,6 +9,22 @@
 </head>
 <body ng-app="myApp">
 
+			<form name="" ng-controller="createResponsable">
+				NOM : <input type="text" ng-model="createresponsable.nom">
+				Prénom : <input type="text" ng-model="createresponsable.prenom">
+				adresse : <input type="text" ng-model="createresponsable.adresse">
+				code Postal : <input type="text" ng-model="createresponsable.codePostal">
+				Ville : <input type="text" ng-model="createresponsable.ville">
+				Login : <input type="text" ng-model="createresponsable.login">
+				Mdp : <input type="text" ng-model="createresponsable.mdp">
+				
+				<br>
+ 				<button ng-click="createResponsable()">Enregistrer Resp</button><br>
+ 			</form>
+
+
+
+
 		<div class="container">
 		  <h2>Responsable légal</h2>
 		  <p><strong>MENU</strong> 
@@ -179,6 +195,70 @@
 		  </div> 
 		</div>
 		
+		
+		<form name="" ng-controller="connexionCtrl">
+            <input type="text"  placeholder="login" ng-model="connectionD.login" required="" >
+            <input type="password"  placeholder="Password" ng-model="connectionD.mdp" required="">
+        		<label class="checkbox">
+             	   <a href="#!index"> Sign Up</>
+        		</label>
+      </form><br/><br/>
+      <h2>ESPACE FICHE</h2>
+      <h3>Fiche principale</h3>
+      
+ 		<form name="" ng-controller="createFicheP">
+		 	<div ng-controller="infoEnfant">
+		      	nom : <label ng-repeat="e in enfant">{{e.nom}}</label><br/>
+		      	prenom : <label ng-repeat="e in enfant">{{e.prenom}}</label><br/>
+		      	date de naissance : <label ng-repeat="e in enfant">{{e.dateDeNaissance}}</label><br/>
+		      	travail mere : <label ng-repeat="m in mere">{{m.travail}}</label><br/>
+		      	tel travail mere : <label ng-repeat="m in mere">{{m.telTravail}}</label><br/>
+		      	portable : <label ng-repeat="m in mere">{{m.portable}}</label><br/>
+		      	travail pere : <label ng-repeat="m in pere">{{m.travail}}</label><br/>
+		      	tel travail pere : <label ng-repeat="m in pere">{{m.telTravail}}</label><br/>
+		      	portable : <label ng-repeat="m in pere">{{m.portable}}</label><br/>
+		      </div>
+ 		
+				adresse : <input type="text" ng-model="ficheP.adresse"><br/>
+				codePostal : <input type="text" ng-model="ficheP.codePostal"><br/>
+				ville : <input type="text" ng-model="ficheP.ville"><br/>
+				telMaison : <input type="text" ng-model="ficheP.telMaison"><br/>
+				email : <input type="text" ng-model="ficheP.email"><br/>
+				regimeCantine : <input type="text" ng-model="ficheP.regimeCantine"><br/>
+				statutGarderie : <input type="text" ng-model="ficheP.statutGarderie"><br/>
+				statutEtude : <input type="text" ng-model="ficheP.statutEtude"><br/>
+				statutSortie : <input type="text" ng-model="ficheP.statutSortie"><br/>
+				transport : <input type="text" ng-model="ficheP.transport"><br/>
+				pension : <input type="radio" ng-model="ficheP.pension" value="Oui">Oui
+						  <input type="radio" ng-model="ficheP.pension" value="Non">Non
+				<br>
+ 				<button ng-click="createFicheP()">Enregistrer FicheP</button><br>
+ 			</form>      <br/><br/>
+      <h3>Fiche Vaccin</h3>
+      <form name="" ng-controller="createFicheV">
+     	 Statut vaccin : <input type="radio" ng-model="ficheV.statut" value="Oui">Oui
+				  		 <input type="radio" ng-model="ficheV.statut" value="Non">Non
+				  		 <input type="radio" ng-model="ficheV.statut" value="maybe">Peut etre
+		 <button ng-click="createFicheV()">Enregistrer FicheV</button><br>
+      </form><br/><br/>
+      
+      <h3>Fiche Image</h3>
+      <form name="" ng-controller="createFicheI">
+      	statut :<input type="radio" ng-model="ficheI.statut" value="Oui">Oui
+				<input type="radio" ng-model="ficheI.statut" value="Non">Non <br/>
+		Classe : <input type="text" ng-model="ficheI.classe"><br/>
+		<button ng-click="createFicheI()">Enregistrer FicheI</button><br>
+	</form><br/><br/>
+	
+	<h3>Fiche Medical</h3>
+    <form name="" ng-controller="createFicheM">
+      	statutSpecialiste :<input type="radio" ng-model="ficheM.statutSpecialiste" value="Oui">Oui
+				<input type="radio" ng-model="ficheM.statutSpecialiste" value="Non">Non <br/>
+		Traitement : <input type="text" ng-model="ficheM.traitement"><br/>
+		Observation : <input type="text" ng-model="ficheM.observation"><br/>
+		
+		<button ng-click="createFicheM()">Enregistrer FicheM</button><br>
+	</form>
 
 	<script type="text/javascript" src="./angular/angular.min.js"></script>
 	<script type="text/javascript" src="./angular/angular-route.js"></script>

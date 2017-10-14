@@ -1,5 +1,21 @@
 var app=angular.module("myApp",[]);
 
+
+app.controller("createResponsable", function($scope,$http){
+	$scope.createresponsable={};
+	$scope.createResponsable = function(){
+		$http.post("http://localhost:8080/projetfinalserveur/saveResponsable", $scope.createresponsable)
+		.then(function(value){
+			$scope.createresponsable=value.data;
+			location.reload();
+		})
+		.catch(function(reason){
+			alert("Erreur générée lors de l'ajout d'un responsable");
+			console.log(reason);
+		})
+	}
+})
+
 //app.controller("authentificationResponsable", function($scope, $http){
 //	$scope.responsable={};
 //	$scope.authentifier=function(){
@@ -84,3 +100,94 @@ app.controller("updateEnfant", function($scope, $http) {
 //});
 
 //listEnfantResponsable
+
+app.controller("connexionCtrl" ,function($scope,$http){
+
+	$scope.demandeconnexion = function(){
+		$http.post("URL/CO",$scope.connexion)
+		var verificationConnexion = $get("URL/CO")
+		if ( connexion.login == verificationConnexion.loign
+				&& connexion.mdp == verificationConnexion.mdp){}
+			then(function(response) {
+		        $scope.responsable = response.data;
+		    })
+		    .catch(function(reason){
+		    	alert("Erreur de connexion, le mot de passe ou le login sont invalide");
+		    	console.log(reason);
+		});
+	}
+})
+
+
+/*CREATION DES FICHES, modif, suppression*/
+app.controller("createFicheP", function($scope,$http){
+	$scope.ficheP = {};
+	$scope.createFicheP = function(){
+		$http.post("http://localhost:8080/projetfinalserveur/saveFichePrincipale", $scope.ficheP)
+		.then(function(value){
+			$scope.enfant=value.data;
+			location.reload();
+		})
+		.catch(function(reason){
+			alert("Erreur générée lors de l'ajout d'un responsable");
+			console.log(reason);
+		})
+	}
+})
+app.controller("infoEnfant", function($scope,$http){
+	$http.get("http://localhost:8080/projetfinalserveur/saveEnfant")
+	$http.get("http://localhost:8080/projetfinalserveur/saveMere")
+	$http.get("http://localhost:8080/projetfinalserveur/savePere")
+	.then(function(response) {
+        $scope.enfant = response.data;
+        $scope.mere = response.data;
+        $scope.pere = response.data;
+    })
+    .catch(function(reason){
+    	alert("echec recuperation informations enfant");
+    	console.log(reason);
+    });
+})
+
+
+app.controller("createFicheV", function($scope,$http){
+	$scope.ficheV = {};
+	$scope.createFicheV = function(){
+		$http.post("http://localhost:8080/projetfinalserveur/saveFicheVaccin", $scope.ficheV)
+		.then(function(value){
+			$scope.enfant=value.data;
+			location.reload();
+		})
+		.catch(function(reason){
+			alert("Erreur générée lors de l'ajout d'un responsable");
+			console.log(reason);
+		})
+	}
+})
+app.controller("createFicheM", function($scope,$http){
+	$scope.ficheM = {};
+	$scope.createFicheM = function(){
+		$http.post("http://localhost:8080/projetfinalserveur/saveFicheMedical", $scope.ficheM)
+		.then(function(value){
+			$scope.enfant=value.data;
+		})
+		.catch(function(reason){
+			alert("Erreur générée lors de l'ajout d'un responsable");
+			console.log(reason);
+		})
+	}
+})
+app.controller("createFicheI", function($scope,$http){
+	$scope.ficheI = {};
+	$scope.createFicheI = function(){
+		$http.post("http://localhost:8080/projetfinalserveur/saveFicheImage", $scope.ficheI)
+		.then(function(value){
+			$scope.enfant=value.data;
+			location.reload();
+		})
+		.catch(function(reason){
+			alert("Erreur générée lors de l'ajout d'un responsable");
+			console.log(reason);
+		})
+	}
+})
