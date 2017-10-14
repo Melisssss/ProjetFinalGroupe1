@@ -2,9 +2,11 @@ package com.g1.projetfinalserveur.service;
 
 import java.util.List;
 
+import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
 import com.g1.projetfinalserveur.metier.EtablissementClub;
 import com.g1.projetfinalserveur.metier.EtablissementEcole;
+import com.g1.projetfinalserveur.metier.FichePrincipale;
 
 public interface IserviceEtablissement {
 	
@@ -29,4 +31,8 @@ public interface IserviceEtablissement {
 		public EtablissementCentreLoisir updateCentreLoisir(EtablissementCentreLoisir ecl);
 		public EtablissementCentreLoisir getCentreLoisir(long idCentreLoisir);
 
+		//Connexion
+		public Connexion findByMaConnexion(String login,String mdp);
+		// Method
+		public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement);
 }

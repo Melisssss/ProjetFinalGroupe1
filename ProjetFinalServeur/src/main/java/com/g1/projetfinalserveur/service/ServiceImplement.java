@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.g1.projetfinalserveur.dao.CentreLoisirDAO;
 import com.g1.projetfinalserveur.dao.ClubDAO;
+import com.g1.projetfinalserveur.dao.ConnexionDAO;
 import com.g1.projetfinalserveur.dao.EcoleDAO;
 import com.g1.projetfinalserveur.dao.EnfantDAO;
 import com.g1.projetfinalserveur.dao.FicheImageDAO;
@@ -16,6 +17,7 @@ import com.g1.projetfinalserveur.dao.FicheVaccinDAO;
 import com.g1.projetfinalserveur.dao.MereDAO;
 import com.g1.projetfinalserveur.dao.PereDAO;
 import com.g1.projetfinalserveur.dao.ResponsableDAO;
+import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
 import com.g1.projetfinalserveur.metier.EtablissementClub;
@@ -53,7 +55,8 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	PereDAO pereDao;
 	@Autowired
 	MereDAO mereDao;
-	
+	@Autowired
+	ConnexionDAO connexionDao;	
 	//******CRUD RESPONSABLE
 	@Override
 	public Responsable createResponsable(Responsable r) {
@@ -339,6 +342,61 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	public Mere getMere(long idMere) {
 		// TODO Auto-generated method stub
 		return mereDao.findById(idMere).get();
+	}
+	
+	
+	@Override
+	public Connexion findByMaConnexion(String login, String mdp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return fichePrincipaleDao.findAllFichePrincipaleEtablissement(idEtablissement);
+	}
+	
+	// CRUD CONNEXION
+	@Override
+	public void createConnexion(Connexion c) {
+		// TODO Auto-generated method stub
+		connexionDao.save(c);
+	}
+
+	@Override
+	public void deleteConnexion(Connexion m) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Connexion updateConnexion(Connexion m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Connexion getConnexion(long idConnexion) {
+		// TODO Auto-generated method stub
+		return connexionDao.findById(idConnexion).get();
+	}
+
+	@Override
+	public Connexion findMaConnexion(String login, String mdp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Responsable findResponsable(String login, String mdp) {
+		// TODO Auto-generated method stub
+		return connexionDao.findResponsable(login, mdp);
+	}
+
+	@Override
+	public List<EtablissementEcole> findAllEcoleFiche(long idFiche) {
+		// TODO Auto-generated method stub
+		return ecoleDao.findAllEcoleFiche(idFiche);
 	}
 
 }

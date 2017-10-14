@@ -10,10 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import javax.persistence.JoinColumn;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.context.annotation.Scope;
@@ -29,25 +30,25 @@ public class Enfant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idEnfant;
-	
+
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Responsable monResponsable;
-	
-	@OneToMany(mappedBy = "monEnfant", fetch = FetchType.EAGER)
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "monEnfant", fetch = FetchType.LAZY)
 	private Set<Fiche> mesFiches;
+
 	
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	private Set<Etablissement> mesEtablissementsEnfant = new HashSet<Etablissement>();
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "enfant_user", joinColumns = @JoinColumn(name = "mesEnfants_idEnfant", referencedColumnName = "idEnfant"), inverseJoinColumns = @JoinColumn(name = "mesEtablissementsEnfant_idUser", referencedColumnName ="idUser"))
+	private Set<Etablissement> mesEtablissementsEnfant;
 
 	private String nom;
 	private String prenom;
 	private String dateDeNaissance;
-	
-	
-	
-	
+
 	public Set<Etablissement> getMesEtablissementsEnfant() {
 		return mesEtablissementsEnfant;
 	}
@@ -71,6 +72,7 @@ public class Enfant {
 	public void setMonResponsable(Responsable monResponsable) {
 		this.monResponsable = monResponsable;
 	}
+
 	public Set<Fiche> getMesFiches() {
 		return mesFiches;
 	}
@@ -102,5 +104,4 @@ public class Enfant {
 	public void setDateDeNaissance(String dateDeNaissance) {
 		this.dateDeNaissance = dateDeNaissance;
 	}
-
 }

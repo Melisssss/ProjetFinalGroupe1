@@ -29,52 +29,50 @@ public abstract class Famille {
 	private String travail;
 	private String telTravail;
 	private String portable;
-	private String nomResponsable;
-	private String telResponsable;
+
 	@JsonIgnore
-	@OneToOne(mappedBy="maFamille",fetch = FetchType.LAZY)
-	private Fiche maFiche;
+	@OneToOne(mappedBy = "maFamille", fetch = FetchType.LAZY)
+	private FichePrincipale maFichePrincipale;
+
 	public long getIdFamille() {
 		return idFamille;
 	}
+
 	public void setIdFamille(long idFamille) {
 		this.idFamille = idFamille;
 	}
+
 	public String getTravail() {
 		return travail;
 	}
+
 	public void setTravail(String travail) {
 		this.travail = travail;
 	}
+
 	public String getTelTravail() {
 		return telTravail;
 	}
+
 	public void setTelTravail(String telTravail) {
 		this.telTravail = telTravail;
 	}
+
 	public String getPortable() {
 		return portable;
 	}
+
 	public void setPortable(String portable) {
 		this.portable = portable;
 	}
-	public String getNomResponsable() {
-		return nomResponsable;
+
+
+	public FichePrincipale getMaFichePrincipale() {
+		return maFichePrincipale;
 	}
-	public void setNomResponsable(String nomResponsable) {
-		this.nomResponsable = nomResponsable;
+
+	public void setMaFichePrincipale(FichePrincipale maFichePrincipale) {
+		this.maFichePrincipale = maFichePrincipale;
 	}
-	public String getTelResponsable() {
-		return telResponsable;
-	}
-	public void setTelResponsable(String telResponsable) {
-		this.telResponsable = telResponsable;
-	}
-	public Fiche getMaFiche() {
-		return maFiche;
-	}
-	public void setMaFiche(Fiche maFiche) {
-		this.maFiche = maFiche;
-	}
-	
+
 }

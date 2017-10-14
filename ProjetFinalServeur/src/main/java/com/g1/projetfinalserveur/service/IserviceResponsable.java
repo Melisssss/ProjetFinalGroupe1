@@ -2,7 +2,9 @@ package com.g1.projetfinalserveur.service;
 
 import java.util.List;
 
+import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.Enfant;
+import com.g1.projetfinalserveur.metier.EtablissementEcole;
 import com.g1.projetfinalserveur.metier.FicheImage;
 import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
@@ -71,4 +73,12 @@ public interface IserviceResponsable {
 	public Mere updateMere(Mere m);
 	public Mere getMere(long idMere);
 	
+	//Connexion
+	public void createConnexion(Connexion c);	 
+	public void deleteConnexion(Connexion c);
+	public Connexion updateConnexion(Connexion c);
+	public Connexion getConnexion(long idConnexion);
+	public Connexion findMaConnexion(String login,String mdp);
+	public Responsable findResponsable(String login,String mdp);
+	public List<EtablissementEcole> findAllEcoleFiche(long idFiche);
 }

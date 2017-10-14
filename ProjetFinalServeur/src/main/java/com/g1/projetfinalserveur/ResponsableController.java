@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.EtablissementEcole;
 import com.g1.projetfinalserveur.metier.FicheImage;
@@ -77,16 +78,16 @@ public class ResponsableController {
 		service.createEnfant(e);
 		return e;
 	}
-
 	@RequestMapping(value = "/updateEnfant", method=RequestMethod.POST)
 	public Enfant updateEnfant(@RequestBody Enfant e) {
 		service.updateEnfant(e);
 		return e;
 	}
 
-	@RequestMapping(value = "/deleteEnfant")
-	public void deleteEnfant(long idEnfant) {
-		
+	@RequestMapping(value = "/deleteEnfant", method=RequestMethod.POST)
+	public void deleteEnfant(@RequestBody long idEnfant) {
+		Enfant e = service.getEnfant(idEnfant);
+		service.deleteEnfant(e);
 	}
 
 	@RequestMapping(value = "/getEnfant")
@@ -109,17 +110,17 @@ public class ResponsableController {
 		service.createFichePrincipale(fp);
 		return fp;
 	}
-	@RequestMapping(value = "/updateFichePrincipale")
-	public FichePrincipale updateFichePrincipale(FichePrincipale fp) {
+	@RequestMapping(value = "/updateFichePrincipale", method=RequestMethod.POST )
+	public FichePrincipale updateFichePrincipale(@RequestBody FichePrincipale fp) {
 		service.updateFichePrincipale(fp);
 		return fp;
 	}
-	@RequestMapping(value = "/getFichePrincipal")
-	public FichePrincipale getFichePrincipal(long idFiche) {
+	@RequestMapping(value = "/getFichePrincipal", method=RequestMethod.POST)
+	public FichePrincipale getFichePrincipal(@RequestBody long idFiche) {
 		return service.getFichePrincipale(idFiche);
 	}
-	@RequestMapping(value = "/listFichePrincipaleEnfant")
-	public List<FichePrincipale> listFichePrincipale(long idEnfant) {
+	@RequestMapping(value = "/listFichePrincipaleEnfant", method=RequestMethod.POST)
+	public List<FichePrincipale> listFichePrincipale(@RequestBody long idEnfant) {
 		return service.findAllFichePrincipaleEnfant(idEnfant);
 	}
 	/*
@@ -130,7 +131,7 @@ public class ResponsableController {
 		fp = service.getFichePrincipale(idFiche);
 		fp.setMonEnfant(service.getEnfant(idEnfant));
 		service.updateFichePrincipale(fp);
-	}
+	}*/
 	
 	@RequestMapping(value = "/linkFichePrincipaleEcole")
 	public void linkFichePrincipaleEcole(long idEtablissement, long idFiche) {
@@ -139,7 +140,7 @@ public class ResponsableController {
 		fp = service.getFichePrincipale(idFiche);
 		fp.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFichePrincipale(fp);
-	}*/
+	}
 	
 	
 	
@@ -155,17 +156,17 @@ public class ResponsableController {
 		service.createFicheMedical(fm);
 		return fm;
 	}
-	@RequestMapping(value = "/updateFicheMedical")
-	public FicheMedical updateFicheMedical(FicheMedical fm) {
+	@RequestMapping(value = "/updateFicheMedical", method=RequestMethod.POST)
+	public FicheMedical updateFicheMedical(@RequestBody FicheMedical fm) {
 		service.updateFicheMedical(fm);
 		return fm;
 	}
-	@RequestMapping(value = "/getFicheMedical")
-	public FicheMedical getFicheMedical(long idFiche) {
+	@RequestMapping(value = "/getFicheMedical", method=RequestMethod.POST)
+	public FicheMedical getFicheMedical(@RequestBody long idFiche) {
 		return service.getFicheMedical(idFiche);
 	}
-	@RequestMapping(value = "/listFicheMedicalEnfant")
-	public List<FicheMedical> listFicheMedical(long idEnfant) {
+	@RequestMapping(value = "/listFicheMedicalEnfant", method=RequestMethod.POST)
+	public List<FicheMedical> listFicheMedical(@RequestBody long idEnfant) {
 		return service.findAllFicheMedicalEnfant(idEnfant);
 	}
 	/*
@@ -221,21 +222,21 @@ public class ResponsableController {
 		service.createFicheVaccin(fv);
 		return fv;
 	}
-	@RequestMapping(value = "/updateFicheVaccin")
-	public FicheVaccin updateFicheVaccin(FicheVaccin fv) {
+	@RequestMapping(value = "/updateFicheVaccin", method=RequestMethod.POST)
+	public FicheVaccin updateFicheVaccin(@RequestBody FicheVaccin fv) {
 		service.updateFicheVaccin(fv);
 		return fv;
 	}
-	@RequestMapping(value = "/getFicheVaccin")
-	public FicheVaccin getFicheVaccin(long idFiche) {
+	@RequestMapping(value = "/getFicheVaccin", method=RequestMethod.POST)
+	public FicheVaccin getFicheVaccin(@RequestBody long idFiche) {
 		return service.getFicheVaccin(idFiche);
 	}
-	@RequestMapping(value = "/listFicheVaccinEnfant")
-	public List<FicheVaccin> listFicheVaccin(long idEnfant) {
+	@RequestMapping(value = "/listFicheVaccinEnfant", method=RequestMethod.POST)
+	public List<FicheVaccin> listFicheVaccin(@RequestBody long idEnfant) {
 		return service.findAllFicheVaccinEnfant(idEnfant);
 	}
-	@RequestMapping(value = "/linkFicheVaccinEnfant")
-	public void linkFicheVaccinEnfant(long idEnfant, long idFiche) {
+	@RequestMapping(value = "/linkFicheVaccinEnfant", method=RequestMethod.POST)
+	public void linkFicheVaccinEnfant(@RequestBody long idEnfant, long idFiche) {
 
 		FicheVaccin fv;
 		fv = service.getFicheVaccin(idFiche);
@@ -281,17 +282,17 @@ public class ResponsableController {
 		service.createFicheImage(fi);
 		return fi;
 	}
-	@RequestMapping(value = "/updateFicheImage")
-	public FicheImage updateFicheImage(FicheImage fi) {
+	@RequestMapping(value = "/updateFicheImage", method=RequestMethod.POST)
+	public FicheImage updateFicheImage(@RequestBody FicheImage fi) {
 		service.updateFicheImage(fi);
 		return fi;
 	}
-	@RequestMapping(value = "/getFicheImage")
-	public FicheImage getFicheImage(long idFiche) {
+	@RequestMapping(value = "/getFicheImage", method=RequestMethod.POST)
+	public FicheImage getFicheImage(@RequestBody long idFiche) {
 		return service.getFicheImage(idFiche);
 	}
-	@RequestMapping(value = "/listFicheImageEnfant")
-	public List<FicheImage> listFicheImage(long idEnfant) {
+	@RequestMapping(value = "/listFicheImageEnfant", method=RequestMethod.POST)
+	public List<FicheImage> listFicheImage(@RequestBody long idEnfant) {
 		return service.findAllFicheImageEnfant(idEnfant);
 	}
 	/*
@@ -341,8 +342,8 @@ public class ResponsableController {
 	public List<EtablissementEcole> listEtablissementEcole() {
 		return serviceE.findEcoles();
 	}
-	@RequestMapping(value = "/getEtablissementEcole")
-	public EtablissementEcole getEtablissementEcole(long idEtablissement) {
+	@RequestMapping(value = "/getEtablissementEcole", method=RequestMethod.POST)
+	public EtablissementEcole getEtablissementEcole(@RequestBody long idEtablissement) {
 		return serviceE.getEcole(idEtablissement);
 	}
 	
@@ -360,4 +361,31 @@ public class ResponsableController {
 	public List<FichePrincipale> listFichePrincipaleEtablissement (long idEtablissement) {
 		//return serviceE.findFichePrincpaleEtablissement(long idEtablissement);
 	}*/	
+	@RequestMapping(value = "/createConnexion")
+	public Connexion CreateConnexion(Connexion c) {
+		 service.createConnexion(c);
+		 return service.getConnexion(c.getIdConnexion());
+	}
+	
+	@RequestMapping(value = "/findResponsable")
+	public Responsable findResponsable(Connexion c) {
+		 return service.findResponsable(c.getLogin(),c.getMdp());
+	}
+	
+	@RequestMapping(value = "/findMaConnexion")
+	public  Connexion findMaConnexion(Connexion c) {
+		 return service.findMaConnexion(c.getLogin(),c.getMdp());
+	}
+	@RequestMapping(value = "/findAllFichePrincipaleEtablissement")
+	public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return serviceE.findAllFichePrincipaleEtablissement(idEtablissement);
+	}
+	
+	
+	@RequestMapping(value = "/findAllEcoleFiche")
+	public List<EtablissementEcole> findAllEcoleFiche(long idFiche) {
+		// TODO Auto-generated method stub
+		return service.findAllEcoleFiche(idFiche);
+	}
 }

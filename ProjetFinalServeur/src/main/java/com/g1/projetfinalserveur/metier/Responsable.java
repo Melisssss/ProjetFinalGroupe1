@@ -22,9 +22,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @DiscriminatorValue(value = "RESPONSABLE")
 public class Responsable extends User {
 	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "monResponsable", fetch = FetchType.LAZY)
 	private Set<Enfant> mesEnfants;
+
 	private String prenom;
 
 	public String getPrenom() {
@@ -42,5 +44,6 @@ public class Responsable extends User {
 	public void setMesEnfants(Set<Enfant> mesEnfants) {
 		this.mesEnfants = mesEnfants;
 	}
+
 
 }

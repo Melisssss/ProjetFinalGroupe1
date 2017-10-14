@@ -23,16 +23,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Etablissement extends User {
 	
-	@ManyToMany(mappedBy = "mesEtablissementsFiche", fetch = FetchType.EAGER)
-	private Set<Fiche> mesFiches;
-	
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY,mappedBy = "mesEtablissementsEnfant")
+	@ManyToMany(mappedBy = "mesEtablissementsFiche", fetch = FetchType.LAZY)
+	private Set<Fiche> mesFiches;
+
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "mesEtablissementsEnfant")
 	private Set<Enfant> mesEnfants;
-	
-	
+
 	public Set<Enfant> getMesEnfants() {
 		return mesEnfants;
+
 	}
 
 	public void setMesEnfants(Set<Enfant> mesEnfants) {

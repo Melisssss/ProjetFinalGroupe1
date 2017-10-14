@@ -11,6 +11,6 @@ import com.g1.projetfinalserveur.metier.EtablissementEcole;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
 @Repository
 public interface EcoleDAO extends JpaRepository<EtablissementEcole, Long>{
-//	@Query("select fp from FichePrincipale fp where fp.mesEtablissements.idEtaablissement = :x")
-//	public List<FichePrincipale> listFichePrincipaleEtablissement(@Param("x") long idEtablissement);
+	@Query( "select distinct ee from EtablissementEcole ee join ee.mesFiches f where f.idFiche = :x" )
+	public List<EtablissementEcole> findAllEcoleFiche(@Param("x") long idFiche);
 }

@@ -23,33 +23,40 @@ public class Connexion {
 	@JsonIgnore
 	private String mdp;
 	@JsonIgnore
-	@OneToOne(mappedBy = "maConnexion",fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "maConnexion", fetch = FetchType.LAZY)
 	private User monUser;
-	
-	
+
 	public User getMonUser() {
 		return monUser;
 	}
+
 	public void setMonUser(User monUser) {
 		this.monUser = monUser;
 	}
+
 	public long getIdConnexion() {
 		return idConnexion;
 	}
+
 	public void setIdConnexion(long idConnexion) {
 		this.idConnexion = idConnexion;
 	}
+
 	public String getLogin() {
 		return login;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 	public String getMdp() {
 		return mdp;
 	}
+
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+
 	
 }

@@ -12,18 +12,23 @@ import org.springframework.stereotype.Component;
 @DiscriminatorValue(value = "FICHE_IMAGE")
 public class FicheImage extends Fiche{
 	private String classe;
-	private String statut;
+	private String statutImage;
+
 	public String getClasse() {
 		return classe;
 	}
+
 	public void setClasse(String classe) {
 		this.classe = classe;
 	}
-	public String getStatut() {
-		return statut;
+
+	public String getStatutImage() {
+		return statutImage;
 	}
-	public void setStatut(String statut) {
-		this.statut = statut;
+
+	public void setStatutImage(String statutImage) {
+		this.statutImage = statutImage;
 	}
+
 	
 }

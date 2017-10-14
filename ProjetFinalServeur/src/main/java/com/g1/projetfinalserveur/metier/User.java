@@ -24,15 +24,9 @@ public abstract class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idUser;
 
+	//@JsonIgnore
 	@OneToOne(fetch = FetchType.EAGER)
 	private Connexion maConnexion;
-	public Connexion getMaConnexion() {
-		return maConnexion;
-	}
-
-	public void setMaConnexion(Connexion maConnexion) {
-		this.maConnexion = maConnexion;
-	}
 
 	private String nom;
 	private String adresse;
@@ -79,4 +73,11 @@ public abstract class User {
 		this.ville = ville;
 	}
 
+	public Connexion getMaConnexion() {
+		return maConnexion;
+	}
+
+	public void setMaConnexion(Connexion maConnexion) {
+		this.maConnexion = maConnexion;
+	}
 }

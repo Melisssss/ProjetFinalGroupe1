@@ -11,14 +11,16 @@ import org.springframework.stereotype.Component;
 @Entity
 @DiscriminatorValue(value = "FICHE_VACCIN")
 public class FicheVaccin extends Fiche {
-	private boolean statut;
+	private String statutVaccins;
 
-	public boolean isStatut() {
-		return statut;
+	public String getStatutVaccins() {
+		return statutVaccins;
 	}
 
-	public void setStatut(boolean statut) {
-		this.statut = statut;
+	public void setStatutVaccins(String statutVaccins) {
+		this.statutVaccins = statutVaccins;
 	}
+
+	
 
 }
