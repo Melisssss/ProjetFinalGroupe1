@@ -33,14 +33,12 @@ public class ResponsableController {
 	private IserviceResponsable service;
 	@Autowired
 	private IserviceEtablissement serviceE;
-	
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * 
 	 * @return
 	 */
-	
 
 	// ********************responsable****************************
 	
@@ -59,6 +57,11 @@ public class ResponsableController {
 		return service.getResponsable(idUser);
 
 	}
+	@RequestMapping(value="/listResponsable")
+	public List<Responsable> findResponsables(Responsable r){
+		return service.findResponsables();
+	}
+	
 	
 //	public Enfant linkEnfantResponsable(long idResponsable) {
 //		Enfant e = new Enfant();
@@ -88,13 +91,15 @@ public class ResponsableController {
 		service.updateEnfant(e);
 		return e;
 	}
-
+	@RequestMapping(value="/listEnfant")
+	public List<Enfant> findEnfants (Enfant e){
+		return service.findEnfants();
+	}
 	@RequestMapping(value = "/deleteEnfant", method=RequestMethod.POST)
 	public void deleteEnfant(@RequestBody long idEnfant) {
 		Enfant e = service.getEnfant(idEnfant);
 		service.deleteEnfant(e);
 	}
-
 	@RequestMapping(value = "/getEnfant")
 	public Enfant getEnfant(long idEnfant) {
 		return service.getEnfant(idEnfant);
@@ -134,6 +139,10 @@ public class ResponsableController {
 	public FichePrincipale getFichePrincipal(@RequestBody long idFiche) {
 		return service.getFichePrincipale(idFiche);
 	}
+	@RequestMapping(value="/listFichePrincipale")
+	public List<FichePrincipale> findFichePrincipales(FichePrincipale fp){
+		return service.findFichePrincipales();
+	}
 	@RequestMapping(value = "/listFichePrincipaleEnfant", method=RequestMethod.POST)
 	public List<FichePrincipale> listFichePrincipale(@RequestBody long idEnfant) {
 		return service.findAllFichePrincipaleEnfant(idEnfant);
@@ -146,7 +155,6 @@ public class ResponsableController {
 		fp.setMonEnfant(service.getEnfant(idEnfant));
 		service.updateFichePrincipale(fp);
 	}
-
 	@RequestMapping(value = "/linkFichePrincipaleEcole")
 	public void linkFichePrincipaleEcole(long idEtablissement, long idFiche) {
 
@@ -155,7 +163,6 @@ public class ResponsableController {
 		fp.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFichePrincipale(fp);
 	}
-
 	@RequestMapping(value = "/findAllFichePrincipaleEtablissement")
 	public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement) {
 		// TODO Auto-generated method stub
@@ -178,6 +185,10 @@ public class ResponsableController {
 	public FicheMedical getFicheMedical(@RequestBody long idFiche) {
 		return service.getFicheMedical(idFiche);
 	}
+	@RequestMapping(value="/listFicheMedical")
+	public List<FicheMedical> findFicheMedicals(FicheMedical fm){
+		return service.findFicheMedicals();
+	}
 	@RequestMapping(value = "/listFicheMedicalEnfant", method=RequestMethod.POST)
 	public List<FicheMedical> listFicheMedical(@RequestBody long idEnfant) {
 		return service.findAllFicheMedicalEnfant(idEnfant);
@@ -190,7 +201,6 @@ public class ResponsableController {
 		fm.setMonEnfant(service.getEnfant(idEnfant));
 		service.updateFicheMedical(fm);
 	}
-
 	@RequestMapping(value = "/linkFicheMedicalEcole")
 	public void linkFicheMedicalEcole(long idEtablissement, long idFiche) {
 
@@ -199,7 +209,6 @@ public class ResponsableController {
 		fm.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFicheMedical(fm);
 	}
-
 	@RequestMapping(value = "/linkFicheMedicalClub")
 	public void linkFicheMedicalClub(long idEtablissement, long idFiche) {
 
@@ -208,7 +217,6 @@ public class ResponsableController {
 		fm.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
 		service.updateFicheMedical(fm);
 	}
-
 	@RequestMapping(value = "/linkFicheMedicalCentreLoisir")
 	public void linkFicheMedicalCentreLoisir(long idEtablissement, long idFiche) {
 
@@ -217,7 +225,6 @@ public class ResponsableController {
 		fm.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
 		service.updateFicheMedical(fm);
 	}
-
 	@RequestMapping(value = "/findAllFicheMedicalEtablissement")
 	public List<FicheMedical> findAllFicheMedicalEtablissement(long idEtablissement) {
 		// TODO Auto-generated method stub
@@ -261,7 +268,6 @@ public class ResponsableController {
 		fv.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFicheVaccin(fv);
 	}
-
 	@RequestMapping(value = "/linkFicheVaccinClub")
 	public void linkFicheVaccinClub(long idEtablissement, long idFiche) {
 
@@ -270,7 +276,6 @@ public class ResponsableController {
 		fv.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
 		service.updateFicheVaccin(fv);
 	}
-
 	@RequestMapping(value = "/linkFicheVaccinCentreLoisir")
 	public void linkFicheVaccinCentreLoisir(long idEtablissement, long idFiche) {
 
@@ -279,7 +284,6 @@ public class ResponsableController {
 		fv.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
 		service.updateFicheVaccin(fv);
 	}
-
 	@RequestMapping(value = "/findAllFicheVaccinEtablissement")
 	public List<FicheVaccin> findAllFicheVaccinEtablissement(long idEtablissement) {
 		// TODO Auto-generated method stub
@@ -314,7 +318,6 @@ public class ResponsableController {
 		fi.setMonEnfant(service.getEnfant(idEnfant));
 		service.updateFicheImage(fi);
 	}
-
 	@RequestMapping(value = "/linkFicheImageEcole")
 	public void linkFicheImageEcole(long idEtablissement, long idFiche) {
 
@@ -323,7 +326,6 @@ public class ResponsableController {
 		fi.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFicheImage(fi);
 	}
-
 	@RequestMapping(value = "/linkFicheImageClub")
 	public void linkFicheImageClub(long idEtablissement, long idFiche) {
 
@@ -332,7 +334,6 @@ public class ResponsableController {
 		fi.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
 		service.updateFicheImage(fi);
 	}
-
 	@RequestMapping(value = "/linkFicheImageCentreLoisir")
 	public void linkFicheImageCentreLoisir(long idEtablissement, long idFiche) {
 
@@ -356,9 +357,6 @@ public class ResponsableController {
 	public EtablissementEcole getEtablissementEcole(@RequestBody long idEtablissement) {
 		return serviceE.getEcole(idEtablissement);
 	}
-	
-	
-	
 	@RequestMapping(value = "/linkEtablissementEcoleEnfant")
 	public void linkEtablissementEcoleEnfant(long idEnfant, long idEtablissement) {
 		Enfant e;
@@ -384,12 +382,10 @@ public class ResponsableController {
 		 service.createConnexion(c);
 		 return service.getConnexion(c.getIdConnexion());
 	}
-	
 	@RequestMapping(value = "/findResponsable")
 	public Responsable findResponsable(Connexion c) {
 		 return service.findResponsable(c.getLogin(),c.getMdp());
 	}
-	
 	@RequestMapping(value = "/findMaConnexion")
 	public  Connexion findMaConnexion(Connexion c) {
 		 return service.findMaConnexion(c.getLogin(),c.getMdp());

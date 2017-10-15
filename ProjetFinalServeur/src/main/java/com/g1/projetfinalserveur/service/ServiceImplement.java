@@ -180,6 +180,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		// TODO Auto-generated method stub
 		return enfantDao.findAllEnfantResponsable(idUser);
 	}
+	public List<Enfant> findEnfants (){
+		return enfantDao.findAll();
+	}
 	@Override
 	public void deleteEnfant(Enfant e) {
 		// TODO Auto-generated method stub
@@ -201,6 +204,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	public FichePrincipale createFichePrincipale(FichePrincipale fp) {
 		// TODO Auto-generated method stub
 		return fichePrincipaleDao.save(fp);
+	}
+	public List<FichePrincipale> findFichePrincipales(){
+		return fichePrincipaleDao.findAll();
 	}
 	@Override
 	public List<FichePrincipale> findAllFichePrincipaleEnfant(long idEnfant) {
@@ -230,6 +236,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return ficheMedicalDao.save(fm);
 	}
 	@Override
+	public List<FicheMedical> findFicheMedicals(){
+		return ficheMedicalDao.findAll();
+	}
 	public List<FicheMedical> findAllFicheMedicalEnfant(long idEnfant) {
 		// TODO Auto-generated method stub
 		return ficheMedicalDao.findAllFicheMedicalEnfant(idEnfant);
@@ -257,6 +266,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return ficheVaccinDao.save(fv);
 	}
 	@Override
+	public List<FicheVaccin> findFicheVaccins(){
+		return ficheVaccinDao.findAll();
+	}
 	public List<FicheVaccin> findAllFicheVaccinEnfant(long idEnfant) {
 		// TODO Auto-generated method stub
 		return ficheVaccinDao.findAllFicheVaccinEnfant(idEnfant);
@@ -284,6 +296,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return ficheImageDao.save(fi);
 	}
 	@Override
+	public List<FicheImage> findFicheImages(){
+		return ficheImageDao.findAll();
+	}
 	public List<FicheImage> findAllFicheImageEnfant(long idEnfant) {
 		// TODO Auto-generated method stub
 		return ficheImageDao.findAllFicheImageEnfant(idEnfant);
