@@ -13,4 +13,8 @@ import com.g1.projetfinalserveur.metier.FicheVaccin;
 public interface FicheVaccinDAO extends JpaRepository<FicheVaccin, Long>{
 	@Query("SELECT fv FROM FicheVaccin fv WHERE fv.monEnfant.idEnfant = :x")
 	List<FicheVaccin> findAllFicheVaccinEnfant(@Param("x") long idEnfant);
+
+
+	@Query("select distinct fv from FicheVaccin fv join fv.mesEtablissementsFiche e where e.idUser = :x")
+	public List<FicheVaccin> findAllFicheVaccinEtablissement(@Param("x") long idEtablissement);
 }

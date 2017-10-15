@@ -12,4 +12,7 @@ import com.g1.projetfinalserveur.metier.FicheImage;
 public interface FicheImageDAO extends JpaRepository<FicheImage, Long>{
 	@Query("SELECT fi FROM FicheImage fi WHERE fi.monEnfant.idEnfant = :x")
 	List<FicheImage> findAllFicheImageEnfant(@Param("x") long idEnfant);
+
+	@Query( "select distinct fi from FicheImage fi join fi.mesEtablissementsFiche e where e.idUser = :x" )
+	public List<FicheImage> findAllFicheImageEtablissement(@Param("x") long idEtablissement);
 }

@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.Enfant;
+import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
+import com.g1.projetfinalserveur.metier.EtablissementClub;
 import com.g1.projetfinalserveur.metier.EtablissementEcole;
+import com.g1.projetfinalserveur.metier.Famille;
 import com.g1.projetfinalserveur.metier.FicheImage;
 import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
@@ -73,12 +76,29 @@ public interface IserviceResponsable {
 	public Mere updateMere(Mere m);
 	public Mere getMere(long idMere);
 	
+	//Famille
+	
+	public void createFamille(Famille f);	 
+	public void deleteFamille(Famille f);
+	public Famille updateFamille(Famille f);
+	public Famille getFamille(long idFamille);
+	
 	//Connexion
 	public void createConnexion(Connexion c);	 
 	public void deleteConnexion(Connexion c);
 	public Connexion updateConnexion(Connexion c);
 	public Connexion getConnexion(long idConnexion);
 	public Connexion findMaConnexion(String login,String mdp);
+	public Object findObjectConnexion(String login,String mdp);
 	public Responsable findResponsable(String login,String mdp);
+	
+	//Method ManyToMany
+	
+	public List<EtablissementCentreLoisir> findAllCentreLoisirFiche(long idFiche);
 	public List<EtablissementEcole> findAllEcoleFiche(long idFiche);
+	public List<EtablissementClub> findAllClubFiche(long idFiche);
+
+	public List<EtablissementCentreLoisir> findAllCentreLoisirEnfant(long idEnfant);
+	public List<EtablissementClub> findAllClubEnfant(long idEnfant);
+	public List<EtablissementEcole> findAllEcoleEnfant(long idEnfant);
 }

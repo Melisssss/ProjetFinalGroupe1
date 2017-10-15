@@ -3,10 +3,14 @@ package com.g1.projetfinalserveur.service;
 import java.util.List;
 
 import com.g1.projetfinalserveur.metier.Connexion;
+import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
 import com.g1.projetfinalserveur.metier.EtablissementClub;
 import com.g1.projetfinalserveur.metier.EtablissementEcole;
+import com.g1.projetfinalserveur.metier.FicheImage;
+import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
+import com.g1.projetfinalserveur.metier.FicheVaccin;
 
 public interface IserviceEtablissement {
 	
@@ -33,6 +37,11 @@ public interface IserviceEtablissement {
 
 		//Connexion
 		public Connexion findByMaConnexion(String login,String mdp);
-		// Method
+		//Method ManyToMany
+		
+		public List<Enfant> findAllEnfantEtablissement(long idEtablissement);
+		public List<FicheImage> findAllFicheImageEtablissement(long idEtablissement);
+		public List<FicheMedical> findAllFicheMedicalEtablissement(long idEtablissement);
 		public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement);
+		public List<FicheVaccin> findAllFicheVaccinEtablissement(long idEtablissement);	
 }

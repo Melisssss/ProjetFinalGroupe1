@@ -10,6 +10,7 @@ import com.g1.projetfinalserveur.dao.ClubDAO;
 import com.g1.projetfinalserveur.dao.ConnexionDAO;
 import com.g1.projetfinalserveur.dao.EcoleDAO;
 import com.g1.projetfinalserveur.dao.EnfantDAO;
+import com.g1.projetfinalserveur.dao.FamilleDAO;
 import com.g1.projetfinalserveur.dao.FicheImageDAO;
 import com.g1.projetfinalserveur.dao.FicheMedicalDAO;
 import com.g1.projetfinalserveur.dao.FichePrincipaleDAO;
@@ -22,6 +23,7 @@ import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
 import com.g1.projetfinalserveur.metier.EtablissementClub;
 import com.g1.projetfinalserveur.metier.EtablissementEcole;
+import com.g1.projetfinalserveur.metier.Famille;
 import com.g1.projetfinalserveur.metier.FicheImage;
 import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
@@ -57,6 +59,8 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	MereDAO mereDao;
 	@Autowired
 	ConnexionDAO connexionDao;	
+	@Autowired
+	FamilleDAO familleDao;
 	//******CRUD RESPONSABLE
 	@Override
 	public Responsable createResponsable(Responsable r) {
@@ -350,11 +354,7 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement) {
-		// TODO Auto-generated method stub
-		return fichePrincipaleDao.findAllFichePrincipaleEtablissement(idEtablissement);
-	}
+	
 	
 	// CRUD CONNEXION
 	@Override
@@ -386,7 +386,11 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Override
+	public Object findObjectConnexion(String login, String mdp) {
+		// TODO Auto-generated method stub
+		return connexionDao.findObjectConnexion(login, mdp);
+	}
 	@Override
 	public Responsable findResponsable(String login, String mdp) {
 		// TODO Auto-generated method stub
@@ -397,6 +401,91 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	public List<EtablissementEcole> findAllEcoleFiche(long idFiche) {
 		// TODO Auto-generated method stub
 		return ecoleDao.findAllEcoleFiche(idFiche);
+	}
+	@Override
+	public List<Enfant> findAllEnfantEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return enfantDao.findAllEnfantEtablissement(idEtablissement);
+	}
+
+	@Override
+	public List<FicheImage> findAllFicheImageEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return ficheImageDao.findAllFicheImageEtablissement(idEtablissement);
+	}
+
+	@Override
+	public List<FicheMedical> findAllFicheMedicalEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return ficheMedicalDao.findAllFicheMedicalEtablissement(idEtablissement);
+	}
+
+	@Override
+	public List<FicheVaccin> findAllFicheVaccinEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return ficheVaccinDao.findAllFicheVaccinEtablissement(idEtablissement);
+	}
+
+	@Override
+	public List<EtablissementCentreLoisir> findAllCentreLoisirFiche(long idFiche) {
+		// TODO Auto-generated method stub
+		return centreLoisirDao.findAllCentreLoisirFiche(idFiche);
+	}
+
+	@Override
+	public List<EtablissementClub> findAllClubFiche(long idFiche) {
+		// TODO Auto-generated method stub
+		return clubDao.findAllClubFiche(idFiche);
+	}
+
+	@Override
+	public List<EtablissementCentreLoisir> findAllCentreLoisirEnfant(long idEnfant) {
+		// TODO Auto-generated method stub
+		return centreLoisirDao.findAllCentreLoisirEnfant(idEnfant);
+	}
+
+	@Override
+	public List<EtablissementClub> findAllClubEnfant(long idEnfant) {
+		// TODO Auto-generated method stub
+		return clubDao.findAllClubEnfant(idEnfant);
+	}
+
+	@Override
+	public List<EtablissementEcole> findAllEcoleEnfant(long idEnfant) {
+		// TODO Auto-generated method stub
+		return ecoleDao.findAllEcoleEnfant(idEnfant);
+	}
+
+	@Override
+	public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return fichePrincipaleDao.findAllFichePrincipaleEtablissement(idEtablissement);
+	}
+
+	// CRUD FAMILLE
+
+	@Override
+	public void createFamille(Famille f) {
+		// TODO Auto-generated method stub
+		familleDao.save(f);
+	}
+
+	@Override
+	public void deleteFamille(Famille f) {
+		// TODO Auto-generated method stub
+		familleDao.delete(f);
+	}
+
+	@Override
+	public Famille updateFamille(Famille f) {
+		// TODO Auto-generated method stub
+		return familleDao.saveAndFlush(f);
+	}
+
+	@Override
+	public Famille getFamille(long idFamille) {
+		// TODO Auto-generated method stub
+		return familleDao.findById(idFamille).get();
 	}
 
 }

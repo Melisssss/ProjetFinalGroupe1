@@ -13,4 +13,7 @@ import com.g1.projetfinalserveur.metier.FichePrincipale;
 public interface EcoleDAO extends JpaRepository<EtablissementEcole, Long>{
 	@Query( "select distinct ee from EtablissementEcole ee join ee.mesFiches f where f.idFiche = :x" )
 	public List<EtablissementEcole> findAllEcoleFiche(@Param("x") long idFiche);
+
+	@Query( "select distinct ee from EtablissementEcole ee join ee.mesEnfants en where en.idEnfant = :x" )
+	public List<EtablissementEcole> findAllEcoleEnfant(@Param("x") long idEnfant);
 }

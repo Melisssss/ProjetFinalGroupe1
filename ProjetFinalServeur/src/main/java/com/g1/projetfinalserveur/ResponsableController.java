@@ -3,6 +3,7 @@ package com.g1.projetfinalserveur;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,10 +42,8 @@ public class ResponsableController {
 	 */
 	
 
-	// responsable
+	// ********************responsable****************************
 	
-	
-
 	@RequestMapping(value = "/saveResponsable", method=RequestMethod.POST)
 	public Responsable saveResponsable(@RequestBody Responsable r) {
 		service.createResponsable(r);
@@ -61,16 +60,22 @@ public class ResponsableController {
 
 	}
 	
-	public Enfant linkEnfantResponsable(long idResponsable) {
-		Enfant e = new Enfant();
-		Responsable r = service.getResponsable(idResponsable);
-		e.setMonResponsable(r);
-		return service.updateEnfant(e);
+//	public Enfant linkEnfantResponsable(long idResponsable) {
+//		Enfant e = new Enfant();
+//		Responsable r = service.getResponsable(idResponsable);
+//		e.setMonResponsable(r);
+//		return service.updateEnfant(e);
+//	}
+	@RequestMapping(value = "/linkConnexionResponsable")
+	public void linkConnexionResponsable(long idResponsable, long idConnexion) {
+		Responsable r;
+		r = service.getResponsable(idResponsable);
+		r.setMaConnexion(service.getConnexion(idConnexion));
+		service.updateResponsable(r);
 	}
-
-	// enfant
 	
 	
+	// ****************************enfant****************************
 	
 
 	@RequestMapping(value = "/saveEnfant", method=RequestMethod.POST)
@@ -94,15 +99,25 @@ public class ResponsableController {
 	public Enfant getEnfant(long idEnfant) {
 		return service.getEnfant(idEnfant);
 	}
-
+	@RequestMapping(value = "/linkEnfantResponsable")
+	public void linkEnfantResponsable(long idResponsable, long idEnfant) {
+		Enfant e = new Enfant();
+		e = service.getEnfant(idEnfant);
+		Responsable r = service.getResponsable(idResponsable);
+		e.setMonResponsable(r);
+		service.updateEnfant(e);
+	}
 	@RequestMapping(value = "/listEnfantResponsable")
 	public List<Enfant> list(long idUser) {
 		return service.findAllEnfantResponsable(idUser);
 	}
-
+	@RequestMapping(value = "/findAllEnfantEtablissement")
+	public List<Enfant> findAllEnfantEtablissement(long idEtablissement) {
+		return serviceE.findAllEnfantEtablissement(idEtablissement);
+	}
 
 	
-	// fichePrincipale
+	// ***********************************fichePrincipale*********************
 	
 	
 	@RequestMapping(value = "/saveFichePrincipale", method=RequestMethod.POST)
@@ -123,7 +138,6 @@ public class ResponsableController {
 	public List<FichePrincipale> listFichePrincipale(@RequestBody long idEnfant) {
 		return service.findAllFichePrincipaleEnfant(idEnfant);
 	}
-	/*
 	@RequestMapping(value = "/linkFichePrincipaleEnfant")
 	public void linkFichePrincipaleEnfant(long idEnfant, long idFiche) {
 
@@ -131,8 +145,8 @@ public class ResponsableController {
 		fp = service.getFichePrincipale(idFiche);
 		fp.setMonEnfant(service.getEnfant(idEnfant));
 		service.updateFichePrincipale(fp);
-	}*/
-	
+	}
+
 	@RequestMapping(value = "/linkFichePrincipaleEcole")
 	public void linkFichePrincipaleEcole(long idEtablissement, long idFiche) {
 
@@ -141,16 +155,15 @@ public class ResponsableController {
 		fp.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFichePrincipale(fp);
 	}
-	
-	
-	
-	
-	
-	// ficheMedical
 
+	@RequestMapping(value = "/findAllFichePrincipaleEtablissement")
+	public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return serviceE.findAllFichePrincipaleEtablissement(idEtablissement);
+	}
 	
-	
-	
+	// ***************************ficheMedical**************************
+
 	@RequestMapping(value = "/saveFicheMedical", method=RequestMethod.POST)
 	public FicheMedical saveFicheMedical(@RequestBody FicheMedical fm) {
 		service.createFicheMedical(fm);
@@ -169,7 +182,6 @@ public class ResponsableController {
 	public List<FicheMedical> listFicheMedical(@RequestBody long idEnfant) {
 		return service.findAllFicheMedicalEnfant(idEnfant);
 	}
-	/*
 	@RequestMapping(value = "/linkFicheMedicalEnfant")
 	public void linkFicheMedicalEnfant(long idEnfant, long idFiche) {
 
@@ -178,7 +190,7 @@ public class ResponsableController {
 		fm.setMonEnfant(service.getEnfant(idEnfant));
 		service.updateFicheMedical(fm);
 	}
-	
+
 	@RequestMapping(value = "/linkFicheMedicalEcole")
 	public void linkFicheMedicalEcole(long idEtablissement, long idFiche) {
 
@@ -187,7 +199,7 @@ public class ResponsableController {
 		fm.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFicheMedical(fm);
 	}
-	
+
 	@RequestMapping(value = "/linkFicheMedicalClub")
 	public void linkFicheMedicalClub(long idEtablissement, long idFiche) {
 
@@ -196,7 +208,7 @@ public class ResponsableController {
 		fm.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
 		service.updateFicheMedical(fm);
 	}
-	
+
 	@RequestMapping(value = "/linkFicheMedicalCentreLoisir")
 	public void linkFicheMedicalCentreLoisir(long idEtablissement, long idFiche) {
 
@@ -205,16 +217,14 @@ public class ResponsableController {
 		fm.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
 		service.updateFicheMedical(fm);
 	}
-	*/
+
+	@RequestMapping(value = "/findAllFicheMedicalEtablissement")
+	public List<FicheMedical> findAllFicheMedicalEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return serviceE.findAllFicheMedicalEtablissement(idEtablissement);
+	}
 	
-	
-	
-	
-	
-	//ficheVaccin
-	
-	
-	
+	//**************************ficheVaccin***************************************
 	
 	
 	@RequestMapping(value = "/saveFicheVaccin", method=RequestMethod.POST)
@@ -243,7 +253,6 @@ public class ResponsableController {
 		fv.setMonEnfant(service.getEnfant(idEnfant));
 		service.updateFicheVaccin(fv);
 	}
-	/*
 	@RequestMapping(value = "/linkFicheVaccinEcole")
 	public void linkFicheVaccinEcole(long idEtablissement, long idFiche) {
 
@@ -252,7 +261,7 @@ public class ResponsableController {
 		fv.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFicheVaccin(fv);
 	}
-	
+
 	@RequestMapping(value = "/linkFicheVaccinClub")
 	public void linkFicheVaccinClub(long idEtablissement, long idFiche) {
 
@@ -261,7 +270,7 @@ public class ResponsableController {
 		fv.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
 		service.updateFicheVaccin(fv);
 	}
-	
+
 	@RequestMapping(value = "/linkFicheVaccinCentreLoisir")
 	public void linkFicheVaccinCentreLoisir(long idEtablissement, long idFiche) {
 
@@ -270,12 +279,14 @@ public class ResponsableController {
 		fv.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
 		service.updateFicheVaccin(fv);
 	}
-	*/
-	
-	
-	//ficheImage
-	
-	
+
+	@RequestMapping(value = "/findAllFicheVaccinEtablissement")
+	public List<FicheVaccin> findAllFicheVaccinEtablissement(long idEtablissement) {
+		// TODO Auto-generated method stub
+		return serviceE.findAllFicheVaccinEtablissement(idEtablissement);
+	}
+	//********************************ficheImage*********************
+
 
 	@RequestMapping(value = "/saveFicheImage", method=RequestMethod.POST)
 	public FicheImage saveFicheImage(@RequestBody FicheImage fi) {
@@ -295,7 +306,6 @@ public class ResponsableController {
 	public List<FicheImage> listFicheImage(@RequestBody long idEnfant) {
 		return service.findAllFicheImageEnfant(idEnfant);
 	}
-	/*
 	@RequestMapping(value = "/linkFicheImageEnfant")
 	public void linkFicheImageEnfant(long idEnfant, long idFiche) {
 
@@ -304,7 +314,7 @@ public class ResponsableController {
 		fi.setMonEnfant(service.getEnfant(idEnfant));
 		service.updateFicheImage(fi);
 	}
-	
+
 	@RequestMapping(value = "/linkFicheImageEcole")
 	public void linkFicheImageEcole(long idEtablissement, long idFiche) {
 
@@ -313,7 +323,7 @@ public class ResponsableController {
 		fi.getMesEtablissementsFiche().add(serviceE.getEcole(idEtablissement));
 		service.updateFicheImage(fi);
 	}
-	
+
 	@RequestMapping(value = "/linkFicheImageClub")
 	public void linkFicheImageClub(long idEtablissement, long idFiche) {
 
@@ -322,7 +332,7 @@ public class ResponsableController {
 		fi.getMesEtablissementsFiche().add(serviceE.getClub(idEtablissement));
 		service.updateFicheImage(fi);
 	}
-	
+
 	@RequestMapping(value = "/linkFicheImageCentreLoisir")
 	public void linkFicheImageCentreLoisir(long idEtablissement, long idFiche) {
 
@@ -331,8 +341,8 @@ public class ResponsableController {
 		fi.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
 		service.updateFicheImage(fi);
 	}
-	*/
-	// EtablissementEcole
+	
+	// **********************************EtablissementEcole***************
 	@RequestMapping(value = "/saveEtablissementEcole", method=RequestMethod.POST)
 	public EtablissementEcole saveEtablissementEcole(@RequestBody EtablissementEcole ee) {
 		serviceE.createEcole(ee);
@@ -356,11 +366,19 @@ public class ResponsableController {
 		e.getMesEtablissementsEnfant().add(serviceE.getEcole(idEtablissement));
 		service.updateEnfant(e);
 	}
+	@RequestMapping(value = "/findAllEcoleFiche")
+	public List<EtablissementEcole> findAllEcoleFiche(long idFiche) {
+		// TODO Auto-generated method stub
+		return service.findAllEcoleFiche(idFiche);
+	}
+	@RequestMapping(value = "/findAllEcoleEnfant")
+	public List<EtablissementEcole> findAllEcoleEnfant(@Param("x") long idEnfant){
+		return service.findAllEcoleEnfant(idEnfant);
+	}
+
 	
-	/*@RequestMapping(value = "/listFichePrincipaleEtablissement")
-	public List<FichePrincipale> listFichePrincipaleEtablissement (long idEtablissement) {
-		//return serviceE.findFichePrincpaleEtablissement(long idEtablissement);
-	}*/	
+	// *************connexion************************//
+
 	@RequestMapping(value = "/createConnexion")
 	public Connexion CreateConnexion(Connexion c) {
 		 service.createConnexion(c);
@@ -376,16 +394,11 @@ public class ResponsableController {
 	public  Connexion findMaConnexion(Connexion c) {
 		 return service.findMaConnexion(c.getLogin(),c.getMdp());
 	}
-	@RequestMapping(value = "/findAllFichePrincipaleEtablissement")
-	public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement) {
-		// TODO Auto-generated method stub
-		return serviceE.findAllFichePrincipaleEtablissement(idEtablissement);
+	@RequestMapping(value = "/findObjectConnexion")
+	public Object findObjectConnexion(String login,String mdp) {
+		return service.findObjectConnexion(login, mdp);
+		
 	}
 	
-	
-	@RequestMapping(value = "/findAllEcoleFiche")
-	public List<EtablissementEcole> findAllEcoleFiche(long idFiche) {
-		// TODO Auto-generated method stub
-		return service.findAllEcoleFiche(idFiche);
-	}
+
 }

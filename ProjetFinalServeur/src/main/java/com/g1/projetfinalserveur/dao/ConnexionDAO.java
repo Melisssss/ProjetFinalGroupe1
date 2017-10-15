@@ -14,4 +14,7 @@ public interface ConnexionDAO extends JpaRepository<Connexion, Long> {
 	
 	@Query("SELECT r FROM Responsable r where r.maConnexion.login like :x and r.maConnexion.mdp like :y")
 	public Responsable findResponsable(@Param("x") String login,@Param("y") String mdp);
+
+	@Query("SELECT u FROM User u where u.maConnexion.login like :x and u.maConnexion.mdp like :y")
+	public Object findObjectConnexion(@Param("x") String login,@Param("y") String mdp);
 }
