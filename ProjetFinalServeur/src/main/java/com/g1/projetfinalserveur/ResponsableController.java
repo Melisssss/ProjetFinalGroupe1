@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g1.projetfinalserveur.metier.Connexion;
@@ -18,6 +19,7 @@ import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
 import com.g1.projetfinalserveur.metier.FicheVaccin;
 import com.g1.projetfinalserveur.metier.Mere;
+import com.g1.projetfinalserveur.metier.Pere;
 import com.g1.projetfinalserveur.metier.Responsable;
 import com.g1.projetfinalserveur.service.IserviceEtablissement;
 import com.g1.projetfinalserveur.service.IserviceResponsable;
@@ -61,7 +63,11 @@ public class ResponsableController {
 	public List<Responsable> findResponsables(Responsable r){
 		return service.findResponsables();
 	}
-	
+	@RequestMapping(value = "/deleteResponsable", method=RequestMethod.POST)
+	public void deleteResponsable(@RequestParam long idResponsable) {
+		Responsable r = service.getResponsable(idResponsable);
+		service.deleteResponsable(r);
+	}
 	
 //	public Enfant linkEnfantResponsable(long idResponsable) {
 //		Enfant e = new Enfant();
@@ -96,7 +102,7 @@ public class ResponsableController {
 		return service.findEnfants();
 	}
 	@RequestMapping(value = "/deleteEnfant", method=RequestMethod.POST)
-	public void deleteEnfant(@RequestBody long idEnfant) {
+	public void deleteEnfant(@RequestParam long idEnfant) {
 		Enfant e = service.getEnfant(idEnfant);
 		service.deleteEnfant(e);
 	}
@@ -121,7 +127,45 @@ public class ResponsableController {
 		return serviceE.findAllEnfantEtablissement(idEtablissement);
 	}
 
+	// ****************************Famille****************************
+	@RequestMapping(value="/saveMere", method=RequestMethod.POST)
+	public Mere saveMere(@RequestBody Mere m){
+		service.createMere(m);
+		return m;
+	}
+	@RequestMapping(value="/updateMere", method=RequestMethod.POST)
+	public Mere updateMere(@RequestBody Mere m) {
+		service.updateMere(m);
+		return m;
+	}
+	@RequestMapping(value="/deleteMere", method=RequestMethod.POST)
+	public void deleteMere(@RequestParam long idMere) {
+		Mere m = service.getMere(idMere);
+		service.deleteMere(m);
+	}
+	@RequestMapping(value="/getMere")
+	public Mere getMere(long idMere) {
+		return service.getMere(idMere);
+	}
 	
+	public Pere savePere(@RequestBody Pere p){
+		service.createPere(p);
+		return p;
+	}
+	@RequestMapping(value="/updatePere", method=RequestMethod.POST)
+	public Pere updatePere(@RequestBody Pere p) {
+		service.updatePere(p);
+		return p;
+	}
+	@RequestMapping(value="/deletePere", method=RequestMethod.POST)
+	public void deletePere(@RequestParam long idPere) {
+		Pere p = service.getPere(idPere);
+		service.deletePere(p);
+	}
+	@RequestMapping(value="/getPere")
+	public Pere getPere(long idPere) {
+		return service.getPere(idPere);
+	}
 	// ***********************************fichePrincipale*********************
 	
 	
@@ -134,6 +178,11 @@ public class ResponsableController {
 	public FichePrincipale updateFichePrincipale(@RequestBody FichePrincipale fp) {
 		service.updateFichePrincipale(fp);
 		return fp;
+	}
+	@RequestMapping(value = "/deleteFichePrincipale", method=RequestMethod.POST)
+	public void deleteFichePrincipale(@RequestParam long idFichePrincipale) {
+		FichePrincipale  fp = service.getFichePrincipale(idFichePrincipale);
+		service.deleteFichePrincipale(fp);
 	}
 	@RequestMapping(value = "/getFichePrincipal", method=RequestMethod.POST)
 	public FichePrincipale getFichePrincipal(@RequestBody long idFiche) {
@@ -169,6 +218,8 @@ public class ResponsableController {
 		return serviceE.findAllFichePrincipaleEtablissement(idEtablissement);
 	}
 	
+	// ***********************************ficheMedical*********************
+	
 	// ***************************ficheMedical**************************
 
 	@RequestMapping(value = "/saveFicheMedical", method=RequestMethod.POST)
@@ -180,6 +231,11 @@ public class ResponsableController {
 	public FicheMedical updateFicheMedical(@RequestBody FicheMedical fm) {
 		service.updateFicheMedical(fm);
 		return fm;
+	}
+	@RequestMapping(value = "/deleteFicheMedical", method=RequestMethod.POST)
+	public void deleteFicheMedical(@RequestParam long idFicheMedical) {
+		FicheMedical  fm = service.getFicheMedical(idFicheMedical);
+		service.deleteFicheMedical(fm);
 	}
 	@RequestMapping(value = "/getFicheMedical", method=RequestMethod.POST)
 	public FicheMedical getFicheMedical(@RequestBody long idFiche) {
@@ -231,6 +287,8 @@ public class ResponsableController {
 		return serviceE.findAllFicheMedicalEtablissement(idEtablissement);
 	}
 	
+	// ***********************************ficheVaccin*********************
+	
 	//**************************ficheVaccin***************************************
 	
 	
@@ -244,9 +302,18 @@ public class ResponsableController {
 		service.updateFicheVaccin(fv);
 		return fv;
 	}
+	@RequestMapping(value = "/deleteFicheVaccin", method=RequestMethod.POST)
+	public void deleteFicheVaccin(@RequestParam long idFicheVaccin) {
+		FicheVaccin  fv = service.getFicheVaccin(idFicheVaccin);
+		service.deleteFicheVaccin(fv);
+	}
 	@RequestMapping(value = "/getFicheVaccin", method=RequestMethod.POST)
 	public FicheVaccin getFicheVaccin(@RequestBody long idFiche) {
 		return service.getFicheVaccin(idFiche);
+	}
+	@RequestMapping(value="/listFicheVaccin")
+	public List<FicheVaccin> findFicheVaccins(FicheVaccin fv){
+		return service.findFicheVaccins();
 	}
 	@RequestMapping(value = "/listFicheVaccinEnfant", method=RequestMethod.POST)
 	public List<FicheVaccin> listFicheVaccin(@RequestBody long idEnfant) {
@@ -289,8 +356,9 @@ public class ResponsableController {
 		// TODO Auto-generated method stub
 		return serviceE.findAllFicheVaccinEtablissement(idEtablissement);
 	}
+	
+	// ***********************************ficheImage*********************
 	//********************************ficheImage*********************
-
 
 	@RequestMapping(value = "/saveFicheImage", method=RequestMethod.POST)
 	public FicheImage saveFicheImage(@RequestBody FicheImage fi) {
@@ -302,9 +370,18 @@ public class ResponsableController {
 		service.updateFicheImage(fi);
 		return fi;
 	}
+	@RequestMapping(value = "/deleteFicheImage", method=RequestMethod.POST)
+	public void deleteFicheImage(@RequestParam long idFicheImage) {
+		FicheImage  fi = service.getFicheImage(idFicheImage);
+		service.deleteFicheImage(fi);
+	}
 	@RequestMapping(value = "/getFicheImage", method=RequestMethod.POST)
 	public FicheImage getFicheImage(@RequestBody long idFiche) {
 		return service.getFicheImage(idFiche);
+	}
+	@RequestMapping(value="/listFicheImage")
+	public List<FicheImage> findFicheImages(FicheImage fi){
+		return service.findFicheImages();
 	}
 	@RequestMapping(value = "/listFicheImageEnfant", method=RequestMethod.POST)
 	public List<FicheImage> listFicheImage(@RequestBody long idEnfant) {
@@ -342,6 +419,8 @@ public class ResponsableController {
 		fi.getMesEtablissementsFiche().add(serviceE.getCentreLoisir(idEtablissement));
 		service.updateFicheImage(fi);
 	}
+	
+	// ***********************************ECOLE*********************
 	
 	// **********************************EtablissementEcole***************
 	@RequestMapping(value = "/saveEtablissementEcole", method=RequestMethod.POST)

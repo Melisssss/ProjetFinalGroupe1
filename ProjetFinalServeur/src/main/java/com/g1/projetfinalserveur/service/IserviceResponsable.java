@@ -71,12 +71,14 @@ public interface IserviceResponsable {
 	
 	//PERE
 	public Pere createPere(Pere p);	 
+	public List<Pere> findPeres();
 	public void deletePere(Pere p);
 	public Pere updatePere(Pere p);
 	public Pere getPere(long idPere);
 	
 	//Mere
 	public Mere createMere(Mere m);	 
+	public List<Mere> findMeres();
 	public void deleteMere(Mere m);
 	public Mere updateMere(Mere m);
 	public Mere getMere(long idMere);

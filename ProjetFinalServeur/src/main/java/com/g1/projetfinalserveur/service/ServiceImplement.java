@@ -325,6 +325,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		// TODO Auto-generated method stub
 		return pereDao.save(p);
 	}
+	public List<Pere> findPeres(){
+		return pereDao.findAll();
+	}
 	@Override
 	public void deletePere(Pere p) {
 		// TODO Auto-generated method stub
@@ -346,6 +349,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	public Mere createMere(Mere m) {
 		// TODO Auto-generated method stub
 		return mereDao.save(m);
+	}
+	public List<Mere> findMeres(){
+		return mereDao.findAll();
 	}
 	@Override
 	public void deleteMere(Mere m) {
