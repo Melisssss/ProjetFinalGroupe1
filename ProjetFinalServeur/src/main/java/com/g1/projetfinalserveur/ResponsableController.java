@@ -39,6 +39,18 @@ public class ResponsableController {
 	@Autowired
 	private IserviceEtablissement serviceE;
 
+	public IserviceResponsable getService() {
+		return service;
+	}
+	public void setService(IserviceResponsable service) {
+		this.service = service;
+	}
+	public IserviceEtablissement getServiceE() {
+		return serviceE;
+	}
+	public void setServiceE(IserviceEtablissement serviceE) {
+		this.serviceE = serviceE;
+	}
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * 
@@ -60,7 +72,6 @@ public class ResponsableController {
 	@RequestMapping(value = "/getResponsable")
 	public Responsable getResponsable(long idUser) {
 		return service.getResponsable(idUser);
-
 	}
 	@RequestMapping(value="/listResponsable")
 	public List<Responsable> findResponsables(Responsable r){
@@ -101,13 +112,18 @@ public class ResponsableController {
 		return e;
 	}
 	@RequestMapping(value="/listEnfant")
-	public List<Enfant> findEnfants (Enfant e){
+	public List<Enfant> findEnfants (@RequestBody Enfant e){
 		return service.findEnfants();
 	}
-	@RequestMapping(value = "/deleteEnfant", method=RequestMethod.POST)
-	public void deleteEnfant(@RequestParam long idEnfant) {
-		Enfant e = service.getEnfant(idEnfant);
-		service.deleteEnfant(e);
+//	@RequestMapping(value = "/deleteEnfant", method=RequestMethod.DELETE)
+//	public void deleteEnfant(@RequestParam long idEnfant) {
+//		Enfant e = service.getEnfant(idEnfant);
+//		service.deleteEnfant(e);
+//	}
+	@RequestMapping(value = "/deleteEnfant", method=RequestMethod.DELETE)
+	public void deleteEnfant(long idEnfant) {
+//		Enfant e = service.getEnfant(idEnfant);
+		service.deleteEnfant(idEnfant);;
 	}
 	@RequestMapping(value = "/getEnfant")
 	public Enfant getEnfant(long idEnfant) {

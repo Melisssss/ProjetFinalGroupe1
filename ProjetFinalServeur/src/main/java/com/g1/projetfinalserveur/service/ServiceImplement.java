@@ -189,9 +189,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return enfantDao.findAll();
 	}
 	@Override
-	public void deleteEnfant(Enfant e) {
+	public void deleteEnfant(long idEnfant) {
 		// TODO Auto-generated method stub
-		enfantDao.delete(e);
+		enfantDao.deleteById(idEnfant);;
 	}
 	@Override
 	public Enfant updateEnfant(Enfant e) {

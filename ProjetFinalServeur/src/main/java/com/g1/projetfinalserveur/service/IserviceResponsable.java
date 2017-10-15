@@ -32,7 +32,7 @@ public interface IserviceResponsable {
 	public Enfant createEnfant(Enfant e);
 	public List<Enfant> findEnfants ();
 	public List<Enfant> findAllEnfantResponsable(long idUser);
-	public void deleteEnfant(Enfant e);
+	public void deleteEnfant(long idEnfant);
 	public Enfant updateEnfant(Enfant e);
 	public Enfant getEnfant(long idEnfant);
 
