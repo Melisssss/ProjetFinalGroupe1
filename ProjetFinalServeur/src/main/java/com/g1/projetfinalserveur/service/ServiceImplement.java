@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.g1.projetfinalserveur.dao.CentreLoisirDAO;
 import com.g1.projetfinalserveur.dao.ClubDAO;
 import com.g1.projetfinalserveur.dao.ConnexionDAO;
+import com.g1.projetfinalserveur.dao.DemandeDAO;
 import com.g1.projetfinalserveur.dao.EcoleDAO;
 import com.g1.projetfinalserveur.dao.EnfantDAO;
 import com.g1.projetfinalserveur.dao.FamilleDAO;
@@ -19,6 +20,7 @@ import com.g1.projetfinalserveur.dao.MereDAO;
 import com.g1.projetfinalserveur.dao.PereDAO;
 import com.g1.projetfinalserveur.dao.ResponsableDAO;
 import com.g1.projetfinalserveur.metier.Connexion;
+import com.g1.projetfinalserveur.metier.Demande;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
 import com.g1.projetfinalserveur.metier.EtablissementClub;
@@ -61,6 +63,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	ConnexionDAO connexionDao;	
 	@Autowired
 	FamilleDAO familleDao;
+	@Autowired
+	DemandeDAO demandeDao;
+	
 	//******CRUD RESPONSABLE
 	@Override
 	public Responsable createResponsable(Responsable r) {
@@ -370,143 +375,242 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	}
 	
 	
-	@Override
-	public Connexion findByMaConnexion(String login, String mdp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
+
 	// CRUD CONNEXION
-	@Override
-	public void createConnexion(Connexion c) {
-		// TODO Auto-generated method stub
-		connexionDao.save(c);
-	}
+		@Override
+		public void createConnexion(Connexion c) {
+			// TODO Auto-generated method stub
+			connexionDao.save(c);
+		}
 
-	@Override
-	public void deleteConnexion(Connexion m) {
-		// TODO Auto-generated method stub
-		
-	}
+		@Override
+		public void deleteConnexion(Connexion m) {
+			// TODO Auto-generated method stub
 
-	@Override
-	public Connexion updateConnexion(Connexion m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		}
 
-	@Override
-	public Connexion getConnexion(long idConnexion) {
-		// TODO Auto-generated method stub
-		return connexionDao.findById(idConnexion).get();
-	}
+		@Override
+		public Connexion updateConnexion(Connexion m) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-	@Override
-	public Connexion findMaConnexion(String login, String mdp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Object findObjectConnexion(String login, String mdp) {
-		// TODO Auto-generated method stub
-		return connexionDao.findObjectConnexion(login, mdp);
-	}
-	@Override
-	public Responsable findResponsable(String login, String mdp) {
-		// TODO Auto-generated method stub
-		return connexionDao.findResponsable(login, mdp);
-	}
+		@Override
+		public Connexion getConnexion(long idConnexion) {
+			// TODO Auto-generated method stub
+			return connexionDao.findById(idConnexion).get();
+		}
 
-	@Override
-	public List<EtablissementEcole> findAllEcoleFiche(long idFiche) {
-		// TODO Auto-generated method stub
-		return ecoleDao.findAllEcoleFiche(idFiche);
-	}
-	@Override
-	public List<Enfant> findAllEnfantEtablissement(long idEtablissement) {
-		// TODO Auto-generated method stub
-		return enfantDao.findAllEnfantEtablissement(idEtablissement);
-	}
+		@Override
+		public Connexion findMaConnexion(String login, String mdp) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
-	@Override
-	public List<FicheImage> findAllFicheImageEtablissement(long idEtablissement) {
-		// TODO Auto-generated method stub
-		return ficheImageDao.findAllFicheImageEtablissement(idEtablissement);
-	}
+		@Override
+		public Object findObjectConnexion(String login, String mdp) {
+			// TODO Auto-generated method stub
+			return connexionDao.findObjectConnexion(login, mdp);
+		}
 
-	@Override
-	public List<FicheMedical> findAllFicheMedicalEtablissement(long idEtablissement) {
-		// TODO Auto-generated method stub
-		return ficheMedicalDao.findAllFicheMedicalEtablissement(idEtablissement);
-	}
+		@Override
+		public Responsable findResponsable(String login, String mdp) {
+			// TODO Auto-generated method stub
+			return connexionDao.findResponsable(login, mdp);
+		}
 
-	@Override
-	public List<FicheVaccin> findAllFicheVaccinEtablissement(long idEtablissement) {
-		// TODO Auto-generated method stub
-		return ficheVaccinDao.findAllFicheVaccinEtablissement(idEtablissement);
-	}
+		// Method ManyToMany
 
-	@Override
-	public List<EtablissementCentreLoisir> findAllCentreLoisirFiche(long idFiche) {
-		// TODO Auto-generated method stub
-		return centreLoisirDao.findAllCentreLoisirFiche(idFiche);
-	}
+		@Override
+		public List<EtablissementEcole> findAllEcoleFiche(long idFiche) {
+			// TODO Auto-generated method stub
+			return ecoleDao.findAllEcoleFiche(idFiche);
+		}
 
-	@Override
-	public List<EtablissementClub> findAllClubFiche(long idFiche) {
-		// TODO Auto-generated method stub
-		return clubDao.findAllClubFiche(idFiche);
-	}
+		@Override
+		public List<Enfant> findAllEnfantEtablissement(long idEtablissement) {
+			// TODO Auto-generated method stub
+			return enfantDao.findAllEnfantEtablissement(idEtablissement);
+		}
 
-	@Override
-	public List<EtablissementCentreLoisir> findAllCentreLoisirEnfant(long idEnfant) {
-		// TODO Auto-generated method stub
-		return centreLoisirDao.findAllCentreLoisirEnfant(idEnfant);
-	}
+		@Override
+		public List<FicheImage> findAllFicheImageEtablissement(long idEtablissement) {
+			// TODO Auto-generated method stub
+			return ficheImageDao.findAllFicheImageEtablissement(idEtablissement);
+		}
 
-	@Override
-	public List<EtablissementClub> findAllClubEnfant(long idEnfant) {
-		// TODO Auto-generated method stub
-		return clubDao.findAllClubEnfant(idEnfant);
-	}
+		@Override
+		public List<FicheMedical> findAllFicheMedicalEtablissement(long idEtablissement) {
+			// TODO Auto-generated method stub
+			return ficheMedicalDao.findAllFicheMedicalEtablissement(idEtablissement);
+		}
 
-	@Override
-	public List<EtablissementEcole> findAllEcoleEnfant(long idEnfant) {
-		// TODO Auto-generated method stub
-		return ecoleDao.findAllEcoleEnfant(idEnfant);
-	}
+		@Override
+		public List<FicheVaccin> findAllFicheVaccinEtablissement(long idEtablissement) {
+			// TODO Auto-generated method stub
+			return ficheVaccinDao.findAllFicheVaccinEtablissement(idEtablissement);
+		}
 
-	@Override
-	public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement) {
-		// TODO Auto-generated method stub
-		return fichePrincipaleDao.findAllFichePrincipaleEtablissement(idEtablissement);
-	}
+		@Override
+		public List<EtablissementCentreLoisir> findAllCentreLoisirFiche(long idFiche) {
+			// TODO Auto-generated method stub
+			return centreLoisirDao.findAllCentreLoisirFiche(idFiche);
+		}
 
-	// CRUD FAMILLE
+		@Override
+		public List<EtablissementClub> findAllClubFiche(long idFiche) {
+			// TODO Auto-generated method stub
+			return clubDao.findAllClubFiche(idFiche);
+		}
 
-	@Override
-	public void createFamille(Famille f) {
-		// TODO Auto-generated method stub
-		familleDao.save(f);
-	}
+		@Override
+		public List<EtablissementCentreLoisir> findAllCentreLoisirEnfant(long idEnfant) {
+			// TODO Auto-generated method stub
+			return centreLoisirDao.findAllCentreLoisirEnfant(idEnfant);
+		}
 
-	@Override
-	public void deleteFamille(Famille f) {
-		// TODO Auto-generated method stub
-		familleDao.delete(f);
-	}
+		@Override
+		public List<EtablissementClub> findAllClubEnfant(long idEnfant) {
+			// TODO Auto-generated method stub
+			return clubDao.findAllClubEnfant(idEnfant);
+		}
 
-	@Override
-	public Famille updateFamille(Famille f) {
-		// TODO Auto-generated method stub
-		return familleDao.saveAndFlush(f);
-	}
+		@Override
+		public List<EtablissementEcole> findAllEcoleEnfant(long idEnfant) {
+			// TODO Auto-generated method stub
+			return ecoleDao.findAllEcoleEnfant(idEnfant);
+		}
 
-	@Override
-	public Famille getFamille(long idFamille) {
-		// TODO Auto-generated method stub
-		return familleDao.findById(idFamille).get();
-	}
+		@Override
+		public List<FichePrincipale> findAllFichePrincipaleEtablissement(long idEtablissement) {
+			// TODO Auto-generated method stub
+			return fichePrincipaleDao.findAllFichePrincipaleEtablissement(idEtablissement);
+		}
+
+		// CRUD FAMILLE
+
+		@Override
+		public void createFamille(Famille f) {
+			// TODO Auto-generated method stub
+			familleDao.save(f);
+		}
+
+		@Override
+		public void deleteFamille(Famille f) {
+			// TODO Auto-generated method stub
+			familleDao.delete(f);
+		}
+
+		@Override
+		public Famille updateFamille(Famille f) {
+			// TODO Auto-generated method stub
+			return familleDao.saveAndFlush(f);
+		}
+
+		@Override
+		public Famille getFamille(long idFamille) {
+			// TODO Auto-generated method stub
+			return familleDao.findById(idFamille).get();
+		}
+
+		// CRUD Demande
+
+		@Override
+		public void createDemande(Demande d) {
+			// TODO Auto-generated method stub
+			demandeDao.save(d);
+		}
+
+		@Override
+		public void deleteDemande(Demande d) {
+			// TODO Auto-generated method stub
+			demandeDao.delete(d);
+		}
+
+		@Override
+		public Demande updateDemande(Demande d) {
+			// TODO Auto-generated method stub
+			return demandeDao.saveAndFlush(d);
+		}
+
+		@Override
+		public Demande getDemande(long idDemande) {
+			// TODO Auto-generated method stub
+			return demandeDao.findById(idDemande).get();
+		}
+
+		@Override
+		public List<Demande> findAllDemandeEtablissement(long idEtablissement) {
+			// TODO Auto-generated method stub
+			return demandeDao.findAllDemandeEtablissement(idEtablissement);
+		}
+
+		@Override
+		public List<Demande> findAllDemandeFiche(long idFiche) {
+			// TODO Auto-generated method stub
+			return demandeDao.findAllDemandeFiche(idFiche);
+		}
+
+		@Override
+		public Object getFiche(long idFiche) {
+			// TODO Auto-generated method stub
+			Object o = null;
+			
+			try {
+				o = fichePrincipaleDao.findById(idFiche).get();
+				return o;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			}
+			
+			try {
+				o = ficheMedicalDao.findById(idFiche).get();
+				return o;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			}
+			
+			try {
+				o = ficheVaccinDao.findById(idFiche).get();
+				return o;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			}
+			
+			try {
+				o = ficheImageDao.findById(idFiche).get();
+				return o;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			}
+			return o;
+		}
+
+		@Override
+		public Object getEtablissement(long idEtablissement) {
+			// TODO Auto-generated method stub
+			Object o = null;	
+			try {
+				o = ecoleDao.findById(idEtablissement).get();
+				return o;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			}
+			
+			try {
+				o = clubDao.findById(idEtablissement).get();
+				return o;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			}
+			
+			try {
+				o = centreLoisirDao.findById(idEtablissement).get();
+				return o;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+			}
+			return o;
+		}
 
 }

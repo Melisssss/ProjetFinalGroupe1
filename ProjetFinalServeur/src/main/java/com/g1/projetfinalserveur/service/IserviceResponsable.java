@@ -2,7 +2,10 @@ package com.g1.projetfinalserveur.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.g1.projetfinalserveur.metier.Connexion;
+import com.g1.projetfinalserveur.metier.Demande;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
 import com.g1.projetfinalserveur.metier.EtablissementClub;
@@ -91,21 +94,31 @@ public interface IserviceResponsable {
 	public Famille getFamille(long idFamille);
 	
 	//Connexion
-	public void createConnexion(Connexion c);	 
-	public void deleteConnexion(Connexion c);
-	public Connexion updateConnexion(Connexion c);
-	public Connexion getConnexion(long idConnexion);
-	public Connexion findMaConnexion(String login,String mdp);
-	public Object findObjectConnexion(String login,String mdp);
-	public Responsable findResponsable(String login,String mdp);
 	
-	//Method ManyToMany
-	
-	public List<EtablissementCentreLoisir> findAllCentreLoisirFiche(long idFiche);
-	public List<EtablissementEcole> findAllEcoleFiche(long idFiche);
-	public List<EtablissementClub> findAllClubFiche(long idFiche);
+		public void createConnexion(Connexion c);	 
+		public void deleteConnexion(Connexion c);
+		public Connexion updateConnexion(Connexion c);
+		public Connexion getConnexion(long idConnexion);
+		public Connexion findMaConnexion(String login,String mdp);
+		public Object findObjectConnexion(String login,String mdp);
+		public Responsable findResponsable(@Param("x") String login,@Param("y") String mdp);
+		
+		
+		//Demande
+		
+		public List<Demande> findAllDemandeFiche(long idFiche);
+		
+		//Method ManyToMany
+		
+		public List<EtablissementCentreLoisir> findAllCentreLoisirFiche(long idFiche);
+		public List<EtablissementEcole> findAllEcoleFiche(long idFiche);
+		public List<EtablissementClub> findAllClubFiche(long idFiche);
 
-	public List<EtablissementCentreLoisir> findAllCentreLoisirEnfant(long idEnfant);
-	public List<EtablissementClub> findAllClubEnfant(long idEnfant);
-	public List<EtablissementEcole> findAllEcoleEnfant(long idEnfant);
+		public List<EtablissementCentreLoisir> findAllCentreLoisirEnfant(long idEnfant);
+		public List<EtablissementClub> findAllClubEnfant(long idEnfant);
+		public List<EtablissementEcole> findAllEcoleEnfant(long idEnfant);
+		
+		
+		public Object getFiche (long idFiche);
+		public Object getEtablissement (long idEtablissement);
 }

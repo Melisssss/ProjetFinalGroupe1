@@ -57,6 +57,5 @@ public class Connexion {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-
 	
 }

@@ -13,6 +13,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -29,14 +30,28 @@ public abstract class Fiche {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idFiche;
 
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Enfant monEnfant;
 
-	@JsonIgnore
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "fiche_user", joinColumns = @JoinColumn(name ="mesFiches_idFiche" , referencedColumnName = "idFiche"), inverseJoinColumns = @JoinColumn(name = "mesEtablissementsFiche_idUser", referencedColumnName ="idUser" ))
 	private Set<Etablissement> mesEtablissementsFiche;
+
+
+	@JsonIgnore
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="maDemandeEtablissement")
+	private Set<Demande> mesDemandesEtablissement;
+	
+	
+	
+	public Set<Demande> getMesDemandesEtablissement() {
+		return mesDemandesEtablissement;
+	}
+
+	public void setMesDemandesEtablissement(Set<Demande> mesDemandesEtablissement) {
+		this.mesDemandesEtablissement = mesDemandesEtablissement;
+	}
 
 	public long getIdFiche() {
 		return idFiche;

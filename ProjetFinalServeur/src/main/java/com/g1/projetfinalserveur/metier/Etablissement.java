@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Etablissement extends User {
-	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "mesEtablissementsFiche", fetch = FetchType.LAZY)
 	private Set<Fiche> mesFiches;
@@ -30,6 +29,20 @@ public abstract class Etablissement extends User {
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "mesEtablissementsEnfant")
 	private Set<Enfant> mesEnfants;
+	
+
+	@JsonIgnore
+	@OneToMany(mappedBy="maDemandeFiche",fetch=FetchType.LAZY)
+	private Set<Demande> mesDemandesFiche;
+	
+	
+	public Set<Demande> getMesDemandesFiche() {
+		return mesDemandesFiche;
+	}
+
+	public void setMesDemandesFiche(Set<Demande> mesDemandesFiche) {
+		this.mesDemandesFiche = mesDemandesFiche;
+	}
 
 	public Set<Enfant> getMesEnfants() {
 		return mesEnfants;
@@ -47,5 +60,4 @@ public abstract class Etablissement extends User {
 	public void setMesFiches(Set<Fiche> mesFiches) {
 		this.mesFiches = mesFiches;
 	}
-
 }

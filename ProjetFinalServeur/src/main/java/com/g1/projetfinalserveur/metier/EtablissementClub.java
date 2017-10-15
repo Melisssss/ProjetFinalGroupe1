@@ -12,14 +12,13 @@ import org.springframework.stereotype.Component;
 @Entity
 @DiscriminatorValue(value = "CLUB")
 public class EtablissementClub extends Etablissement{
-	private String nomclub;
+	private String nomClub;
 
-	public String getNomclub() {
-		return nomclub;
+	public String getNomClub() {
+		return nomClub;
 	}
 
-	public void setNomclub(String nomclub) {
-		this.nomclub = nomclub;
+	public void setNomClub(String nomClub) {
+		this.nomClub = nomClub;
 	}
-	
 }

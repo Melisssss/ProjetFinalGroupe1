@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g1.projetfinalserveur.metier.Connexion;
+import com.g1.projetfinalserveur.metier.Demande;
 import com.g1.projetfinalserveur.metier.Enfant;
+import com.g1.projetfinalserveur.metier.EtablissementCentreLoisir;
 import com.g1.projetfinalserveur.metier.EtablissementEcole;
+import com.g1.projetfinalserveur.metier.Fiche;
 import com.g1.projetfinalserveur.metier.FicheImage;
 import com.g1.projetfinalserveur.metier.FicheMedical;
 import com.g1.projetfinalserveur.metier.FichePrincipale;
@@ -148,6 +151,7 @@ public class ResponsableController {
 		return service.getMere(idMere);
 	}
 	
+	@RequestMapping(value="/savePere", method=RequestMethod.POST)
 	public Pere savePere(@RequestBody Pere p){
 		service.createPere(p);
 		return p;
@@ -452,28 +456,148 @@ public class ResponsableController {
 	public List<EtablissementEcole> findAllEcoleEnfant(@Param("x") long idEnfant){
 		return service.findAllEcoleEnfant(idEnfant);
 	}
+	
+	// ****************EtablissementCentreLoisir********************//
+
+	@RequestMapping(value = "/saveEtablissementCentreLoisir")
+	public EtablissementCentreLoisir saveEtablissementCentreLoisir(EtablissementCentreLoisir ee) {
+		serviceE.createCentreLoisir(ee);
+		return ee;
+	}
+
+	@RequestMapping(value = "/updateEtablissementCentreLoisir")
+	public EtablissementCentreLoisir updateEtablissementCentreLoisir(EtablissementCentreLoisir cl) {
+		serviceE.updateCentreLoisir(cl);
+		return cl;
+	}
+
+	@RequestMapping(value = "/listEtablissementCentreLoisir")
+	public List<EtablissementCentreLoisir> listEtablissementCentreLoisir() {
+		return serviceE.findCentreLoisirs();
+	}
+
+	@RequestMapping(value = "/getEtablissementCentreLoisir")
+	public EtablissementCentreLoisir getEtablissementCentreLoisir(long idEtablissement) {
+		return serviceE.getCentreLoisir(idEtablissement);
+	}
+
+	@RequestMapping(value = "/linkEtablissementCentreLoisirEnfant")
+	public void linkEtablissementCentreLoisirEnfant(long idEnfant, long idEtablissement) {
+		Enfant e;
+		e = service.getEnfant(idEnfant);
+		e.getMesEtablissementsEnfant().add(serviceE.getCentreLoisir(idEtablissement));
+		service.updateEnfant(e);
+	}
+
+	@RequestMapping(value = "/findAllCentreLoisirFiche")
+	public List<EtablissementCentreLoisir> findAllCentreLoisirFiche(long idFiche) {
+		// TODO Auto-generated method stub
+		return service.findAllCentreLoisirFiche(idFiche);
+	}
+
+	@RequestMapping(value = "/findAllCentreLoisirEnfant")
+	public List<EtablissementCentreLoisir> findAllCentreLoisirEnfant(@Param("x") long idEnfant) {
+		return service.findAllCentreLoisirEnfant(idEnfant);
+	}
+
+	// *******************Demande*********************************//
+
+		@RequestMapping(value = "/saveDemande")
+		public Demande saveDemande(Demande ee) {
+			serviceE.createDemande(ee);
+			return ee;
+		}
+
+		@RequestMapping(value = "/getDemande")
+		public Demande getDemande(long idDemande) {
+			return serviceE.getDemande(idDemande);
+		}
+
+		@RequestMapping(value = "/findAllDemandeEtablissement")
+		public List<Demande> findAllDemandeEtablissement(long idEtablissement) {
+			return serviceE.findAllDemandeEtablissement(idEtablissement);
+		}
+
+		@RequestMapping(value = "/updateDemande")
+		public Demande updateDemande(Demande d) {
+			serviceE.updateDemande(d);
+			return d;
+		}
 
 	
-	// *************connexion************************//
+		// *************connexion************************//
 
-	@RequestMapping(value = "/createConnexion")
-	public Connexion CreateConnexion(Connexion c) {
-		 service.createConnexion(c);
-		 return service.getConnexion(c.getIdConnexion());
-	}
-	@RequestMapping(value = "/findResponsable")
-	public Responsable findResponsable(Connexion c) {
-		 return service.findResponsable(c.getLogin(),c.getMdp());
-	}
-	@RequestMapping(value = "/findMaConnexion")
-	public  Connexion findMaConnexion(Connexion c) {
-		 return service.findMaConnexion(c.getLogin(),c.getMdp());
-	}
-	@RequestMapping(value = "/findObjectConnexion")
-	public Object findObjectConnexion(String login,String mdp) {
-		return service.findObjectConnexion(login, mdp);
+		@RequestMapping(value = "/createConnexion")
+		public Connexion CreateConnexion(Connexion c) {
+			service.createConnexion(c);
+			return service.getConnexion(c.getIdConnexion());
+		}
+
+		@RequestMapping(value = "/findResponsable")
+		public Responsable findResponsable(Connexion c) {
+			return service.findResponsable(c.getLogin(), c.getMdp());
+		}
+
+		@RequestMapping(value = "/findMaConnexion")
+		public Connexion findMaConnexion(Connexion c) {
+			return service.findMaConnexion(c.getLogin(), c.getMdp());
+		}
+
+		@RequestMapping(value = "/findObjectConnexion")
+		public Object findObjectConnexion(String login, String mdp) {
+			return service.findObjectConnexion(login, mdp);
+
+		}
 		
-	}
+		// *************AnnuleAttribution************************//
+		
+		@RequestMapping(value = "/annuleAttributionFicheEtablissement")
+
+		public void annuleAttributionFichePrincipaleEtablissement(long idFiche, long idEtablissement) {
+			Object f;
+			Object e;
+			e = service.getEtablissement(idEtablissement);
+			f = service.getFiche(idFiche);
+			
+			((Fiche) f).getMesEtablissementsFiche().remove(e);
+			
+			try {
+				service.updateFichePrincipale((FichePrincipale) f);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				
+			}
+			try {
+				service.updateFicheMedical((FicheMedical) f);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				
+			}
+			try {
+				service.updateFicheVaccin((FicheVaccin) f);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				
+			}
+			try {
+				service.updateFicheImage((FicheImage) f);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				
+			}
+
+		}
+		// ****************************************//
+		@RequestMapping(value = "/getFiche")
+		public Object getFiche(long idFiche) {
+			return service.getFiche(idFiche);
+		}
+		
+		@RequestMapping(value = "/getEtablissement")
+		public Object getEtablissement(long idEtablissement) {
+			return service.getEtablissement(idEtablissement);
+		}
+
 	
 
 }

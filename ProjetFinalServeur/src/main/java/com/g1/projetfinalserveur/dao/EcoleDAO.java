@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.g1.projetfinalserveur.metier.EtablissementEcole;
-import com.g1.projetfinalserveur.metier.FichePrincipale;
 @Repository
 public interface EcoleDAO extends JpaRepository<EtablissementEcole, Long>{
 	@Query( "select distinct ee from EtablissementEcole ee join ee.mesFiches f where f.idFiche = :x" )
