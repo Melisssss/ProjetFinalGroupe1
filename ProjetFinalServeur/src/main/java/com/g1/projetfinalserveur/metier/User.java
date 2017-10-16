@@ -9,10 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 
 @Scope(value = "prototype")
 @Component
@@ -80,4 +78,14 @@ public abstract class User {
 	public void setMaConnexion(Connexion maConnexion) {
 		this.maConnexion = maConnexion;
 	}
+
+	@Override
+	public String toString() {
+		return "User [idUser=" + idUser + ", nom=" + nom + "]";
+	}
+
+
+	
+	
+	
 }

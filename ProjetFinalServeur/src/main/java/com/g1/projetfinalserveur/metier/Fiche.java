@@ -1,7 +1,6 @@
 package com.g1.projetfinalserveur.metier;
 
 import java.util.Set;
-
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,14 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.JoinColumn;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Scope(value = "prototype")
@@ -37,7 +36,9 @@ public abstract class Fiche {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "fiche_user", joinColumns = @JoinColumn(name ="mesFiches_idFiche" , referencedColumnName = "idFiche"), inverseJoinColumns = @JoinColumn(name = "mesEtablissementsFiche_idUser", referencedColumnName ="idUser" ))
 	private Set<Etablissement> mesEtablissementsFiche;
-
+	
+	
+	
 
 	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="maDemandeEtablissement")
@@ -76,4 +77,5 @@ public abstract class Fiche {
 	public void setMesEtablissementsFiche(Set<Etablissement> mesEtablissementsFiche) {
 		this.mesEtablissementsFiche = mesEtablissementsFiche;
 	}
+
 }

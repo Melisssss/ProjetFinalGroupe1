@@ -18,6 +18,16 @@ public class FichePrincipale extends Fiche {
 	private String adresse;
 	private String codePostal;
 	private String ville;
+	private String travailMere;
+	private String travailPere;
+	private String telTravailMere;
+	private String telTravailPere;
+	private String portableMere;
+	private String portablePere;
+	private String nomResponsable1;
+	private String telResponsable1;
+	private String nomResponsable2;
+	private String telResponsable2;
 	private String telMaison;
 	private String email;
 	private String regimeCantine;
@@ -26,13 +36,88 @@ public class FichePrincipale extends Fiche {
 	private String statutSortie;
 	private String transport;
 	private String pension;
-	private String nomResponsable;
-	private String telResponsable;
+
 	
-	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY)
-	private Famille maFamille;
 	
+	public String getTravailMere() {
+		return travailMere;
+	}
+
+	public void setTravailMere(String travailMere) {
+		this.travailMere = travailMere;
+	}
+
+	public String getTravailPere() {
+		return travailPere;
+	}
+
+	public void setTravailPere(String travailPere) {
+		this.travailPere = travailPere;
+	}
+
+	public String getTelTravailMere() {
+		return telTravailMere;
+	}
+
+	public void setTelTravailMere(String telTravailMere) {
+		this.telTravailMere = telTravailMere;
+	}
+
+	public String getTelTravailPere() {
+		return telTravailPere;
+	}
+
+	public void setTelTravailPere(String telTravailPere) {
+		this.telTravailPere = telTravailPere;
+	}
+
+	public String getPortableMere() {
+		return portableMere;
+	}
+
+	public void setPortableMere(String portableMere) {
+		this.portableMere = portableMere;
+	}
+
+	public String getPortablePere() {
+		return portablePere;
+	}
+
+	public void setPortablePere(String portablePere) {
+		this.portablePere = portablePere;
+	}
+
+	public String getNomResponsable1() {
+		return nomResponsable1;
+	}
+
+	public void setNomResponsable1(String nomResponsable1) {
+		this.nomResponsable1 = nomResponsable1;
+	}
+
+	public String getTelResponsable1() {
+		return telResponsable1;
+	}
+
+	public void setTelResponsable1(String telResponsable1) {
+		this.telResponsable1 = telResponsable1;
+	}
+
+	public String getNomResponsable2() {
+		return nomResponsable2;
+	}
+
+	public void setNomResponsable2(String nomResponsable2) {
+		this.nomResponsable2 = nomResponsable2;
+	}
+
+	public String getTelResponsable2() {
+		return telResponsable2;
+	}
+
+	public void setTelResponsable2(String telResponsable2) {
+		this.telResponsable2 = telResponsable2;
+	}
 
 	public String getPension() {
 		return pension;
@@ -40,30 +125,6 @@ public class FichePrincipale extends Fiche {
 
 	public void setPension(String pension) {
 		this.pension = pension;
-	}
-
-	public String getNomResponsable() {
-		return nomResponsable;
-	}
-
-	public void setNomResponsable(String nomResponsable) {
-		this.nomResponsable = nomResponsable;
-	}
-
-	public String getTelResponsable() {
-		return telResponsable;
-	}
-
-	public void setTelResponsable(String telResponsable) {
-		this.telResponsable = telResponsable;
-	}
-
-	public Famille getMaFamille() {
-		return maFamille;
-	}
-
-	public void setMaFamille(Famille maFamille) {
-		this.maFamille = maFamille;
 	}
 
 	public String getAdresse() {

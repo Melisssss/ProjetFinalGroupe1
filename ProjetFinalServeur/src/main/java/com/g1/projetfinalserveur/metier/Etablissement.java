@@ -1,20 +1,14 @@
 package com.g1.projetfinalserveur.metier;
 
-import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.DiscriminatorColumn;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Scope(value = "prototype")
@@ -22,20 +16,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Etablissement extends User {
+
 	@JsonIgnore
-	@ManyToMany(mappedBy = "mesEtablissementsFiche", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "mesEtablissementsFiche", fetch = FetchType.EAGER)
 	private Set<Fiche> mesFiches;
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "mesEtablissementsEnfant")
 	private Set<Enfant> mesEnfants;
-	
 
 	@JsonIgnore
-	@OneToMany(mappedBy="maDemandeFiche",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "maDemandeFiche", fetch = FetchType.LAZY)
 	private Set<Demande> mesDemandesFiche;
-	
-	
+
 	public Set<Demande> getMesDemandesFiche() {
 		return mesDemandesFiche;
 	}
@@ -60,4 +53,7 @@ public abstract class Etablissement extends User {
 	public void setMesFiches(Set<Fiche> mesFiches) {
 		this.mesFiches = mesFiches;
 	}
+	
+	 
+
 }

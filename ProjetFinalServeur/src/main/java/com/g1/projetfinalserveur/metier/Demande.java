@@ -31,8 +31,6 @@ public class Demande {
 		this.idDemande = idDemande;
 	}
 
-	
-
 	public Fiche getMaDemandeFiche() {
 		return maDemandeFiche;
 	}
