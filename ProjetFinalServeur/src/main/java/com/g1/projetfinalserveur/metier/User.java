@@ -22,14 +22,30 @@ public abstract class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idUser;
 
-	//@JsonIgnore
-	@OneToOne(fetch = FetchType.EAGER)
-	private Connexion maConnexion;
-
 	private String nom;
 	private String adresse;
 	private String codePostal;
 	private String ville;
+	private String login;
+	private String mdp;
+	
+	
+	
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
 
 	public long getIdUser() {
 		return idUser;
@@ -69,14 +85,6 @@ public abstract class User {
 
 	public void setVille(String ville) {
 		this.ville = ville;
-	}
-
-	public Connexion getMaConnexion() {
-		return maConnexion;
-	}
-
-	public void setMaConnexion(Connexion maConnexion) {
-		this.maConnexion = maConnexion;
 	}
 
 	@Override

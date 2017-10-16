@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.Demande;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.Etablissement;
@@ -164,44 +163,44 @@ public class EtablissementController {
 
 	// connexion
 
-	@RequestMapping(value = "/connexionEtablissement")
-	public Etablissement connexionEtablissement(Connexion c) {
-		return service.connexionEtablissement(c.getLogin(), c.getMdp());
-	}
-
-	@RequestMapping(value = "/createConnexionEtablissement")
-	public void createConnexion(Connexion c) {
-		service.createConnexion(c);
-	}
-
-	@RequestMapping(value = "/linkConnexionEtablissement")
-	public void linkConnexionResponsable(long idEtablissement, long idConnexion) {
-		Etablissement e;
-		e = (Etablissement) service.getEtablissement(idEtablissement);
-		e.setMaConnexion(service.getConnexion(idConnexion));
-		try {
-			service.updateCentreLoisirs((EtablissementCentreLoisir) e);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-
-		}
-		try {
-			service.updateEcole((EtablissementEcole) e);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-
-		}
-		try {
-			service.updateClub((EtablissementClub) e);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-
-		}
-
-	}
-
-	@RequestMapping(value = "/updateConnexion")
-	public Connexion updateConnexion(Connexion c) {
-		return service.updateConnexion(c);
-	}
+//	@RequestMapping(value = "/connexionEtablissement")
+//	public Etablissement connexionEtablissement(Connexion c) {
+//		return service.connexionEtablissement(c.getLogin(), c.getMdp());
+//	}
+//
+//	@RequestMapping(value = "/createConnexionEtablissement")
+//	public void createConnexion(Connexion c) {
+//		service.createConnexion(c);
+//	}
+//
+//	@RequestMapping(value = "/linkConnexionEtablissement")
+//	public void linkConnexionResponsable(long idEtablissement, long idConnexion) {
+//		Etablissement e;
+//		e = (Etablissement) service.getEtablissement(idEtablissement);
+//		e.setMaConnexion(service.getConnexion(idConnexion));
+//		try {
+//			service.updateCentreLoisirs((EtablissementCentreLoisir) e);
+//		} catch (Exception e1) {
+//			// TODO Auto-generated catch block
+//
+//		}
+//		try {
+//			service.updateEcole((EtablissementEcole) e);
+//		} catch (Exception e1) {
+//			// TODO Auto-generated catch block
+//
+//		}
+//		try {
+//			service.updateClub((EtablissementClub) e);
+//		} catch (Exception e1) {
+//			// TODO Auto-generated catch block
+//
+//		}
+//
+//	}
+//
+//	@RequestMapping(value = "/updateConnexion")
+//	public Connexion updateConnexion(Connexion c) {
+//		return service.updateConnexion(c);
+//	}
 }

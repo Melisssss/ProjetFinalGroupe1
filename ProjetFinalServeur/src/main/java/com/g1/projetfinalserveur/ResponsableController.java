@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.Etablissement;
 import com.g1.projetfinalserveur.metier.Fiche;
@@ -75,13 +74,13 @@ public class ResponsableController {
 		service.deleteResponsable(r);
 	}
 	
-	@RequestMapping(value = "/linkConnexionResponsable")
-	public void linkConnexionResponsable(long idResponsable, long idConnexion) {
-		Responsable r;
-		r = service.getResponsable(idResponsable);
-		r.setMaConnexion(service.getConnexion(idConnexion));
-		service.updateResponsable(r);
-	}
+//	@RequestMapping(value = "/linkConnexionResponsable")
+//	public void linkConnexionResponsable(long idResponsable, long idConnexion) {
+//		Responsable r;
+//		r = service.getResponsable(idResponsable);
+//		r.setMaConnexion(service.getConnexion(idConnexion));
+//		service.updateResponsable(r);
+//	}
 
 	// **********************enfant**********************
 
@@ -261,27 +260,27 @@ public class ResponsableController {
 
 	// *************connexion************************
 
-	@RequestMapping(value = "/createConnexionResponsable", method=RequestMethod.POST)
-	public Connexion CreateConnexion(Connexion c) {
-		service.createConnexion(c);
-		return service.getConnexion(c.getIdConnexion());
-	}
-
-	@RequestMapping(value = "/findResponsable", method=RequestMethod.GET)
-	public Responsable findResponsable(Connexion c) {
-		return service.findResponsable(c.getLogin(), c.getMdp());
-	}
-
-	@RequestMapping(value = "/findMaConnexion", method=RequestMethod.GET)
-	public Connexion findMaConnexion(Connexion c) {
-		return service.findMaConnexion(c.getLogin(), c.getMdp());
-	}
-
-	@RequestMapping(value = "/findObjectConnexion", method=RequestMethod.GET)
-	public Object findObjectConnexion(String login, String mdp) {
-		return service.findObjectConnexion(login, mdp);
-
-	}
+//	@RequestMapping(value = "/createConnexionResponsable", method=RequestMethod.POST)
+//	public Connexion CreateConnexion(Connexion c) {
+//		service.createConnexion(c);
+//		return service.getConnexion(c.getIdConnexion());
+//	}
+//
+//	@RequestMapping(value = "/findResponsable", method=RequestMethod.GET)
+//	public Responsable findResponsable(Connexion c) {
+//		return service.findResponsable(c.getLogin(), c.getMdp());
+//	}
+//
+//	@RequestMapping(value = "/findMaConnexion", method=RequestMethod.GET)
+//	public Connexion findMaConnexion(Connexion c) {
+//		return service.findMaConnexion(c.getLogin(), c.getMdp());
+//	}
+//
+//	@RequestMapping(value = "/findObjectConnexion", method=RequestMethod.GET)
+//	public Object findObjectConnexion(String login, String mdp) {
+//		return service.findObjectConnexion(login, mdp);
+//
+//	}
 	
 	
 	// *************unlink************************
