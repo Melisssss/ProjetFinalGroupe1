@@ -20,7 +20,6 @@ public class Connexion {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idConnexion;
 	private String login;
-	@JsonIgnore
 	private String mdp;
 	@JsonIgnore
 	@OneToOne(mappedBy = "maConnexion", fetch = FetchType.LAZY)
