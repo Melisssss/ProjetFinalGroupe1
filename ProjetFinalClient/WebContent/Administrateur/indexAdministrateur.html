@@ -1,0 +1,98 @@
+<head>
+	<meta charset="UTF-8">
+	<title>Vous êtes connecté - Interface Responsable</title>
+</head>
+
+<div>
+
+	<div class="panel panel-default">  
+		<h2>Gestion responsables</h2>	
+		
+		
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					Ajout Responsable
+				</h4>
+			</div>
+			
+	     	<div class="panel-body">
+				<form name="testre" ng-controller="createResponsable">
+					NOM : <input type="text" ng-model="createresponsable.nom">
+					Prénom : <input type="text" ng-model="createresponsable.prenom">
+					adresse : <input type="text" ng-model="createresponsable.adresse">
+					code Postal : <input type="text" ng-model="createresponsable.codePostal">
+					Ville : <input type="text" ng-model="createresponsable.ville">
+					Login : <input type="text" ng-model="createresponsable.login">
+					Mdp : <input type="text" ng-model="createresponsable.mdp">
+					<button ng-click="saveResponsable()">Enregistrer Resp</button>
+					{{createresponsable}}
+				</form>
+       
+			</div>
+		
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					Liste Responsables
+				</h4>
+			</div>
+			
+	  		<div class="panel-body">
+				 <table class="table" ng-controller="listResponsable">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>nom</th>
+							<th>prenom</th>
+							<th>adresse</th>
+							<th>code Postal</th>
+							<th>Ville</th>
+							<th>login</th>
+							<th>mdp</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="r in responsables">
+							<td>{{r.idUser}}</td>
+							<td>{{r.nom}}</td>
+							<td>{{r.prenom}}</td>
+							<td>{{r.adresse}}</td>
+							<td>{{r.codePostal}}</td>
+							<td>{{r.ville}}</td>
+							<td>{{r.login}}</td>
+							<td>{{r.mdp}}</td>
+							<td><a href="" ng-click="delete(r.idUser)">Supprimer</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					Modifier Responsable
+				</h4>
+			</div>
+			
+	  		<div class="panel-body">
+				<form name="" ng-controller="updateResponsable">
+				Id : <input type="text" ng-model="responsable.idUser">
+				NOM : <input type="text" ng-model="responsable.nom">
+				Prénom : <input type="text" ng-model="responsable.prenom">
+				Adresse : <input type="text" ng-model="responsable.adresse">
+				Code Postal : <input type="text" ng-model="responsable.codePostal">
+				Ville : <input type="text" ng-model="responsable.ville">
+				Login : <input type="text" ng-model="responsable.login">
+				Mdp : <input type="text" ng-model="responsable.mdp">
+				<br>
+					<button ng-click="updateResp()">ModifierResp</button><br>
+				</form>
+			</div>
+			
+	</div> <!--Fin de la gestion responsables -->
+</div>
+ 
+
+		
+
+	
+	    
+	  
