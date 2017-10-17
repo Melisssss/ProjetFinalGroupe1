@@ -15,4 +15,7 @@ public interface EnfantDAO extends JpaRepository<Enfant, Long>{
 
 	@Query("select distinct e from Enfant e join e.mesEtablissementsEnfant et where et.idUser = :x")
 	public List<Enfant> findAllEnfantEtablissement(@Param("x") long idEtablissement);
+	
+	
+	//test select pour enfant
 }

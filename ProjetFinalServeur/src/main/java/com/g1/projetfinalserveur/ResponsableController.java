@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.Etablissement;
 import com.g1.projetfinalserveur.metier.Fiche;
@@ -43,6 +45,15 @@ public class ResponsableController {
 	 * @RequestBody
 	 */
 
+	//************************TEST******************************
+//	@RequestMapping(value="/attribuerEnfResp", method=RequestMethod.GET)
+//	public Enfant attribuerEnfantResponsable(@RequestParam long idResponsable) {
+//		Enfant e = new Enfant();
+//		Responsable r = service.getResponsable(idResponsable);
+//		e.setMonResponsable(r);		
+//		return e;
+//	}
+	
 	// **********************responsable**********************
 
 	@RequestMapping(value = "/saveResponsable", method=RequestMethod.POST)
@@ -57,12 +68,16 @@ public class ResponsableController {
 		return r;
 	}
 
-	@RequestMapping(value = "/getResponsable")
+//	@RequestMapping(value = "/getResponsable" , method=RequestMethod.POST)
+//	public Responsable getResponsable(@RequestParam long idUser) {
+//		return service.getResponsable(idUser);
+//
+//	}
+	@RequestMapping(value = "/getResponsable" )
 	public Responsable getResponsable(long idUser) {
 		return service.getResponsable(idUser);
 
 	}
-	
 	@RequestMapping(value="/listResponsable", method=RequestMethod.GET)
 	public List<Responsable> findResponsables(Responsable r){
 		return service.findResponsables();
@@ -74,13 +89,13 @@ public class ResponsableController {
 		service.deleteResponsable(r);
 	}
 	
-//	@RequestMapping(value = "/linkConnexionResponsable")
-//	public void linkConnexionResponsable(long idResponsable, long idConnexion) {
-//		Responsable r;
-//		r = service.getResponsable(idResponsable);
-//		r.setMaConnexion(service.getConnexion(idConnexion));
-//		service.updateResponsable(r);
-//	}
+	@RequestMapping(value = "/linkConnexionResponsable")
+	public void linkConnexionResponsable(long idResponsable, long idConnexion) {
+		Responsable r;
+		r = service.getResponsable(idResponsable);
+		r.setMaConnexion(service.getConnexion(idConnexion));
+		service.updateResponsable(r);
+	}
 
 	// **********************enfant**********************
 
@@ -107,15 +122,18 @@ public class ResponsableController {
 		service.deleteEnfant(e);
 	}
 
+//	@RequestMapping(value = "/getEnfant", method=RequestMethod.POST)
+//	public Enfant getEnfant(@RequestParam long idEnfant) {
+//		return service.getEnfant(idEnfant);
+//	}
 	@RequestMapping(value = "/getEnfant")
 	public Enfant getEnfant(long idEnfant) {
 		return service.getEnfant(idEnfant);
 	}
-
-	@RequestMapping(value = "/linkEnfantResponsable")
-	public void linkEnfantResponsable(long idResponsable, long idEnfant) {
-		Enfant e = new Enfant();
-		e = service.getEnfant(idEnfant);
+//	@RequestMapping(value = "/linkEnfantResponsable", method=RequestMethod.GET)
+	@RequestMapping(value = "/linkEnfantResponsable", method=RequestMethod.POST)
+	public void linkEnfantResponsable(@RequestParam long idResponsable,@RequestParam long idEnfant) {
+		Enfant e = (Enfant) service.getEnfant(idEnfant);
 		Responsable r = service.getResponsable(idResponsable);
 		e.setMonResponsable(r);
 		service.updateEnfant(e);
@@ -260,27 +278,27 @@ public class ResponsableController {
 
 	// *************connexion************************
 
-//	@RequestMapping(value = "/createConnexionResponsable", method=RequestMethod.POST)
-//	public Connexion CreateConnexion(Connexion c) {
-//		service.createConnexion(c);
-//		return service.getConnexion(c.getIdConnexion());
-//	}
-//
-//	@RequestMapping(value = "/findResponsable", method=RequestMethod.GET)
-//	public Responsable findResponsable(Connexion c) {
-//		return service.findResponsable(c.getLogin(), c.getMdp());
-//	}
-//
-//	@RequestMapping(value = "/findMaConnexion", method=RequestMethod.GET)
-//	public Connexion findMaConnexion(Connexion c) {
-//		return service.findMaConnexion(c.getLogin(), c.getMdp());
-//	}
-//
-//	@RequestMapping(value = "/findObjectConnexion", method=RequestMethod.GET)
-//	public Object findObjectConnexion(String login, String mdp) {
-//		return service.findObjectConnexion(login, mdp);
-//
-//	}
+	@RequestMapping(value = "/createConnexionResponsable", method=RequestMethod.POST)
+	public Connexion CreateConnexion(Connexion c) {
+		service.createConnexion(c);
+		return service.getConnexion(c.getIdConnexion());
+	}
+
+	@RequestMapping(value = "/findResponsable", method=RequestMethod.GET)
+	public Responsable findResponsable(Connexion c) {
+		return service.findResponsable(c.getLogin(), c.getMdp());
+	}
+
+	@RequestMapping(value = "/findMaConnexion", method=RequestMethod.GET)
+	public Connexion findMaConnexion(Connexion c) {
+		return service.findMaConnexion(c.getLogin(), c.getMdp());
+	}
+
+	@RequestMapping(value = "/findObjectConnexion", method=RequestMethod.GET)
+	public Object findObjectConnexion(String login, String mdp) {
+		return service.findObjectConnexion(login, mdp);
+
+	}
 	
 	
 	// *************unlink************************

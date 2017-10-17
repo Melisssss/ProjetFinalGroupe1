@@ -20,6 +20,7 @@ public class Connexion {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idConnexion;
 	private String login;
+	@JsonIgnore
 	private String mdp;
 	@JsonIgnore
 	@OneToOne(mappedBy = "maConnexion", fetch = FetchType.LAZY)
@@ -56,5 +57,5 @@ public class Connexion {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-	
+
 }

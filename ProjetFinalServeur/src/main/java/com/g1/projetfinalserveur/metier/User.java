@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -26,26 +27,20 @@ public abstract class User {
 	private String adresse;
 	private String codePostal;
 	private String ville;
-	private String login;
-	private String mdp;
-	
-	
-	
-	public String getLogin() {
-		return login;
-	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+	//@JsonIgnore
+		@OneToOne(fetch = FetchType.EAGER)
+		private Connexion maConnexion;
+	
+		
+	public Connexion getMaConnexion() {
+			return maConnexion;
+		}
 
-	public String getMdp() {
-		return mdp;
-	}
+		public void setMaConnexion(Connexion maConnexion) {
+			this.maConnexion = maConnexion;
+		}
 
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
 
 	public long getIdUser() {
 		return idUser;

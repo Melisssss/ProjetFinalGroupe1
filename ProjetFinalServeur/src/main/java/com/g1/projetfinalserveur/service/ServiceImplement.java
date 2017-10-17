@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.g1.projetfinalserveur.dao.CentreLoisirDAO;
 import com.g1.projetfinalserveur.dao.ClubDAO;
+import com.g1.projetfinalserveur.dao.ConnexionDAO;
 import com.g1.projetfinalserveur.dao.DemandeDAO;
 import com.g1.projetfinalserveur.dao.EcoleDAO;
 import com.g1.projetfinalserveur.dao.EnfantDAO;
@@ -13,6 +14,7 @@ import com.g1.projetfinalserveur.dao.FicheMedicalDAO;
 import com.g1.projetfinalserveur.dao.FichePrincipaleDAO;
 import com.g1.projetfinalserveur.dao.FicheVaccinDAO;
 import com.g1.projetfinalserveur.dao.ResponsableDAO;
+import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.Demande;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.Etablissement;
@@ -47,9 +49,9 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	FichePrincipaleDAO fichePrincipaleDao;
 	@Autowired
 	FicheVaccinDAO ficheVaccinDao;
-//	@Autowired
-//	ConnexionDAO connexionDao;
-//	@Autowired
+	@Autowired
+	ConnexionDAO connexionDao;
+	@Autowired
 	DemandeDAO demandeDao;
 
 	// ******CRUD RESPONSABLE
@@ -352,48 +354,48 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 	}
 
 	
-//	// CRUD CONNEXION
-//	@Override
-//	public void createConnexion(Connexion c) {
-//		// TODO Auto-generated method stub
-//		connexionDao.save(c);
-//	}
-//
-//	@Override
-//	public void deleteConnexion(Connexion m) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	@Override
-//	public Connexion updateConnexion(Connexion m) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Connexion getConnexion(long idConnexion) {
-//		// TODO Auto-generated method stub
-//		return connexionDao.findById(idConnexion).get();
-//	}
-//
-//	@Override
-//	public Connexion findMaConnexion(String login, String mdp) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Object findObjectConnexion(String login, String mdp) {
-//		// TODO Auto-generated method stub
-//		return connexionDao.findObjectConnexion(login, mdp);
-//	}
-//
-//	@Override
-//	public Responsable findResponsable(String login, String mdp) {
-//		// TODO Auto-generated method stub
-//		return connexionDao.findResponsable(login, mdp);
-//	}
+	// CRUD CONNEXION
+	@Override
+	public void createConnexion(Connexion c) {
+		// TODO Auto-generated method stub
+		connexionDao.save(c);
+	}
+
+	@Override
+	public void deleteConnexion(Connexion m) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Connexion updateConnexion(Connexion m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Connexion getConnexion(long idConnexion) {
+		// TODO Auto-generated method stub
+		return connexionDao.findById(idConnexion).get();
+	}
+
+	@Override
+	public Connexion findMaConnexion(String login, String mdp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object findObjectConnexion(String login, String mdp) {
+		// TODO Auto-generated method stub
+		return connexionDao.findObjectConnexion(login, mdp);
+	}
+
+	@Override
+	public Responsable findResponsable(String login, String mdp) {
+		// TODO Auto-generated method stub
+		return connexionDao.findResponsable(login, mdp);
+	}
 
 	// Method ManyToMany
 
@@ -575,11 +577,11 @@ public class ServiceImplement implements IserviceResponsable, IserviceEtablissem
 		return fichePrincipaleDao.findAllFicheEnfant(idEnfant);
 	}
 
-//	@Override
-//	public Etablissement connexionEtablissement(String login, String mdp) {
-//		// TODO Auto-generated method stub
-//		return connexionDao.connexionEtablissement(login, mdp);
-//	}
+	@Override
+	public Etablissement connexionEtablissement(String login, String mdp) {
+		// TODO Auto-generated method stub
+		return connexionDao.connexionEtablissement(login, mdp);
+	}
 
 	@Override
 	public List<Fiche> findAllFicheEtablissement(long idEtablissement) {

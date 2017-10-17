@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.query.Param;
 
+import com.g1.projetfinalserveur.metier.Connexion;
 import com.g1.projetfinalserveur.metier.Demande;
 import com.g1.projetfinalserveur.metier.Enfant;
 import com.g1.projetfinalserveur.metier.Etablissement;
@@ -71,17 +72,17 @@ public interface IserviceResponsable {
 	public FicheImage updateFicheImage(FicheImage fi);
 	public FicheImage getFicheImage(long idFicheImage);
 		
-//	//Connexion
+	//Connexion
+	
+	public void createConnexion(Connexion c);	 
+	public void deleteConnexion(Connexion c);
+	public Connexion updateConnexion(Connexion c);
+	public Connexion getConnexion(long idConnexion);
+	public Connexion findMaConnexion(String login,String mdp);
+	public Object findObjectConnexion(String login,String mdp);
+	public Responsable findResponsable(@Param("x") String login,@Param("y") String mdp);
+	
 //	
-//	public void createConnexion(Connexion c);	 
-//	public void deleteConnexion(Connexion c);
-//	public Connexion updateConnexion(Connexion c);
-//	public Connexion getConnexion(long idConnexion);
-//	public Connexion findMaConnexion(String login,String mdp);
-//	public Object findObjectConnexion(String login,String mdp);
-//	public Responsable findResponsable(@Param("x") String login,@Param("y") String mdp);
-	
-	
 	//Demande
 	
 	public List<Demande> findAllDemandeFiche(long idFiche);
