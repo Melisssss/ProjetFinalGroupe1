@@ -9,30 +9,31 @@
 
 <body>
 
+	<!-- Barre de navigation -->
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>                        
-	      </button>
-	      <a class="navbar-brand" href="#">Child'app</a>
-	    </div>
-	    <div class="collapse navbar-collapse" id="myNavbar">
-	    <ul class="nav navbar-nav navbar-left">
-	      	<li><a href="#!about">Qui sommes nous?</a></li>
-	      	<li><a href="#!contact">Contact</a></li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a href="#!inscription">Inscription</a></li>
-	        <li><a href="#!connexion"><span class="glyphicon glyphicon-log-in"></span>Connexion</a></li>
-	      </ul>
-	      </div>
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		      </button>
+		      <a class="navbar-brand" href="#">Child'app</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		    <ul class="nav navbar-nav navbar-left">
+		      	<li><a href="#!about">Qui sommes nous?</a></li>
+		      	<li><a href="#!contact">Contact</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		      	<li><a href="#!inscription">Inscription</a></li>
+		        <li><a href="#!connexion"><span class="glyphicon glyphicon-log-in"></span>Connexion</a></li>
+		      </ul>
+		      </div>
 	    </div>
 	</nav>
 	
-	<!-- Second Container -->
+	<!-- Premier Container -->
 	<div class="container-fluid-body bg-2 text-center" id="about">
 	  <h3 class="margin">Qui sommes nous?</h3>
 	  <p>Child'app est une plateforme de mise en relation ..... </p>
@@ -41,7 +42,7 @@
 	  </a>
 	</div>
 	
-	<!-- First Container -->
+	<!-- Second Container -->
 	<div class="container-fluid-body bg-1 text-center" id="connexion">
 		<h3 class="margin">Je suis</h3>
 		<table>
@@ -61,15 +62,42 @@
 				<td><a href="./connexion.html"><h3>un établissement</h3></a></td>
 			</tbody>
 		</table>
+	</div>
 	
+	<!-- Container (Contact Section) -->
+	<div id="contact" class="container-fluid bg-3 ">
+	  <h3 class="margin text-center">Contact</h3>
+	  <div class="row">
+	    <div class="col-sm-5">
+	      <p>Contact us and we'll get back to you within 24 hours.</p>
+	      <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
+	      <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
+	      <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
+	    </div>
+	    <div class="col-sm-7 slideanim">
+	      <div class="row">
+	        <div class="col-sm-6 form-group">
+	          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+	        </div>
+	        <div class="col-sm-6 form-group">
+	          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+	        </div>
+	      </div>
+	      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+	      <div class="row">
+	        <div class="col-sm-12 form-group">
+	          <button class="btn btn-default pull-right" type="submit">Send</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
 
-
-<!-- Footer -->
-<footer class="container-fluid-body bg-4 text-center">
-  <p>Web application Made By G1forChild</p> 
-</footer>
+	<!-- Footer -->
+	<footer class="container-fluid bg-4 text-center">
+	  <p>Web application Made By G1forChild</p> 
+	</footer>
 
 </body>
 </html>

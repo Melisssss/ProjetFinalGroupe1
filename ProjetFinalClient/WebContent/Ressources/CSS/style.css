@@ -1,37 +1,54 @@
-nav{
-    display:inline-block;
-    background-color:#5597b4;
-    box-shadow:0 1px 1px #ccc;
-    border-radius:2px;
+body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;
+  }
+p {font-size: 16px;}
+.margin {margin-bottom: 45px;}
+.bg-1 { 
+    background-color: #1891be; /* Blue */
+    color: #ffffff;
+}
+.bg-2 { 
+    background-color: #474e5d; /* Grey */
+    color: #ffffff;
+}
+.bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+}
+.bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+}
+.container-fluid-body {
+    padding-top: 70px;
+    padding-bottom: 70px;
 }
 
-nav a{
-    display:inline-block;
-    padding: 18px 30px;
-    color:#aeaeae!important;
-/*     font-weight:bold; */
-    font-size:16px;
-    text-decoration:none !important;
-    line-height:1;
-    text-transform: uppercase;
-    background-color:transparent;
-
-    -webkit-transition:background-color 0.25s;
-    -moz-transition:background-color 0.25s;
-    transition:background-color 0.25s;
+.container-fluid{
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-nav a:first-child{
-    border-radius:2px 0 0 2px;
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
 }
-
-nav a:last-child{
-    border-radius:0 2px 2px 0;
+.navbar-nav  li a:hover {
+    color: #1abc9c !important;
 }
-
-nav.responsable .responsable,
-nav.etablissement .etablissement,
-nav.inscription .inscription,
-nav.connexion .connexion{
-    background-color:#e35885 !important;
+  
+table
+{
+margin: auto;
+}
+td
+{
+text-align :center;
 }
