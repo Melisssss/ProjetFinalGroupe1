@@ -1,9 +1,75 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Accueil</title>
+	<link rel="stylesheet" type="text/css" href="./Ressources/CSS/style.css">
+	<link rel="stylesheet" type="text/css" href="./Ressources/CSS/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+	
 </head>
 
-<div>
-	<h1>Company</h1> 
-	<p>We specialize in blablabla</p> 
-</div>
+<body>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="#">Child'app</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	    <ul class="nav navbar-nav navbar-left">
+	      	<li><a href="#!about">Qui sommes nous?</a></li>
+	      	<li><a href="#!contact">Contact</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a href="#!inscription">Inscription</a></li>
+	        <li><a href="#!connexion"><span class="glyphicon glyphicon-log-in"></span>Connexion</a></li>
+	      </ul>
+	      </div>
+	    </div>
+	</nav>
+	
+	<!-- Second Container -->
+	<div class="container-fluid-body bg-2 text-center" id="about">
+	  <h3 class="margin">Qui sommes nous?</h3>
+	  <p>Child'app est une plateforme de mise en relation ..... </p>
+	  <a href="#!connexion" class="btn btn-default btn-lg">
+	    <span class="glyphicon glyphicon-search"></span> Se connecter maintenant
+	  </a>
+	</div>
+	
+	<!-- First Container -->
+	<div class="container-fluid-body bg-1 text-center" id="connexion">
+		<h3 class="margin">Je suis</h3>
+		<table>
+			<thead>
+			<tr>
+				<th> 
+	  				<a href="./connexion.html"><img src="./Ressources/Images/pere-enfants-carre.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Responsable" width="300" height="300"></a>
+				</th>
+				<th style="color:#1891be"><h3>ou</h3></th>
+				<th>
+					<a href="./connexion.html"><img src="./Ressources/Images/ecole-carre.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Etablissement" width="300" height="300"></a>
+				</th>
+			</thead>
+			<tbody>
+				<td><a href="./connexion.html"><h3>un responsable d'enfant</h3></a></td>
+				<td></td>
+				<td><a href="./connexion.html"><h3>un établissement</h3></a></td>
+			</tbody>
+		</table>
+	
+	</div>
+
+
+
+<!-- Footer -->
+<footer class="container-fluid-body bg-4 text-center">
+  <p>Web application Made By G1forChild</p> 
+</footer>
+
+</body>
+</html>
