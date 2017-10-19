@@ -1,216 +1,37 @@
 <head>
 	<meta charset="UTF-8">
-	<title>Vous êtes connecté - Interface Responsable</title>
+	<title>Accueil Responsable</title>
+	<link rel="stylesheet" type="text/css" href="../Ressources/CSS/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../Ressources/CSS/styleBody.css">
+
 </head>
 
-<div >
+<body ng-app="appResponsable">
 
-	<div class="panel panel-default">  
-		<h2>Gestion enfants</h2>	
-	  		<div class="panel-body">
-				<form>
-	  				<table class="table table-striped text">
-				    	<thead>
-					      <tr>
-					      	<th>Id</th>
-					        <th>NOM</th>
-					        <th>Prénom</th>
-					        <th>Date de naissance</th>
-					        <th>Gestion</th>
-					      </tr>
-					    </thead>
-					     <tbody ng-controller="listEnfant">
-						   <tr ng-repeat="e in enfants">
-						   	<td>{{e.idEnfant}}</td>
-						    <td>{{e.nom}}</td>
-						    <td>{{e.prenom}}</td>
-						    <td>{{e.dateDeNaissance}}</td>
-						    <td>
-						      <button class="w3-btn w3-ripple" ng-click="updateEnfant(Enfant)">&#9998;Edit</button>
-						      <button class="w3-btn w3-ripple" ng-click="delete(e.idEnfant)">&#10006;</button>
-						    </td>
-						  </tr>
-						  </tbody>
-						  <tfoot ng-controller="createEnfant">
-						  	<tr>
-						  		<td></td>
-							   <td><input placeholder="Nom" ng-model="enfantTest.nom" class="w3-input w3-border w3-padding"></td>
-							   <td><input placeholder="Prénom" ng-model="enfantTest.prenom" class="w3-input w3-border w3-padding"></td>
-							   <td><input placeholder="Date de naissance" ng-model="enfantTest.dateDeNaissance" class="w3-input w3-border w3-padding"></td>
-								<td><button ng-click="creer()" class="w3-btn w3-padding w3-green">Add</button></td>
-						  	</tr>
-						   </tfoot>
-					</table>
-			 	</form>
-	      	</div>
-	      	
-	      	<div class="panel-heading">
-				<h4 class="panel-title">
-					Modification enfants
-				</h4>
-			</div>
-			
-	  		<div class="panel-body">
-				<form name="" ng-controller="updateEnfant">
-				   	Id:<input type="text" ng-model="enfant.idEnfant">
-					<br>
-				   	NOM: <input type="text" ng-model="enfant.nom">
-					<br>
-				    Prénom: <input type="text" ng-model="enfant.prenom">
-				    <br>
-					Date de naissance: <input type="text" ng-model="enfant.dateDeNaissance">
-					<br>
-					<button ng-click="mettreaj()">Mettre à jour</button><br>
-				</form>
-			</div>
-	</div> <!-- Fin de la div du CRUD Gestion Enfant -->
-	
-	<div class="panel panel-default">  
-		<h2>Gestion des fiches</h2>
-		
-		<div class="panel-heading">
-			<h4 class="panel-title">
-			Fiche de renseignements générale
-			</h4>
+	<nav class="navbar navbar-default">
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li><a href="#/!"><div ng-init="logo = '../Ressources/Images/Enfant-carre.jpg'"><img ng-src="{{logo}}" height="40" class="img-circle"></div></a></li>
+		        <li><a href="#!ajoutEnfant">Enregistrer un enfant</a></li>
+		        <li><a href="#!gestionMesEnfants">Voir mes enfants enregistrés</a></li>
+		        <li><a href="#!demandesEtablissement">Consulter les demandes établissement</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      	<li><a href="#!inscriptionResponsable">Inscription</a></li>
+		        <li><a href="#!connexionResponsable"><span class="glyphicon glyphicon-log-in"></span>Connexion/Déconnection</a></li>
+		        <li>Bonjour {{rootResponsable.nom}}</li>
+		    </ul>
 		</div>
-		
-		<div class="panel-body">
-		
-		</div>
-		    
-		<div class="panel-heading">
-			<h4 class="panel-title">
-			Fiche de renseignements vaccination
-			</h4>
-		</div>
-		
-		<div class="panel-body">
-		    <form name="" ng-controller="createFicheV">
-		  	 Statut vaccin :
-		  	 	<select ng-model="ficheV.statutVaccins">
-					<option value="VaccinAJour">Vaccin a jour</option>
-					<option value="VaccinRetard">Retard de vaccin</option>
-				</select><br>
-				<button ng-click="createFicheV()">Enregistrer FicheV</button><br>
-		    </form>   
-		    <h3>Liste fiche vaccin</h3>  
-		 	<table class="table" ng-controller="listFicheVaccin">
-				<thead>
-					<tr>
-						<th>id</th>
-						<th>statut des vaccins</th>
-					</tr>
-				</thead>
-				<tr ng-repeat="fv in fichesV">
-					<td>{{fv.idFiche}}</td>
-					<td>{{fv.statutVaccins}}</td>
-					<td><a href="" ng-click="delete(fv.idFiche)">Supprimer</a></td>
-				</tr>
-			</table>     
-			
-			<h3>Modification fiche vaccin</h3>
-			<form name="" ng-controller="updateFicheVaccin">
-				Id: <br><input type="text" ng-model="ficheV.idFiche">
-				Statut des vaccins : 
-					<select ng-model="ficheV.statutVaccins">
-						<option value="VaccinAJour">Vaccin a jour</option>
-						<option value="VaccinRetard">Retard de vaccin</option>
-					</select><br>
-		 		<button ng-click="updateFicheV()">update</button><br>
-		 	</form>
-		 </div>
-		 
-		 <div class="panel-heading">
-			<h4 class="panel-title">
-			Fiche de renseignements médicale
-			</h4>
-		</div>
-		
-		<div class="panel-body">
-    		<h3>creation</h3>
-   			<form name="" ng-controller="createFicheM">
-    		statutSpecialiste :
-    			<select ng-model="ficheM.statutSpecialiste"> 
-					<option value="oui">oui ?</option>
-					<option value="non">non ?</option>
-					<option value="peutEtre">peut etre</option>
-				</select><br>
-				Traitement : <input type="text" ng-model="ficheM.traitement"><br>
-				Observation : <input type="text" ng-model="ficheM.observation"><br>
-			<button ng-click="createFicheM()">Enregistrer ficheM</button><br>
-    		</form>  
-		
-		</div>
-		 <h3>list fiche Image</h3>  
- 	<table class="table" ng-controller="listFicheMedical">
-	<thead>
-	<tr>
-		<th>id</th>
-		<th>statut specialiste</th>
-		<th>Traitement</th>
-		<th>Observation</th>
-		</tr>
-		</thead>
-	<tr ng-repeat="fm in fichesM">
-		<td>{{fm.idFiche}}</td>
-		<td>{{fm.statutSpecialiste}}</td>
-		<td>{{fm.traitement}}</td>
-		<td>{{fm.observation}}</td>
-	<td><a href="" ng-click="delete(fm.idFiche)">Supprimer</a></td>
-	</tr>
-	</tbody>
-	</table>     
-	
-	<h3>Modification fihce Image</h3>
-	<form name="" ng-controller="updateFicheMedical">
-		Id: <br><input type="text" ng-model="ficheM.idFiche">
-		statutSpecialiste :<select ng-model="ficheM.statutSpecialiste"> 
-			<option value="oui">oui ?</option>
-			<option value="non">non ?</option>
-			<option value="peutEtre">peut etre</option>
-		</select><br>
-		Traitement : <input type="text" ng-model="ficheM.traitement"><br>
-		Observation : <input type="text" ng-model="ficheM.observation"><br>
- 		<button ng-click="updateficheM()">update</button><br>
- 	</form> 
-	      	
-	  </div> <!-- Fin de la gestion fiches -->
-	
-	<div class="panel panel-default">  
-		<h2>Gestion des demandes établissement</h2>
-		    
-		<div class="panel-heading">
-			<h4 class="panel-title">
-			Demandes de fiches en cours
-			</h4>
-		</div>
-	      
-	     <div class="panel-body">	
-	 		<table class="table table-striped" ng-controller="findAllClient">
-			    <thead>
-			      <tr>
-			        <th>Nom de l'établissement</th>
-			        <th>Type d'établissement</th>
-			        <th>Fiches demandées</th>
-			      </tr>
-			    </thead>
-			    
-			     <tbody>
-				   <tr ng-repeat="e in Etablissement">
-				    <td>{{e.nomEtablissement }}</td>
-				    <td>{{e.type}}</td>
-				    <td>{{}}</td>
-				    <button class="w3-btn w3-ripple" ng-click="modifier(client.id)">&#9998;Edit</button>
-				    <button class="w3-btn w3-ripple" ng-click="supprimer(client.id)">&#10006;</button>
-				  </tr>
-				 </tbody>
-			</table>
-		 </div>
-	  </div>
-</div>  
+	</nav>
 
-		
-
-	
-	    
-	  
+	<div class="jumbotron text-center container-principal arrondie">
+		<div class="container">
+			<div ng-view></div>
+		</div>
+	</div>
+<script type="text/javascript" src="../Ressources/Angular/angular.min.js"></script>
+<script type="text/javascript" src="../Ressources/Angular/angular-route.js"></script>
+<script type="text/javascript" src="appResponsable.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body> 

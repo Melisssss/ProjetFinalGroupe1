@@ -1,0 +1,394 @@
+<head>
+	<meta charset="UTF-8">
+	<title>Gestion des mes enfants</title>
+</head>
+
+<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 panel panel-primary">
+				<h3>Création enfant</h3>
+
+				<form name="myFormEnfant" ng-controller="registerEnfant">
+
+					<div class="form-group">
+						<label> NOM : </label><input name="nom" type="text"
+							ng-model="enfant.nom" required> <span style="color: red"
+							ng-show="myFormEnfant.nom.$error.required">Le nom est
+							requis</span>
+					</div>
+					
+					<div class="form-group">
+						<label> Prénom : </label><input name="prenom" type="text"
+							ng-model="enfant.prenom" required> <span
+							style="color: red" ng-show="myFormEnfant.prenom.$error.required">La
+							ville est requise</span>
+					</div>
+					
+					<div class="form-group">
+						<label> Date de naissance : </label><input name="date" type="text"
+							ng-model="enfant.dateDeNaissance" required> <span
+							style="color: red" ng-show="myFormEnfant.date.$error.required">La
+							date de naissance est requise</span>
+					</div>
+
+					<button
+						ng-disabled="myFormEnfant.nom.$invalid||  
+									myFormEnfant.prenom.$invalid||  
+									myFormEnfant.date.$invalid "
+						ng-click="registerEnfant1()">Enregistrer les informations</button>
+					<br> <br>
+				</form>
+			</div>
+
+		<div class="row">
+			<div ng-controller="supprimerFiche"
+				class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-primary">
+				<h3>Fiches principales enfant</h3>
+				<table class="table">
+
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Date de naissance</th>
+							<th>Ville</th>
+							<th>Adresse</th>
+							<th>telMaison</th>
+							<th>regimeCantine</th>
+							<th>statutEtude</th>
+							<th>statutSortie</th>
+							<th>transport</th>
+							<th>pension</th>
+						</tr>
+					</thead>
+					<tr ng-repeat="f in mesFichesPrincipales">
+						<td>{{f.monEnfant.nom}}</td>
+						<td>{{f.monEnfant.prenom}}</td>
+						<td>{{f.monEnfant.dateDeNaissance}}</td>
+						<td>{{f.ville}}</td>
+						<td>{{f.adresse}}</td>
+						<td>{{f.telMaison}}</td>
+						<td>{{f.regimeCantine}}</td>
+						<td>{{f.statutEtude}}</td>
+						<td>{{f.statutSortie}}</td>
+						<td>{{f.transport}}</td>
+						<td>{{f.pension}}</td>
+						<td><button
+								ng-click="supprimerFiche(f.idFiche,f.monEnfant.idEnfant)">supprimer</button></td>
+						<td><button ng-click="update(f.idFiche)">modifier</button></td>
+					</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<div ng-controller="supprimerFiche"
+				class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-primary">
+				<h3>Fiches image enfant</h3>
+
+				<table class="table">
+
+					<thead>
+						<tr>
+							<th>nom</th>
+							<th>prenom</th>
+							<th>date de naissance</th>
+							<th>statut image</th>
+							<th>classe</th>
+
+						</tr>
+					</thead>
+					<tr ng-repeat="f in mesFichesImages">
+						<td>{{f.monEnfant.nom}}</td>
+						<td>{{f.monEnfant.prenom}}</td>
+						<td>{{f.monEnfant.dateDeNaissance}}</td>
+						<td>{{f.statutImage}}</td>
+						<td>{{f.classe}}</td>
+						<td><button
+								ng-click="supprimerFiche(f.idFiche,f.monEnfant.idEnfant)">supprimer</button></td>
+					</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+
+		</div>
+
+
+
+		<div class="row">
+			<div ng-controller="supprimerFiche"
+				class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-primary">
+				<h3>Fiches medicales enfant</h3>
+				<table class="table">
+
+					<thead>
+						<tr>
+							<th>nom</th>
+							<th>prenom</th>
+							<th>date de naissance</th>
+							<th>statutSpecialiste</th>
+							<th>observation</th>
+							<th>traitement</th>
+
+
+						</tr>
+					</thead>
+					<tr ng-repeat="f in mesFichesMedicales">
+						<td>{{f.monEnfant.nom}}</td>
+						<td>{{f.monEnfant.prenom}}</td>
+						<td>{{f.monEnfant.dateDeNaissance}}</td>
+						<th>{{f.statutSpecialiste}}</th>
+						<th>{{f.observation}}</th>
+						<th>{{f.traitement}}</th>
+						<td><button
+								ng-click="supprimerFiche(f.idFiche,f.monEnfant.idEnfant)">supprimer</button></td>
+					</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div ng-controller="supprimerFiche"
+				class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-primary">
+				<h3>Fiches vaccins enfant</h3>
+
+				<table class="table">
+
+					<thead>
+						<tr>
+							<th>nom</th>
+							<th>prenom</th>
+							<th>date de naissance</th>
+							<th>statut</th>
+
+						</tr>
+					</thead>
+					<tr ng-repeat="f in mesFichesVaccins">
+						<td>{{f.monEnfant.nom}}</td>
+						<td>{{f.monEnfant.prenom}}</td>
+						<td>{{f.monEnfant.dateDeNaissance}}</td>
+						<th>{{f.statutVaccins}}</th>
+						<td><button
+								ng-click="supprimerFiche(f.idFiche,f.monEnfant.idEnfant)">supprimer</button></td>
+					</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+
+		</div>
+
+		<div class="row">
+			<form>
+				<div
+					class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-primary">
+					<br> Formulaire à remplir : <input type="radio"
+						ng-model="myVar" value="fichePrincipale"> fiche principale
+					<input type="radio" ng-model="myVar" value="ficheImage">
+					fiche image <input type="radio" ng-model="myVar"
+						value="ficheMedical"> fiche medical <input type="radio"
+						ng-model="myVar" value="ficheVaccin"> fiche vaccin <br>
+					<br> <br>
+				</div>
+			</form>
+
+			<div ng-switch="myVar">
+				<div ng-switch-when="fichePrincipale">
+					<div
+						class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-primary">
+						<h3>Création fiche principale</h3>
+
+						<p>mon enfant : {{rootEnfant.nom}}</p>
+						<form name="myFormP" ng-controller="registerFiche">
+
+							<div class="form-group">
+								<label> ville : </label><input name="ville" type="text"
+									ng-model="fiche.ville" required> <span
+									style="color: red" ng-show="myFormP.ville.$error.required">champ
+									requis.</span>
+							</div>
+							<div class="form-group">
+								<label> adresse : </label><input name="adresse" type="text"
+									ng-model="fiche.adresse" required> <span
+									style="color: red" ng-show="myFormP.adresse.$error.required">champ
+									requis.</span>
+							</div>
+
+							<div class="form-group">
+								<label> tel maison : </label><input name="telMaison" type="text"
+									ng-model="fiche.telMaison" required> <span
+									style="color: red" ng-show="myFormP.telMaison.$error.required">champ
+									requis.</span>
+							</div>
+
+							<div class="form-group">
+								<label> regimeCantine : </label><input name="regimeCantine"
+									type="text" ng-model="fiche.regimeCantine" required> <span
+									style="color: red"
+									ng-show="myFormP.regimeCantine.$error.required">champ
+									requis.</span>
+							</div>
+
+							<div class="form-group">
+								<label> statut etude : </label> <select name="statutEtude"
+									ng-model="fiche.statutEtude" required="required">
+									<option value="autorisation sortie">autorisation sortie</option>
+									<option value="etude obligatoire">etude obligatoire</option>
+								</select><br>
+							</div>
+
+							<div class="form-group">
+								<label> statut sortie : </label> <select name="statutSortie"
+									ng-model="fiche.statutSortie" required>
+									<option value="Oui">Oui</option>
+									<option value="Non">Non</option>
+								</select><br>
+							</div>
+
+							<div class="form-group">
+								<label> transport : </label><input name="transport" type="text"
+									ng-model="fiche.transport" required> <span
+									style="color: red" ng-show="myFormP.transport.$error.required">champ
+									requis.</span>
+							</div>
+
+							<div class="form-group">
+								<label> pension : </label> <select ng-model="fiche.pension"
+									name="pension" required>
+									<option value="demi-pensionnaire">demi-pensionnaire</option>
+									<option value="pensionnaire">pensionnaire</option>
+									<option value="externe">externe</option>
+								</select><br>
+
+							</div>
+
+							<button
+								ng-disabled="myFormP.adresse.$invalid||  
+									myFormP.ville.$invalid||  
+									myFormP.telMaison.$invalid ||    	  
+									 myFormP.transport.$invalid||
+									  myFormP.pension.$invalid||
+									  myFormP.statutSortie.$invalid||
+									  myFormP.statutEtude.$invalid"
+								ng-click="registerFichePrincipale()">Envoyer formulaire</button>
+							<br> <br> <br>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div ng-switch="myVar">
+				<div ng-switch-when="ficheMedical">
+
+					<div
+						class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-primary">
+						<h3>Création fiche medical</h3>
+
+						<p>mon enfant : {{rootEnfant.nom}}</p>
+						<form name="myFormM" ng-controller="registerFiche">
+
+							<div class="form-group">
+								<label> traitement : </label><input name="traitement"
+									type="text" ng-model="ficheMedical.traitement" required>
+								<span style="color: red"
+									ng-show="myFormM.traitement.$error.required">champ
+									requis.</span>
+							</div>
+							<div class="form-group">
+								<label> observation : </label><input name="observation"
+									type="text" ng-model="ficheMedical.observation" required>
+								<span style="color: red"
+									ng-show="myFormM.observation.$error.required">champ
+									requis.</span>
+							</div>
+
+							<div class="form-group">
+								<label> statut specialiste : </label><input
+									name="statutSpecialiste" type="text"
+									ng-model="ficheMedical.statutSpecialiste" required> <span
+									style="color: red"
+									ng-show="myFormM.statutSpecialiste.$error.required">champ
+									requis.</span>
+							</div>
+
+							<button
+								ng-disabled="myFormM.traitement.$invalid||  
+									myFormM.observation.$invalid||  
+									myFormM.statutSpecialiste.$invalid"
+								ng-click="registerFicheMedical()">Envoyer formulaire</button>
+							<br> <br>
+
+						</form>
+					</div>
+				</div>
+			</div>
+			<div ng-switch="myVar">
+				<div ng-switch-when="ficheVaccin">
+					<div
+						class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-primary">
+						<h3>Création fiche vaccin</h3>
+
+						<p>mon enfant : {{rootEnfant.nom}}</p>
+						<form name="myFormV" ng-controller="registerFiche">
+
+							<div class="form-group">
+								<label> statut vaccin : </label> <select name="statutVaccins"
+									ng-model="ficheVaccins.statutVaccins" required="required">
+									<option value="à jour">à jour</option>
+									<option value="pas à jour">pas à jour</option>
+								</select><br>
+							</div>
+							<button ng-disabled="myFormV.statutVaccins.$invalid"
+								ng-click="registerFicheVaccins()">Envoyer formulaire</button>
+							<br> <br>
+
+						</form>
+					</div>
+
+
+				</div>
+
+
+			</div>
+			<div ng-switch="myVar">
+				<div ng-switch-when="ficheImage">
+					<div
+						class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-primary">
+						<h3>Création fiche image</h3>
+						<p>mon enfant : {{rootEnfant.nom}}</p>
+						<form name="myFormI" ng-controller="registerFiche">
+
+							<div class="form-group">
+								<label> statut image : </label> <select name="statutImage"
+									ng-model="ficheImage.statutImage" required="required">
+									<option value="autoriser">autoriser</option>
+									<option value="refuser">refuser</option>
+								</select><br>
+							</div>
+							<div class="form-group">
+								<label> classe : </label><input name="classe" type="text"
+									ng-model="ficheImage.classe" required> <span
+									style="color: red" ng-show="myFormI.class.$error.required">champ
+									requis.</span>
+							</div>
+							<button
+								ng-disabled="myFormI.statutImage.$invalid || myFormI.classe.$invalid"
+								ng-click="registerFicheImage()">Envoyer formulaire</button>
+							<br> <br> <br>
+						</form>
+					</div>
+				</div>
+
+			</div>
+
+</div>

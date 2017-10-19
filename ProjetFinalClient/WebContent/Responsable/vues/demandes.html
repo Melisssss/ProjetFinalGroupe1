@@ -1,0 +1,39 @@
+<head>
+<meta charset="UTF-8">
+<title>Demande de renseignements</title>
+</head>
+
+	<div class="row">
+				<div ng-controller="findAllDemande" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel container-secondaire">
+					<h3>Demandes établissements</h3>
+					<button class="btn btn-default" ng-click="findAllDemande(rootEnfant.idEnfant)">Actualiser</button>
+					<table class="table">
+
+						<thead>
+							<tr>
+								<th>Nom établissement</th>
+								<th>Nom enfant</th>
+								<th>Bille (fiche principale)</th>
+								<th>traitement (fiche medical)</th>
+								<th>statut vaccin (fiche vaccin)</th>
+								<th>statut image (fiche image)</th>
+
+							</tr>
+						</thead>
+						<tr ng-repeat="d in mesDemandes">
+							<td>{{d.maDemandeEtablissement.nom}}</td>
+							<td>{{d.maDemandeFiche.monEnfant.nom}}</td>
+							<td>{{d.maDemandeFiche.ville}}</td>
+							<td>{{d.maDemandeFiche.traitement}}</td>
+							<td>{{d.maDemandeFiche.statutVaccins}}</td>
+							<td>{{d.maDemandeFiche.statutImage}}</td>
+							<td><button class="btn btn-default" ng-click="deleteDemande(d.idDemande,rootEnfant.idEnfant)">Décliner</button></td>
+							<td><button class="btn btn-default" ng-click="acceptDemande(d.maDemandeEtablissement.idUser,d.maDemandeFiche.idFiche,d.idDemande,rootEnfant.idEnfant)">Accepter</button></td>
+						</tr>
+						</tbody>
+					</table>
+
+
+				</div>
+
+			</div>
