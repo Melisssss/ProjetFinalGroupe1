@@ -2,7 +2,6 @@ package com.g1.projetfinalserveur.metier;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +20,9 @@ public class FicheVaccin extends Fiche {
 		this.statutVaccins = statutVaccins;
 	}
 
+	
+	
+	
 	
 
 }

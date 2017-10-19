@@ -1,5 +1,4 @@
 package com.g1.projetfinalserveur.metier;
-
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,9 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Scope(value = "prototype")
 @Component
@@ -23,24 +23,14 @@ public abstract class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idUser;
 
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.EAGER)
+	private Connexion maConnexion;
+
 	private String nom;
 	private String adresse;
 	private String codePostal;
 	private String ville;
-
-	//@JsonIgnore
-		@OneToOne(fetch = FetchType.EAGER)
-		private Connexion maConnexion;
-	
-		
-	public Connexion getMaConnexion() {
-			return maConnexion;
-		}
-
-		public void setMaConnexion(Connexion maConnexion) {
-			this.maConnexion = maConnexion;
-		}
-
 
 	public long getIdUser() {
 		return idUser;
@@ -80,6 +70,14 @@ public abstract class User {
 
 	public void setVille(String ville) {
 		this.ville = ville;
+	}
+
+	public Connexion getMaConnexion() {
+		return maConnexion;
+	}
+
+	public void setMaConnexion(Connexion maConnexion) {
+		this.maConnexion = maConnexion;
 	}
 
 	@Override

@@ -18,6 +18,15 @@ public interface FichePrincipaleDAO extends JpaRepository<FichePrincipale, Long>
 	
 	@Query("SELECT f FROM Fiche f WHERE f.monEnfant.idEnfant = :x")
 	List<Fiche> findAllFicheEnfant(@Param("x") long idEnfant);
+	
+	
+
+	@Query("SELECT f FROM Fiche f")
+	List<Fiche> findAllFiche();
+	
+	
+	
+
 
 	@Query( "select distinct fp from FichePrincipale fp join fp.mesEtablissementsFiche e where e.idUser = :x" )
 	public List<FichePrincipale> findAllFichePrincipaleEtablissement(@Param("x") long idEtablissement);

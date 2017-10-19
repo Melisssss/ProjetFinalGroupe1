@@ -1,5 +1,6 @@
 package com.g1.projetfinalserveur.metier;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,10 +21,10 @@ public class Connexion {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idConnexion;
 	private String login;
-	@JsonIgnore
 	private String mdp;
+	
 	@JsonIgnore
-	@OneToOne(mappedBy = "maConnexion", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "maConnexion", fetch = FetchType.LAZY,cascade =CascadeType.ALL)
 	private User monUser;
 
 	public User getMonUser() {

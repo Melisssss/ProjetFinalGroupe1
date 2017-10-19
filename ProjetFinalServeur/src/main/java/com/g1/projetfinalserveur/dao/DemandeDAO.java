@@ -14,6 +14,9 @@ public interface DemandeDAO extends JpaRepository<Demande, Long>{
 	@Query("SELECT d FROM Demande d WHERE d.maDemandeFiche.idFiche = :x")
 	List<Demande> findAllDemandeFiche(@Param("x") long idFiche);
 	
+	@Query("SELECT d FROM Demande d WHERE d.maDemandeEnfant.idEnfant = :x")
+	List<Demande> findAllDemandeEnfant(@Param("x") long idEnfant);
+	
 	@Query("SELECT d FROM Demande d WHERE d.maDemandeEtablissement.idUser = :x")
 	List<Demande> findAllDemandeEtablissement(@Param("x") long idEtablissement);
 }

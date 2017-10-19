@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Scope(value = "prototype")
 @Component
 @Entity
-@DiscriminatorValue(value = "ECOLE")
-public class EtablissementEcole extends Etablissement {
-
+@DiscriminatorValue(value = "CENTRE_LOISIRS")
+public class EtablissementCentreLoisirs extends Etablissement{
+	
 }

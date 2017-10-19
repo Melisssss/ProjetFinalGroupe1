@@ -2,15 +2,14 @@ package com.g1.projetfinalserveur.metier;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Scope(value="prototype")
+@Scope(value = "prototype")
 @Component
 @Entity
 @DiscriminatorValue(value = "FICHE_MEDICAL")
-public class FicheMedical extends Fiche{
+public class FicheMedical extends Fiche {
 	private String statutSpecialiste;
 	private String observation;
 	private String traitement;

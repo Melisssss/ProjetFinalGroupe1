@@ -21,7 +21,21 @@ public class Demande {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Fiche maDemandeFiche;
 	@ManyToOne(fetch = FetchType.EAGER)
+	private Enfant maDemandeEnfant;
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Etablissement maDemandeEtablissement;
+
+	
+	
+	
+
+	public Enfant getMaDemandeEnfant() {
+		return maDemandeEnfant;
+	}
+
+	public void setMaDemandeEnfant(Enfant maDemandeEnfant) {
+		this.maDemandeEnfant = maDemandeEnfant;
+	}
 
 	public long getIdDemande() {
 		return idDemande;
@@ -30,6 +44,8 @@ public class Demande {
 	public void setIdDemande(long idDemande) {
 		this.idDemande = idDemande;
 	}
+
+	
 
 	public Fiche getMaDemandeFiche() {
 		return maDemandeFiche;

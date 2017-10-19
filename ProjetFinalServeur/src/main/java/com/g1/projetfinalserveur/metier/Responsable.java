@@ -1,19 +1,12 @@
 package com.g1.projetfinalserveur.metier;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Scope(value = "prototype")
@@ -21,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @DiscriminatorValue(value = "RESPONSABLE")
 public class Responsable extends User {
-	
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "monResponsable", fetch = FetchType.LAZY)
@@ -44,6 +36,5 @@ public class Responsable extends User {
 	public void setMesEnfants(Set<Enfant> mesEnfants) {
 		this.mesEnfants = mesEnfants;
 	}
-
 
 }

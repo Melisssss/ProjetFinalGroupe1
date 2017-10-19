@@ -1,9 +1,7 @@
 package com.g1.projetfinalserveur.metier;
 
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -11,14 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @DiscriminatorValue(value = "CLUB")
-public class EtablissementClub extends Etablissement{
-	private String nomClub;
+public class EtablissementClub extends Etablissement {
+	private String typeActivite;
 
-	public String getNomClub() {
-		return nomClub;
+	public String getTypeActivite() {
+		return typeActivite;
 	}
 
-	public void setNomClub(String nomClub) {
-		this.nomClub = nomClub;
+	public void setTypeActivite(String typeActivite) {
+		this.typeActivite = typeActivite;
 	}
+
+	
 }

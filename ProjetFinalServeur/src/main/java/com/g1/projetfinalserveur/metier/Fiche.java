@@ -38,6 +38,8 @@ public abstract class Fiche {
 	private Set<Etablissement> mesEtablissementsFiche;
 	
 	
+	private String typeFiche;
+	
 	
 
 	@JsonIgnore
@@ -77,5 +79,14 @@ public abstract class Fiche {
 	public void setMesEtablissementsFiche(Set<Etablissement> mesEtablissementsFiche) {
 		this.mesEtablissementsFiche = mesEtablissementsFiche;
 	}
+
+	public String getTypeFiche() {
+		return typeFiche;
+	}
+
+	public void setTypeFiche(String typeFiche) {
+		this.typeFiche = typeFiche;
+	}
+	
 
 }

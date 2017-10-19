@@ -2,13 +2,9 @@ package com.g1.projetfinalserveur.metier;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Scope(value = "prototype")
 @Component
@@ -18,16 +14,6 @@ public class FichePrincipale extends Fiche {
 	private String adresse;
 	private String codePostal;
 	private String ville;
-	private String travailMere;
-	private String travailPere;
-	private String telTravailMere;
-	private String telTravailPere;
-	private String portableMere;
-	private String portablePere;
-	private String nomResponsable1;
-	private String telResponsable1;
-	private String nomResponsable2;
-	private String telResponsable2;
 	private String telMaison;
 	private String email;
 	private String regimeCantine;
@@ -36,15 +22,23 @@ public class FichePrincipale extends Fiche {
 	private String statutSortie;
 	private String transport;
 	private String pension;
+	private String travailPere;
+	private String telTravailPere;
+	private String portablePere;
+	private String nomResponsablePere;
+	private String telResponsablePere;
+	private String travailMere;
+	private String telTravailMere;
+	private String portableMere;
+	private String nomResponsableMere;
+	private String telResponsableMere;
 
-	
-	
-	public String getTravailMere() {
-		return travailMere;
+	public String getPension() {
+		return pension;
 	}
 
-	public void setTravailMere(String travailMere) {
-		this.travailMere = travailMere;
+	public void setPension(String pension) {
+		this.pension = pension;
 	}
 
 	public String getTravailPere() {
@@ -55,28 +49,12 @@ public class FichePrincipale extends Fiche {
 		this.travailPere = travailPere;
 	}
 
-	public String getTelTravailMere() {
-		return telTravailMere;
-	}
-
-	public void setTelTravailMere(String telTravailMere) {
-		this.telTravailMere = telTravailMere;
-	}
-
 	public String getTelTravailPere() {
 		return telTravailPere;
 	}
 
 	public void setTelTravailPere(String telTravailPere) {
 		this.telTravailPere = telTravailPere;
-	}
-
-	public String getPortableMere() {
-		return portableMere;
-	}
-
-	public void setPortableMere(String portableMere) {
-		this.portableMere = portableMere;
 	}
 
 	public String getPortablePere() {
@@ -87,45 +65,61 @@ public class FichePrincipale extends Fiche {
 		this.portablePere = portablePere;
 	}
 
-	public String getNomResponsable1() {
-		return nomResponsable1;
+	public String getNomResponsablePere() {
+		return nomResponsablePere;
 	}
 
-	public void setNomResponsable1(String nomResponsable1) {
-		this.nomResponsable1 = nomResponsable1;
+	public void setNomResponsablePere(String nomResponsablePere) {
+		this.nomResponsablePere = nomResponsablePere;
 	}
 
-	public String getTelResponsable1() {
-		return telResponsable1;
+	public String getTelResponsablePere() {
+		return telResponsablePere;
 	}
 
-	public void setTelResponsable1(String telResponsable1) {
-		this.telResponsable1 = telResponsable1;
+	public void setTelResponsablePere(String telResponsablePere) {
+		this.telResponsablePere = telResponsablePere;
 	}
 
-	public String getNomResponsable2() {
-		return nomResponsable2;
+	public String getTravailMere() {
+		return travailMere;
 	}
 
-	public void setNomResponsable2(String nomResponsable2) {
-		this.nomResponsable2 = nomResponsable2;
+	public void setTravailMere(String travailMere) {
+		this.travailMere = travailMere;
 	}
 
-	public String getTelResponsable2() {
-		return telResponsable2;
+	public String getTelTravailMere() {
+		return telTravailMere;
 	}
 
-	public void setTelResponsable2(String telResponsable2) {
-		this.telResponsable2 = telResponsable2;
+	public void setTelTravailMere(String telTravailMere) {
+		this.telTravailMere = telTravailMere;
 	}
 
-	public String getPension() {
-		return pension;
+	public String getPortableMere() {
+		return portableMere;
 	}
 
-	public void setPension(String pension) {
-		this.pension = pension;
+	public void setPortableMere(String portableMere) {
+		this.portableMere = portableMere;
 	}
+
+	public String getNomResponsableMere() {
+		return nomResponsableMere;
+	}
+
+	public void setNomResponsableMere(String nomResponsableMere) {
+		this.nomResponsableMere = nomResponsableMere;
+	}
+
+	public String getTelResponsableMere() {
+		return telResponsableMere;
+	}
+
+	public void setTelResponsableMere(String telResponsableMere) {
+		this.telResponsableMere = telResponsableMere;
+	}	
 
 	public String getAdresse() {
 		return adresse;
@@ -206,5 +200,7 @@ public class FichePrincipale extends Fiche {
 	public void setTransport(String transport) {
 		this.transport = transport;
 	}
+
+	
 
 }

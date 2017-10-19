@@ -28,6 +28,18 @@ public abstract class Etablissement extends User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "maDemandeFiche", fetch = FetchType.LAZY)
 	private Set<Demande> mesDemandesFiche;
+	
+	private String typeEtablissement;
+	
+	
+
+	public String getTypeEtablissement() {
+		return typeEtablissement;
+	}
+
+	public void setTypeEtablissement(String typeEtablissement) {
+		this.typeEtablissement = typeEtablissement;
+	}
 
 	public Set<Demande> getMesDemandesFiche() {
 		return mesDemandesFiche;
